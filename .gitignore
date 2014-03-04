@@ -4,3 +4,6 @@ dist
 .sass-cache
 app/bower_components
 app/sounds
+lg-touc2win.sublime-workspace
+
+*.mp3
