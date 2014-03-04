@@ -1,0 +1,159 @@
+body,
+html,
+#pixi-container {
+  padding: 0;
+  margin: 0;
+}
+
+canvas {
+  display: block;
+  margin: 0 auto;
+}
+
+.centralizer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  -webkit-box-align: center;
+     -moz-box-align: center;
+  -webkit-box-flex: 1;
+     -moz-box-flex: 1;
+  -webkit-box-pack: center;
+     -moz-box-pack: center;
+  -webkit-flex: 1 1 100%;
+      -ms-flex: 1 1 100%;
+          flex: 1 1 100%;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.centralizer #game-info {
+  display: flex;
+  width: 200px;
+  height: 200px;
+  font-size: 100px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  background: rgba(255, 0, 0, 0.8);
+  border-radius: 50%;
+  -webkit-opacity: 0;
+     -moz-opacity: 0;
+          opacity: 0;
+  visibility: hidden;
+  -webkit-box-align: center;
+     -moz-box-align: center;
+  -webkit-box-flex: 1;
+     -moz-box-flex: 1;
+  -webkit-box-pack: center;
+     -moz-box-pack: center;
+  -webkit-transition: opacity 0.5s ease-out;
+     -moz-transition: opacity 0.5s ease-out;
+       -o-transition: opacity 0.5s ease-out;
+          transition: opacity 0.5s ease-out;
+  -webkit-flex: 1 1 200;
+      -ms-flex: 1 1 200;
+          flex: 1 1 200;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.centralizer #game-info.active {
+  -webkit-opacity: 1;
+     -moz-opacity: 1;
+          opacity: 1;
+  visibility: visible;
+}
+
+.centralizer #game-info.retry {
+  display: table;
+  width: 346px!important;
+  height: 346px!important;
+  font-size: 25px;
+  background: rgba(196, 2, 82, 0.8) !important;
+}
+
+.centralizer #game-info.retry a.game-button {
+  color: rgba(196, 2, 82, 0.8) !important;
+}
+
+.centralizer #game-info.nextlevel {
+  display: table;
+  width: 346px!important;
+  height: 346px!important;
+  font-size: 25px;
+  background: rgba(92, 187, 139, 0.9) !important;
+}
+
+.centralizer #game-info.nextlevel a.game-button {
+  color: #5cbb8b !important;
+}
+
+.centralizer #game-info.nextlevel > div,
+.centralizer #game-info.retry > div {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.centralizer #game-info h1 {
+  width: 80%;
+  margin: 0 auto;
+  font-size: 32px;
+}
+
+.centralizer #game-info a.game-button {
+  display: table;
+  width: auto;
+  padding: 5px 10px 5px 10px;
+  margin: 0 auto;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #000;
+  background-color: white;
+}
+
+.centralizer #game-info .social {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #fff;
+}
+
+.centralizer #game-info .social ul {
+  display: table;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.centralizer #game-info .social ul li:first-child {
+  margin-top: 8px;
+  margin-right: 10px;
+}
+
+.centralizer #game-info .social a {
+  color: #fff;
+  border-radius: 0px;
+}
+
+.centralizer #game-info .social .btn-facebook {
+  background-color: #3b5999;
+}
+
+.centralizer #game-info .social .btn-twitter {
+  background-color: #53a3da;
+}
+
+.centralizer #game-info .social .btn-google-plus {
+  background-color: #de4b39;
+}

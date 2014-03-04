@@ -1,0 +1,81 @@
+ function shuffle()
+        { 
+
+            var currentSelectedIndex = cardArrayVisible[1];
+            var currentVisibleArray = [];
+            for (var i=0;i<cardArrayVisible.length;i++)
+            {
+                currentVisibleArray.push( {index: selection[i], symbol: cardArrayVisible[i]} );
+            }
+            currentVisibleArray = currentVisibleArray.splice(0, VISIBLE_CARDS+1);
+            console.log(currentVisibleArray)
+            console.log(" > "+currentSelectedIndex);
+            
+            
+            var first1 = new TWEEN.Tween( { x: cards[0].position.x, scale: .6, alpha:.5 } )
+                    .to( { x: cards[0].position.x - CARD_WIDTH / 2 , scale:.8, alpha:1 }, SHUFFLE_SPEED / 3 * 1 )
+                    .easing( SHUFFLE_EASE )
+                    .onUpdate( function () {
+                        cards[0].alpha = this.alpha;
+                        cards[0].position.x = this.x;
+                        cards[0].scale.x = this.scale;
+                        cards[0].scale.y = this.scale;
+                    } )
+                    .start();
+
+            var first2 = new TWEEN.Tween( { x: cards[0].position.x - CARD_WIDTH / 2 } )
+                    .to( { x: cards[0].position.x }, SHUFFLE_SPEED / 3 * 2 )
+                    .delay(SHUFFLE_SPEED / 3 * 1 )
+                    .easing( SHUFFLE_EASE )
+                    .onUpdate( function () {
+                      // cards[0].position.x = this.x;
+                    } )
+                    .start();       
+
+            var middle = new TWEEN.Tween( { x: cards[1].position.x, scaleUp: .8, scaleDown: 1 } )
+                    .to( { x: cards[1].position.x + CARD_WIDTH, scaleUp: 1, scaleDown: .8 }, SHUFFLE_SPEED )
+                    .easing( SHUFFLE_EASE )
+                    .onUpdate( function () {
+                        cards[cardDepths[0] - 1].scale.x = this.scaleUp;
+                        cards[cardDepths[0] - 1].scale.y = this.scaleUp;
+                        cards[cardDepths[0]].scale.x = this.scaleDown;
+                        cards[cardDepths[0]].scale.y = this.scaleDown;
+                        
+                        for(var i = 1; i < VISIBLE_CARDS; i++)
+                        {
+                            cards[i].position.x = this.x + (( i - 1 ) * CARD_WIDTH );
+                        }
+
+                     })
+                    .start();     
+
+            var last1 = new TWEEN.Tween( { x: cards[VISIBLE_CARDS-1].position.x } )
+                    .to( { x: cards[VISIBLE_CARDS-1].position.x + CARD_WIDTH }, SHUFFLE_SPEED / 3 * 1 )
+                    .easing( SHUFFLE_EASE )
+                    .onUpdate( function () {
+                       cards[VISIBLE_CARDS-1].position.x = this.x;
+                    })
+                    .onComplete(function() {
+                        //if (deck)
+                        //deck.swapChildren(cards[cardsOnLevel],cards[0]);
+                    })
+                    .start();
+
+
+
+            var last2 = new TWEEN.Tween( { x: cards[VISIBLE_CARDS].position.x + CARD_WIDTH, scale: .8, alpha:1 } )
+                    .to( { x: cards[3].position.x, scale: .6, alpha:.5}, SHUFFLE_SPEED / 3 * 2 )
+                    .delay(SHUFFLE_SPEED / 3 * 1 )
+                    .easing( SHUFFLE_EASE )
+                    .onUpdate( function () {
+                       cards[VISIBLE_CARDS].alpha = this.alpha;
+                       cards[VISIBLE_CARDS].position.x = this.x;
+                       cards[VISIBLE_CARDS].scale.x = this.scale;
+                       cards[VISIBLE_CARDS].scale.y = this.scale;
+                    } )
+                    .onComplete(function(){
+
+                    })
+                    .start();
+
+        }
