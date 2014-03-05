@@ -54,7 +54,7 @@ canvas
         // height: 200px;
         // border-radius: 50%;
         cursor: pointer;
-        user:select(none);
+        @include user-select(none);
 
         &.active
         {
@@ -189,7 +189,7 @@ canvas
                     display: table-cell;
                     vertical-align: middle;
                     margin: 0 auto;
-                    
+
                 }
                 
             }
