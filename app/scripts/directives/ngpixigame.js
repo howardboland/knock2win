@@ -334,8 +334,9 @@ angular.module('knock2winApp')
                 deck.removeChild( deck.children[i] );
             }
             cardsOnLevel = VISIBLE_CARDS; //+ (level - 1); // increase with one per level
-            SPEED_MULTIPLIER = 1 - ((level-1)/scope.maxlevel);
-            console.log("Speed is: "+SPEED_MULTIPLIER);
+            SPEED_MULTIPLIER = scope.speeds[level-1];
+
+            console.log("Speed is: "+scope.speeds[level-1]);
             SHUFFLE_SPEED = 600 * SPEED_MULTIPLIER;
             PAUSE_BETWEEN_SHUFFLES = 600 * SPEED_MULTIPLIER;
             VIEWING_TIME = 5000 * SPEED_MULTIPLIER;
