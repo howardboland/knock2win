@@ -147,8 +147,8 @@ canvas
 
             .start-game
             {
-                width: auto;
                 text-align:center;
+                width: auto;
 
                 .logo {
                     display:table;
@@ -168,6 +168,28 @@ canvas
                     margin: 0 auto;
 
 
+                }
+                
+            }
+             .ready-game
+            {
+                width: 100%;
+                height: 100%;
+                position:absolute;
+                top:0;
+                left:0;
+                text-align:center;
+
+                a {
+                    width:100%;
+                    height: 100%;
+                    display: table;
+                }
+                .logo {
+                    display: table-cell;
+                    vertical-align: middle;
+                    margin: 0 auto;
+                    
                 }
                 
             }
