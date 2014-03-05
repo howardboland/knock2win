@@ -1,0 +1,131 @@
+.howtoplay
+{
+    margin-bottom:20px;
+
+    h2 {text-align:center}
+
+    $w: 350px;
+    $h: 280px;    
+
+    .diagram
+    {
+        margin: 0 auto;
+
+        width: $w;
+        height: $h;
+        background:url('../images/howtowin.png') top left;
+    } 
+
+    @for $i from 1 through 4
+    {
+        .step#{$i}
+        {
+
+            @media(max-width: $screen-md-max ) and (min-width: $screen-xs ) {
+                p{ margin-top:40%; }
+            }
+
+            .diagram
+            {
+                background-position: 0 - $w 0 - ($i - 1) % 4 * $h;
+
+                @media(max-width: $screen-md-max) {
+                    background-position: 0 0 - ($i - 1) % 4 * $h;
+                }            
+
+                @media(max-width: $screen-xs-max) {
+                    width: 280px;
+                    //-35 = - background-image.width / 2;
+                    background-position: -35px 0 - ($i - 1) % 4 * $h;
+                }
+            }
+        }
+    }
+}
+
+.win
+{
+    .game-info
+    {    
+        padding-bottom:40px;
+        text-align:center;
+       & small
+       {
+        color: $lg-pink;
+        display:block;
+        margin-bottom: 20px;
+       }
+    } 
+
+    .prize-info
+    {
+        padding:40px 15px;
+        background: #fff;
+        p
+        {
+            color:$mid-grey;
+            strong
+            {
+                font-size: 1.8em;
+                line-height: .9em;
+            }
+        }
+
+        img 
+        {
+            top:-90px;
+            position:absolute;
+            z-index: 10;
+        }
+
+        @media (max-width: $screen-xs-max) { img { display:none } }
+    }
+
+    .skew
+    {
+        position: absolute;
+        height:150px;
+        width:100%;
+        margin-top:-50px;
+        background:$mid-grey;
+        transform: skewY(-1.5deg);
+    }
+
+    .redemption
+    {   
+        color:#fff;
+        padding:30px 0;
+        background:$mid-grey;
+
+        ::placeholder, input, select {
+          color: $lg-pink;
+        }
+
+        form
+        {
+            .form-controls {width: 50%}
+            @media (max-width: $screen-xs-max) { .form-controls { width: 100%; } }
+
+            legend {  border: 0; color: #fff }
+
+            input
+            {
+                &.ng-invalid.ng-dirty {
+                    border: 2px solid #FA787E;
+                }
+         
+                &.ng-valid.ng-dirty {
+                    border: 2px solid #78FA89;
+                }
+            }
+        }
+
+        .confirmation        
+        {
+            margin-top:-20px; //Push the copy back up, the skew having pushed it down
+            text-align: center;
+
+            h2 { color:#fff }
+        }
+    }
+}

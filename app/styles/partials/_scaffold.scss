@@ -1,0 +1,153 @@
+header
+{
+    left:0;
+    margin:0 auto;
+    position:absolute;
+    top:0;
+    width:100%;
+    z-index:2;
+}
+
+.navbar
+{
+    background:none;
+    border:0;
+
+        & .navbar-brand
+        {
+            background: url('../images/lg_logo.png') no-repeat;
+            height:39px;
+            margin-top:15px;
+            width:90px;
+            img {display:none;} 
+
+            @media(max-width: $screen-xs) 
+            {
+                margin-left:15px;
+            }
+        }
+
+    ul.nav
+    {
+        a:hover { background-color:rgba(255,255,255,.5) }
+    } 
+}
+
+.navbar-on-dark
+{
+    & .navbar-brand { background-position:0 -39px; }
+
+    ul.nav
+    {
+        a{
+            color:#eee;
+            &:hover {color:#fff}
+        }
+    }
+}
+
+.container-fluid { margin:0 15px }
+
+.form-control, .btn { border-radius: 0; }
+
+.btn{ text-transform:uppercase }
+
+
+//General, from the top of the doc tot he bottom
+
+* { font-family: 'Cabin', sans-serif; }
+
+html, body {
+   height: 100%;
+
+}
+
+body {
+    background:url('../images/bg_textile.jpg');
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #333;
+}
+
+ul.nav
+{
+    text-transform: uppercase;
+    a {
+        color:$mid-grey;
+        &:hover {
+            color:#fff;
+            background-color:rgba(0,0,0,.4);
+        }
+    }
+}
+
+#wrap {
+  min-height: 100%;
+  height: auto;
+  margin-bottom:-60px;
+  padding: 0 0 60px;
+}
+
+footer {
+  background-color: $mid-grey;
+  border-top:1px solid #fff;
+  color:#fff;
+  height: 60px;
+  overflow:hidden;
+  text-transform: uppercase;
+
+  > div { line-height:60px; }  
+  & a {
+    color:#fff;
+    &:hover {color:#fff;}
+  }
+}
+
+h1, h2
+{
+    color: $lg-pink;
+    font-weight: bold
+}
+
+hr
+{
+    border-top:1px solid $light-grey;
+}
+
+.share
+{
+    $icon-size:45px;
+
+    height:$icon-size;
+    text-transform:uppercase;
+    text-align:center;
+
+    p
+    {
+        color:$mid-grey;
+        font-size: 1.5em;
+    }
+
+    .icon-social
+    {
+        display:inline-block;
+        vertical-align: middle;
+        width: $icon-size;
+        height: $icon-size;
+        background: url('../images/social_icons.png') repeat-y;
+        transition: background-position .2s ease-out;
+        margin-bottom:5px;
+
+        $list: facebook twitter googleplus;
+        $count: 0;
+
+        @each $social in $list
+        {
+            &.icon-#{$social}
+            {
+                background-position:0 - $icon-size * $count - 0;  
+                &:hover { background-position:0 - $icon-size * $count 0 - $icon-size; }
+            }
+            $count: $count + 1;
+        }
+    }
+}

@@ -1,6 +1,3 @@
-Game styles
-// TODO: Need to sort out centralizer and canvas as these are sitting on top of the website and disables button interaction 
-
 #pixi-container
 {
     
@@ -14,36 +11,30 @@ canvas
     margin:0 auto;
     position: absolute;
     top:0;
-    left:0;
-    //z-index: -2;
+   left:0;
     width:100%;
     height:100%;
 }
 
 .centralizer
 {
-   @include box-flex(100%); //.flex(1,1,100%);
-   @include box-align(center); //.align-items(center);
-   @include box-pack(center);//.justify-content(center);
+    box-flex:100%;
+    align-items:center;
+    justify-content:center;
 
     display: flex;
     position: absolute; 
-   // z-index: -1;
     top:0;
     left:0;
     width:100%;
     height:100%;
 
-
-
     #game-info
     {
-       // @include box-flex(200);// .flex(1,1,200);
-        @include box-align(center); //.align-items(center);
-        @include box-pack(center);//.justify-content(center);
+        align-items: center; 
+        justify-content:center;
         
-
-        @include transition(opacity, .5s, ease-out);
+        transition:opacity, .5s, ease-out;
         //@include opacity(0);
         display:flex;
 
@@ -53,12 +44,12 @@ canvas
         // width: 200px;
         // height: 200px;
         // border-radius: 50%;
-        // cursor: pointer;
-        @include user-select(none);
+        cursor: pointer;
+        user-select:none;
 
         &.active
         {
-            opacity: 1;
+            opacity:1;
             visibility: visible;
         }
 
@@ -75,7 +66,6 @@ canvas
             height: 346px!important;
             display:table;
             border-radius: 50%;
-            cursor: pointer;
             a.game-button {
                 color: rgba(196,2,82,.8)!important;
             }
@@ -90,7 +80,6 @@ canvas
             color: white;
             text-align:center;
             display:table;
-            cursor: pointer;
             .header {
                 display:table-cell;
                 vertical-align: middle;
@@ -101,7 +90,6 @@ canvas
             {
                 width: auto;
                 text-align:center;
-                cursor: pointer;
                 .logo {
                     display:table;
                     clear:both;
@@ -131,7 +119,7 @@ canvas
             {
                 width: auto;
                 text-align:center;
-                cursor: pointer;
+
                 a.game-button {
                     position:relative;
                     top: 250px;
@@ -150,9 +138,9 @@ canvas
 
             .start-game
             {
-                text-align:center;
                 width: auto;
-                cursor: pointer;
+                text-align:center;
+
                 .logo {
                     display:table;
                     clear:both;
@@ -174,29 +162,6 @@ canvas
                 }
                 
             }
-             .ready-game
-            {
-                cursor: pointer;
-                width: 100%;
-                height: 100%;
-                position:absolute;
-                top:0;
-                left:0;
-                text-align:center;
-
-                a {
-                    width:100%;
-                    height: 100%;
-                    display: table;
-                }
-                .logo {
-                    display: table-cell;
-                    vertical-align: middle;
-                    margin: 0 auto;
-
-                }
-                
-            }
         .nextlevel 
         {
             background: rgba(92,187,139,.9)!important;
@@ -205,7 +170,6 @@ canvas
             height: 346px!important;
             display:table;
             border-radius: 50%;
-            cursor: pointer;
             a.game-button {
                 color: rgba(92,187,139,1)!important;
             }
@@ -218,7 +182,6 @@ canvas
             height: 200px!important;
             display:table;
             border-radius: 50%;
-            cursor: pointer;
             h1 {
                 font-size: 82px;
             }
