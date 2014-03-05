@@ -53,7 +53,7 @@ canvas
         // width: 200px;
         // height: 200px;
         // border-radius: 50%;
-        cursor: pointer;
+        // cursor: pointer;
         @include user-select(none);
 
         &.active
@@ -75,6 +75,7 @@ canvas
             height: 346px!important;
             display:table;
             border-radius: 50%;
+            cursor: pointer;
             a.game-button {
                 color: rgba(196,2,82,.8)!important;
             }
@@ -89,6 +90,7 @@ canvas
             color: white;
             text-align:center;
             display:table;
+            cursor: pointer;
             .header {
                 display:table-cell;
                 vertical-align: middle;
@@ -99,6 +101,7 @@ canvas
             {
                 width: auto;
                 text-align:center;
+                cursor: pointer;
                 .logo {
                     display:table;
                     clear:both;
@@ -128,7 +131,7 @@ canvas
             {
                 width: auto;
                 text-align:center;
-
+                cursor: pointer;
                 a.game-button {
                     position:relative;
                     top: 250px;
@@ -149,7 +152,7 @@ canvas
             {
                 text-align:center;
                 width: auto;
-
+                cursor: pointer;
                 .logo {
                     display:table;
                     clear:both;
@@ -173,6 +176,7 @@ canvas
             }
              .ready-game
             {
+                cursor: pointer;
                 width: 100%;
                 height: 100%;
                 position:absolute;
