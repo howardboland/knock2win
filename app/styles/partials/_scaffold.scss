@@ -23,11 +23,18 @@ header
             margin:15px 0 0 0;
             width:90px;
             img {display:none;} 
+
+            @media(max-width: $screen-sm-max ) {
+                margin-left:15px;
+            }
         }        
     }
 
     ul.nav
     {
+        @media(max-width: $screen-sm-max ) {
+            a { background-color:#fff; }
+        }
         a:hover { background-color:rgba(255,255,255,.5) }
     } 
 }
