@@ -72,7 +72,7 @@ canvas
             display:table;
             border-radius: 50%;
             cursor: pointer;
-            @media(max-width: $screen-md-max ) and (min-width: $screen-xs ) {
+            @media(min-width: $screen-lg ) {
                     width: 346px!important;
                     height: 346px!important;
 
@@ -85,7 +85,7 @@ canvas
             display:table;
             border-radius: 50%;
             cursor: pointer;
-            @media(max-width: $screen-md-max ) and (min-width: $screen-xs ) {
+            @media(min-width: $screen-lg ) {
                     width: 200px!important;
                     height: 200px!important;
 
@@ -138,12 +138,12 @@ canvas
 
                     color: #575759!important;
                     font-size: 15px; //21
-                    margin: 0 auto;
+                    margin: 0 auto 10px auto;
                     
                 }
-                @media(max-width: $screen-md-max ) and (min-width: $screen-xs ) {
+                @media(min-width: $screen-lg ) {
                     margin-top:0px;
-                    .logo {width: 200px }
+                    .logo { width: 250px }
                     .height-seperator  {height: 340px;}
 
                 }
@@ -198,6 +198,7 @@ canvas
                     display:table;
                     color: #575759!important;
                     font-size: 21px;
+                    margin:20px 0 
                     
                 }
                 .round {

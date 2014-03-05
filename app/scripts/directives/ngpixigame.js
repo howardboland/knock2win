@@ -457,7 +457,7 @@ angular.module('knock2winApp')
         }
         function drawPhone() 
         {
-            var w = 669, h = 1296, s = .5;
+            var w = 669, h = 1296, s = .48;
             var phoneSprite = PIXI.Sprite.fromImage(assetURIPhone);
             container.addChild( phoneSprite )
             phoneSprite.scale = new PIXI.Point(s,s);
@@ -554,7 +554,7 @@ angular.module('knock2winApp')
             }
            
 
-            var first1 = new TWEEN.Tween( { x: cards[0].position.x, scale: .6, alpha:.5 } )
+            var first1 = new TWEEN.Tween( { x: cards[0].position.x, scale: .6, alpha:0 } )
                     .to( { x: ( CARD_WIDTH * Math.max(0, 0 - 1) + CARD_WIDTH / 2) - CARD_WIDTH / 2 , scale:.8, alpha:1 }, SHUFFLE_SPEED  )
                     .easing( SHUFFLE_EASE )
                     .onUpdate( function () {
@@ -600,7 +600,7 @@ angular.module('knock2winApp')
 
 
             var last2 = new TWEEN.Tween( { x: cards[3].position.x , scale: .8, alpha:1 } )
-                    .to( { x: ( CARD_WIDTH * Math.max(0, 3 - 1) + CARD_WIDTH / 2) - (CARD_WIDTH *1.5) , scale: .6, alpha:.5}, SHUFFLE_SPEED   )
+                    .to( { x: ( CARD_WIDTH * Math.max(0, 3 - 1) + CARD_WIDTH / 2) - (CARD_WIDTH *1.5) , scale: .6, alpha:0}, SHUFFLE_SPEED   )
                     .delay(0 )
                     .easing( SHUFFLE_EASE )
                     .onUpdate( function () {
