@@ -147,10 +147,22 @@ angular.module('knock2winApp')
                     case "game.play":
                         if (fromStateName!=toStateName && fromStateName.indexOf("ready"))
                         {
-                            clean();
-                            $state.transitionTo("game.init");
+                            //clean();
+                            //$state.transitionTo("game.init");
                         }
                     break;
+                }
+                 if (toStateName.indexOf("game")===-1 && fromStateName.indexOf("game")!==-1)
+                {
+                    console.log("exiting game view - requires clean up");
+                    // We don't want to have pixi renderes all over the place
+                    // destroy
+                    clean();
+                    for (var i = stage.children.length - 1; i >= 0; i--) {
+                        stage.removeChild(stage.children[i]);
+                    };
+                    
+                   // console.log( element );
                 }
         }
         function stateCompleteHandler( fromStateName, toStateName )
@@ -205,17 +217,9 @@ angular.module('knock2winApp')
                     break;
 
                 }
-                if (toStateName.indexOf("game")===-1 && fromStateName.indexOf("game")!==-1)
-                {
-                    console.log("exiting game view - requires clean up");
-                    // We don't want to have pixi renderes all over the place
-                    // destroy
-                    clean();
-                    for (var i = stage.children.length - 1; i >= 0; i--) {
-                        stage.removeChild(stage.children[i]);
-                    };
-                   // console.log( element );
-                }
+
+               
+                
         }
         // Called when window resize event triggers in order to resize canvas 
         function onResize()
@@ -390,10 +394,8 @@ angular.module('knock2winApp')
             window.clearRequestTimeout( start_game_timer );
             window.clearRequestInterval( animation_timer );
             window.clearRequestInterval( shuffleInterval );
-            for ( var i=0;i< deck.children.length;i++)
-            {
-                deck.removeChild( deck.children[i] );
-            }
+            clearDeck();
+            
         }
         function firstStart()
         {
@@ -431,6 +433,7 @@ angular.module('knock2winApp')
         //Adds a card sprite to the deck container (pixi)
         function addCardsToDeck()
         {
+
             for (var i = cards.length - 1; i >= 0; i--) {
                 try
                 {   
@@ -443,6 +446,13 @@ angular.module('knock2winApp')
 
                 }
             };
+        }
+        function clearDeck() 
+        {
+            for ( var i=0;i< deck.children.length;i++)
+            {
+                deck.removeChild( deck.children[i] );
+            }
         }
         function drawPhone() 
         {
@@ -763,11 +773,12 @@ angular.module('knock2winApp')
 
         }
         
+
         function changeLevel( level ) {
             // requirements for changing level
             // (1) clean all active times
             
-            
+            clearDeck();
             clean();    
             configure(level);
             startGame();
