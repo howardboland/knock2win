@@ -1,14 +1,15 @@
-<div class="nextlevel">
+<div class="nextlevel circle-large">
 <div>
     <h1>You knocked that one out the park!</h1>
     <a ng-click="next()" class="game-button inline">Go to round {{ level+1 }} &gt;</a>
     <div class="social">
-        <ul class="nav nav-pills">
+    <ng-include src="'/views/partials/share.html'"></ng-include>
+<!--         <ul class="nav nav-pills">
             <li>Share</li>
             <li><a ng-href="#" class="btn-facebook fa fa-facebook fa-lg"></a></li>
             <li><a ng-href="#" class="btn-twitter fa fa-twitter fa-lg"></a></li>
             <li><a ng-href="#" class="btn-google-plus fa fa-google-plus fa-lg"></a></li>
-        </ul>
+        </ul> -->
     </div>
     </div>
 </div>

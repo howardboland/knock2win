@@ -1,15 +1,8 @@
 
-<div class="retry">
+<div class="retry circle-large">
     <div>
     <h1>You've been knocked out!</h1>
     <a ng-click="restart()" class="game-button inline clearfix">Retry round {{level}} &gt;</a>
-    <div class="social">
-        <ul class="nav nav-pills">
-            <li>Share</li>
-            <li><a ng-href="#" class="btn-facebook fa fa-facebook fa-lg"></a></li>
-            <li><a ng-href="#" class="btn-twitter fa fa-twitter fa-lg"></a></li>
-            <li><a ng-href="#" class="btn-google-plus fa fa-google-plus fa-lg"></a></li>
-        </ul>
-    </div>
+    <ng-include src="'/views/partials/share.html'"></ng-include>
     </div>
 </div>

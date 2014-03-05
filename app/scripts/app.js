@@ -5,7 +5,9 @@ angular.module('knock2winApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'ui.router'
+  'ui.router',
+  'hmTouchEvents'
+
 ])
   .config(['$uiViewScrollProvider', '$stateProvider', function ($uiViewScrollProvider, $stateProvider) {
     //$locationProvider.html5Mode( false );//.hashPrefix('!');
