@@ -22,9 +22,9 @@ canvas
 
 .centralizer
 {
-   @include box-flex(100%); //.flex(1,1,100%);
-   @include box-align(center); //.align-items(center);
-   @include box-pack(center);//.justify-content(center);
+   box-flex: 100%; //.flex(1,1,100%);
+   align-items: center; //.align-items(center);
+   justify-content: center;
 
     display: flex;
     position: absolute; 
@@ -39,11 +39,11 @@ canvas
     #game-info
     {
        // @include box-flex(200);// .flex(1,1,200);
-        @include box-align(center); //.align-items(center);
-        @include box-pack(center);//.justify-content(center);
+        align-items: center; //.align-items(center);
+        justify-content: center;
         
 
-        @include transition(opacity, .5s, ease-out);
+        transition: opacity, .5s, ease-out;
         //@include opacity(0);
         display:flex;
 
@@ -54,7 +54,7 @@ canvas
         // height: 200px;
         // border-radius: 50%;
         // cursor: pointer;
-        @include user-select(none);
+        user-select: none;
 
         &.active
         {
