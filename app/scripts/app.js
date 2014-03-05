@@ -158,7 +158,7 @@ angular.module('knock2winApp', [
 .factory('dbService', ['$http', function($http) {
   return {
     postWinner: function(data) {
-      return $http.post('http://www.lgknock2win.com/winners', JSON.stringify(data));
+      return $http.post('http://www.knock2win.co.uk/winners', JSON.stringify(data));
     },
   };
 }])
