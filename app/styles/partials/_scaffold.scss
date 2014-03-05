@@ -80,10 +80,16 @@ ul.nav
 }
 
 #wrap {
-  min-height: 100%;
-  height: auto;
-  margin-bottom:-60px;
-  padding: 0 0 60px;
+    min-height: 100%;
+    height: auto;
+    margin-bottom:- $footer_height;
+    padding: 0 0 $footer_height;
+
+    //Mobile friendly footer
+    @media(max-width: $screen-md-max) {
+        margin-bottom:- $mobile-footer-height;
+        padding: 0 0 $mobile-footer-height;
+    } 
 }
 
 #ui-view
@@ -96,15 +102,23 @@ footer {
   background-color: $mid-grey;
   border-top:1px solid #fff;
   color:#fff;
-  height: 60px;
+  height: $footer_height; 
+
   overflow:hidden;
   text-transform: uppercase;
 
-  > div { line-height:60px; }  
+  > div { line-height: $footer_height; }  
+
   & a {
     color:#fff;
     &:hover {color:#fff;}
   }
+
+    @media(max-width: $screen-md-max) {
+        height: $mobile-footer-height;
+        > div { line-height: $mobile-footer-height; }  
+    }    
+
 }
 
 h1, h2
