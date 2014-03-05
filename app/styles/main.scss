@@ -7,12 +7,16 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 
 @import 'compass';
 @import 'compass/support';
+@import 'compass/css3';
+@import 'compass/css3/user-interface';
 
 //using cabin as default font
 @import url('http://fonts.googleapis.com/css?family=Cabin:500,700');
 @import '../bower_components/font-awesome/scss/font-awesome.scss';
 
 //vendor support
+$default-transition-property : all;
+
 $experimental-support-for-mozilla : true;
 $experimental-support-for-webkit : true;
 $support-for-original-webkit-gradients : true;
@@ -25,8 +29,7 @@ $experimental-support-for-khtml : true;
 
 
 //may need to better integrate less and sass
-@import "compass/css3";
-@import "compass/css3/user-interface";
+
 // @import 'main-less.scss';
 @import 'game.scss';
 
