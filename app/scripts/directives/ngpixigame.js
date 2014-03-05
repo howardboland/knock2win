@@ -221,6 +221,8 @@ angular.module('knock2winApp')
             renderer.resize(window.innerWidth, window.innerHeight);
             container.x = renderer.width/2;
             container.y = renderer.height/2;
+            // sm 750px   md 970px   lg 1170px
+            console.log(renderer.width +"/"+ 1080+","+ renderer.height +"/"+ 1920)
             var scalefit = Math.min( renderer.width / 1080, renderer.height / 1920 ); //TODO: discuss with nick the real dimension
             var scalefit = Math.min(1, scalefit); //scale cannot exeed 1
             scalefit = .5;
