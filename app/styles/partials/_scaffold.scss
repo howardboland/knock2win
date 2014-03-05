@@ -13,19 +13,17 @@ header
     background:none;
     border:0;
 
+    > .container
+    {
         & .navbar-brand
         {
             background: url('../images/lg_logo.png') no-repeat;
             height:39px;
-            margin-top:15px;
+            margin:15px 0 0 0;
             width:90px;
             img {display:none;} 
-
-            @media(max-width: $screen-xs) 
-            {
-                margin-left:15px;
-            }
-        }
+        }        
+    }
 
     ul.nav
     {
@@ -85,6 +83,12 @@ ul.nav
   height: auto;
   margin-bottom:-60px;
   padding: 0 0 60px;
+}
+
+#ui-view
+{
+    //Compensite for absolute positioned header.
+    margin-top:75px;
 }
 
 footer {
