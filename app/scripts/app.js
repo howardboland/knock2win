@@ -184,7 +184,7 @@ angular.module('knock2winApp', [
 
     $rootScope.$on('$stateChangeSuccess',
       function(event, toState, toParams, fromState, fromParams) {
-        $log.info(event, toState, toParams, fromState, fromParams);
+       // $log.info(event, toState, toParams, fromState, fromParams);
            if (toState.url=="")
            {
             $state.transitionTo("game.init")
@@ -196,7 +196,7 @@ angular.module('knock2winApp', [
     
     $rootScope.$on('$stateChangeStart',
       function(event, toState, toParams, fromState, fromParams) {
-        $log.info(event, toState, toParams, fromState, fromParams);
+       // $log.info(event, toState, toParams, fromState, fromParams);
   //        event.preventDefault(); 
       });
   });

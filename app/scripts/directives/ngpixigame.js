@@ -113,7 +113,8 @@ angular.module('knock2winApp')
 
         var assetsToLoad = [assetURISpritesheet, assetURIPhone];
         var loader = new PIXI.AssetLoader(assetsToLoad);
-        loader.onComplete = onAssetsLoaded;
+        loader.addEventListener("onComplete", onAssetsLoaded);
+        //loader.onComplete = onAssetsLoaded;
         loader.load();
         console.log("begin")
         
@@ -143,24 +144,28 @@ angular.module('knock2winApp')
                        // coverUp();
                        clean();
                     break;
+                    case "game.play":
+                        if (fromStateName!=toStateName && fromStateName.indexOf("ready"))
+                        {
+                            clean();
+                            $state.transitionTo("game.init");
+                        }
+                    break;
                 }
         }
         function stateCompleteHandler( fromStateName, toStateName )
         {
-            console.log( fromStateName +" --> "+ toStateName);
+            //console.log( fromStateName +" --> "+ toStateName);
             switch (toStateName)
                 {
                     case "game.init":
                         if (fromStateName!=toStateName && fromStateName.indexOf("game"))
                         {
-                            //illegal entry point
                         }
-                        //coverDown();
                     break;
                     case "game.start":
                         if (fromStateName!=toStateName && fromStateName!="game.init")
                         {
-                            //illegal entry point
                         } else 
                         {
                             
@@ -170,7 +175,6 @@ angular.module('knock2winApp')
                     case "game.play":
                         if (fromStateName!=toStateName && fromStateName!="game.init")
                         {
-                            //illegal entry point
                         } else 
                         {
                             
@@ -181,8 +185,6 @@ angular.module('knock2winApp')
                     case "game.ready":
                         if (fromStateName!=toStateName && fromStateName!="game.play")
                         {
-                            //illegal entry point
-                            console.log("entry illegal");
                         } else 
                         {
                         }
@@ -248,55 +250,66 @@ angular.module('knock2winApp')
  
         function onAssetsLoaded()
         {
-            
-            var sprite = PIXI.Sprite.fromImage(assetURISpritesheet);
-
-            container.position.x = renderer.width  / 2;
-            container.position.y = renderer.height / 2;
-            stage.addChild(container);
-
-            deck.position.x -= (VISIBLE_CARDS-1) * CARD_WIDTH / 2;
-
-            container.addChild(deck);
-
-            drawCover();  
-            drawPhone();             
-            cover.alpha = 0;      
-           
-            cardsPerRow = Math.round(sprite.width / CARD_WIDTH);
-            cardsPerCol = Math.round(sprite.height / CARD_HEIGHT);
-            totalCards = 20; //cardsPerRow * cardsPerCol;
-            // console.log(cardsPerRow)
-            // console.log(cardsPerCol)
-            // Cut the spritesheet into individual card textures by moving anchor and rendering a texture
-            // TODO: Change spritesheet - might need to change dimension 
-            for (var i = 0; i < totalCards; i++)
+            console.log( hasInitiated );
+            if (!hasInitiated )
             {
-                var texture = new PIXI.RenderTexture(CARD_WIDTH, CARD_HEIGHT);
-                
-                sprite.anchor.x = 1 / cardsPerRow * (i % cardsPerRow);
-                sprite.anchor.y = 1 / cardsPerCol * Math.floor(i / cardsPerRow);
-                texture.render(sprite); 
-                // console.log( cardsPerRow +" x "+ cardsPerCol  )
-                // console.log( sprite.anchor.x +" "+sprite.anchor.y)
-                cardTextures.push( texture );
-            }  
-            console.log("setup done");
-            onResize();
+                console.log("Assets loaded")
+                loader.removeEventListener("onComplete", onAssetsLoaded);
+                var sprite = PIXI.Sprite.fromImage(assetURISpritesheet);
 
-            init();
+                container.position.x = renderer.width  / 2;
+                container.position.y = renderer.height / 2;
+                for (var i=0;i<stage.children.length;i++)
+                {
+                    stage.removeChild( stage.children[i] );
+                }
+                stage.addChild(container);
 
-            stateCompleteHandler( $state.current.name ,  $state.current.name );
-            hasInitiated = true;
+                deck.position.x -= (VISIBLE_CARDS-1) * CARD_WIDTH / 2;
+
+                container.addChild(deck);
+
+                drawCover();  
+                drawPhone();             
+                cover.alpha = 0;      
+               
+                cardsPerRow = Math.round(sprite.width / CARD_WIDTH);
+                cardsPerCol = Math.round(sprite.height / CARD_HEIGHT);
+                totalCards = 20; //cardsPerRow * cardsPerCol;
+                // console.log(cardsPerRow)
+                // console.log(cardsPerCol)
+                // Cut the spritesheet into individual card textures by moving anchor and rendering a texture
+                // TODO: Change spritesheet - might need to change dimension 
+                for (var i = 0; i < totalCards; i++)
+                {
+                    var texture = new PIXI.RenderTexture(CARD_WIDTH, CARD_HEIGHT);
+                    
+                    sprite.anchor.x = 1 / cardsPerRow * (i % cardsPerRow);
+                    sprite.anchor.y = 1 / cardsPerCol * Math.floor(i / cardsPerRow);
+                    texture.render(sprite); 
+                    // console.log( cardsPerRow +" x "+ cardsPerCol  )
+                    // console.log( sprite.anchor.x +" "+sprite.anchor.y)
+                    cardTextures.push( texture );
+                }  
+                console.log("setup done");
+
+                onResize();
+
+                init();
+
+                stateCompleteHandler( $state.current.name ,  $state.current.name );
+                hasInitiated = true;
+            }
         }
 
         function init() 
         {
+            clean();
             console.log("init");
             
             scope.level = 1;
             cover.alpha = 0;
-            clean();
+            
             configure( scope.level );
             initShuffle();
             animate();
@@ -318,7 +331,7 @@ angular.module('knock2winApp')
             }
             cardsOnLevel = VISIBLE_CARDS; //+ (level - 1); // increase with one per level
             SPEED_MULTIPLIER = 1 - ((level-1)/scope.maxlevel);
-            console.log(SPEED_MULTIPLIER);
+            console.log("Speed is: "+SPEED_MULTIPLIER);
             SHUFFLE_SPEED = 600 * SPEED_MULTIPLIER;
             PAUSE_BETWEEN_SHUFFLES = 600 * SPEED_MULTIPLIER;
             VIEWING_TIME = 5000 * SPEED_MULTIPLIER;
@@ -377,21 +390,10 @@ angular.module('knock2winApp')
             window.clearRequestTimeout( start_game_timer );
             window.clearRequestInterval( animation_timer );
             window.clearRequestInterval( shuffleInterval );
-            if (cards.length>0)
+            for ( var i=0;i< deck.children.length;i++)
             {
-                for ( var i=0;i< cards.length;i++ )
-                {
-                    var c = cards[i]
-                    deck.removeChild( c );
-                    // if (PIXIContains(deck, c))
-                    // {
-                    //    deck.removeChild( c );
-                    // } else {
-                    //     console.log("Did not find "+i);
-                    // }
-                }
+                deck.removeChild( deck.children[i] );
             }
-            
         }
         function firstStart()
         {
@@ -409,7 +411,7 @@ angular.module('knock2winApp')
             var promise = $state.transitionTo("game.play");
             promise.then( function( s ){
                 //$('#game-info').toggleClass('active');
-                 startGame();
+                // startGame();
             }, function( status ){
             });
 
@@ -514,7 +516,7 @@ angular.module('knock2winApp')
             // }
             // currentVisibleArray = currentVisibleArray.splice(0, VISIBLE_CARDS+1);
             // console.log(currentVisibleArray)
-            console.log(currentSelectedIndex);
+            // console.log(currentSelectedIndex);
 
             for (var i=0;i<cards.length;i++)
             {
