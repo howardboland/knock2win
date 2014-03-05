@@ -13,7 +13,7 @@
     "angular-route": "1.2.6",
     "angular-ui-router": "0.2.8-bowratic-tedium",
     "pixi": "~1.5.1",
-    "tween": "git://github.com/sole/tween.js.git"    
+    "tween": "git://github.com/sole/tween.js.git"  
   },
   "devDependencies": {
     "angular-mocks": "1.2.6",

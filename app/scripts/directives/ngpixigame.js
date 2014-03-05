@@ -26,19 +26,26 @@ angular.module('knock2winApp')
         //lets listen to some state changes
         scope.$on('$stateChangeSuccess',
           function(event, toState, toParams, fromState, fromParams) {
-                stateHandler(fromState.name, toState.name);
+                stateCompleteHandler(fromState.name, toState.name);
+          });
+        scope.$on('$stateChangeStart',
+          function(event, toState, toParams, fromState, fromParams) {
+                stateStartHandler(fromState.name, toState.name);
           });
 
 
 
         // Configuration
+        var hasInitiated = false;
         // HB : representation of deck
         var cardArray =  ['♠A','♦A','♣A','♥A','♠2','♦2','♣3','♥3',
             '♠4','♦4','♣5','♥5','♦6','♠6','♣7','♥7',
             '♠8','♦8','♣9','♥9','♠10','♦10','♣J','♥J',
             '♠Q','♦Q','♠K','♥K'];
+
         var cardArrayVisible = [];
         var ace = [];
+        
         // Card dimension
         var CARD_SCALE  = .5;
         var CARD_HEIGHT = 1070 * CARD_SCALE;
@@ -62,6 +69,7 @@ angular.module('knock2winApp')
 
         var ONE_SECOND = 1000; //* SPEED_MULTIPLIER
         var animation_timer = null;
+        var start_game_timer = null;
         // Data holders for cards, depth and textures
         var cards = [];    
         var cardTextures = [];
@@ -110,8 +118,34 @@ angular.module('knock2winApp')
         console.log("begin")
         
         //Methods 
+        function stateStartHandler( fromStateName, toStateName )
+        {
+            console.log( fromStateName +" --> "+ toStateName);
+            switch (toStateName)
+                {
+                    case "game.init":
+                        if (fromStateName!=toStateName && fromStateName.indexOf("game"))
+                        {
+                            //illegal entry point
+                        }
+                        console.log("hasInitiated "+hasInitiated)
+                        if (hasInitiated)
+                        {
 
-        function stateHandler( fromStateName, toStateName )
+                            init();
+                        }
+                    break;
+                    case "game.start":
+                        if (fromStateName!=toStateName && fromStateName.indexOf("game"))
+                        {
+                            //illegal entry point
+                        }
+                       // coverUp();
+                       clean();
+                    break;
+                }
+        }
+        function stateCompleteHandler( fromStateName, toStateName )
         {
             console.log( fromStateName +" --> "+ toStateName);
             switch (toStateName)
@@ -247,14 +281,19 @@ angular.module('knock2winApp')
             }  
             console.log("setup done");
             onResize();
+
             init();
-            stateHandler( $state.current.name ,  $state.current.name );
+
+            stateCompleteHandler( $state.current.name ,  $state.current.name );
+            hasInitiated = true;
         }
 
         function init() 
         {
             console.log("init");
+            
             scope.level = 1;
+            cover.alpha = 0;
             clean();
             configure( scope.level );
             initShuffle();
@@ -332,7 +371,10 @@ angular.module('knock2winApp')
         // Clean active timers and remove card deck
         function clean() 
         {
-
+            console.log("**** clean");
+            window.clearRequestTimeout( start_game_timer );
+            window.clearRequestInterval( animation_timer );
+            window.clearRequestInterval( shuffleInterval );
             if (cards.length>0)
             {
                 for ( var i=0;i< cards.length;i++ )
@@ -347,30 +389,32 @@ angular.module('knock2winApp')
                     // }
                 }
             }
-            window.clearRequestInterval( animation_timer );
-            window.clearRequestInterval( shuffleInterval );
+            
         }
         function firstStart()
         {
+            console.log("firstStart");
             coverUp();
             window.clearRequestInterval( animation_timer );
+            window.clearRequestTimeout( start_game_timer );
             animation_timer = window.requestInterval(animate, 30);
-            setTimeout(firstStartGameReady, 3000);
+            start_game_timer = setTimeout(firstStartGameReady, 3000);
         }
         function firstStartGameReady()
         {
+            console.log("firstStartGameReady");
             coverDown();
             var promise = $state.transitionTo("game.play");
             promise.then( function( s ){
                 //$('#game-info').toggleClass('active');
-                startGame()
+                 startGame();
             }, function( status ){
             });
 
         }
         function startGame()
         {
-            console.log("startGame")
+            console.log("startGame");
             //setTimeout(gameCountDown, VIEWING_TIME);
             reshuffle();
             shuffleInterval = window.requestInterval(reshuffle, SHUFFLE_SPEED + PAUSE_BETWEEN_SHUFFLES);

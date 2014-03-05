@@ -75,11 +75,14 @@ window.requestTimeout = function(fn, delay) {
  * @param {int|object} fn The callback function
  */
 window.clearRequestTimeout = function(handle) {
-    window.cancelAnimationFrame ? window.cancelAnimationFrame(handle.value) :
-    window.webkitCancelAnimationFrame ? window.webkitCancelAnimationFrame(handle.value) :
-    window.webkitCancelRequestAnimationFrame ? window.webkitCancelRequestAnimationFrame(handle.value) : /* Support for legacy API */
-    window.mozCancelRequestAnimationFrame ? window.mozCancelRequestAnimationFrame(handle.value) :
-    window.oCancelRequestAnimationFrame ? window.oCancelRequestAnimationFrame(handle.value) :
-    window.msCancelRequestAnimationFrame ? window.msCancelRequestAnimationFrame(handle.value) :
-    clearTimeout(handle);
+    if (handle!=null)
+    {
+        window.cancelAnimationFrame ? window.cancelAnimationFrame(handle.value) :
+        window.webkitCancelAnimationFrame ? window.webkitCancelAnimationFrame(handle.value) :
+        window.webkitCancelRequestAnimationFrame ? window.webkitCancelRequestAnimationFrame(handle.value) : /* Support for legacy API */
+        window.mozCancelRequestAnimationFrame ? window.mozCancelRequestAnimationFrame(handle.value) :
+        window.oCancelRequestAnimationFrame ? window.oCancelRequestAnimationFrame(handle.value) :
+        window.msCancelRequestAnimationFrame ? window.msCancelRequestAnimationFrame(handle.value) :
+        clearTimeout(handle);
+    }
 };
