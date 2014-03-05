@@ -13,7 +13,7 @@ renderer.view.style.display = "block";
 
 
 angular.module('knock2winApp')
-  .directive('ngPixiGame', function ( $log, $window, $state) {
+  .directive('ngPixiGame', ['$log', '$window', '$state', function ( $log, $window, $state) {
 
     return {
       restrict: 'EA',
@@ -831,4 +831,4 @@ angular.module('knock2winApp')
 
     }
     }
-  });
+  }]);

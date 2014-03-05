@@ -180,7 +180,7 @@ angular.module('knock2winApp', [
         };
   }])
 
-.run( function($state, $rootScope, $log, $window) {
+.run(['$state', '$rootScope', '$log', '$window', function($state, $rootScope, $log, $window) {
 
     $rootScope.$on('$stateChangeSuccess',
       function(event, toState, toParams, fromState, fromParams) {
@@ -199,4 +199,4 @@ angular.module('knock2winApp', [
        // $log.info(event, toState, toParams, fromState, fromParams);
   //        event.preventDefault(); 
       });
-  });
+  }]);
