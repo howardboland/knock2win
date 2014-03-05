@@ -19,7 +19,8 @@ $experimental-support-for-khtml : true;
 $light-grey: #bfbfbf;
 $mid-grey: #58595b;
 $lg-pink: #c21a5c;
-
+@import "compass";
+@import "compass/css3";
 @import "partials/_scaffold";
 @import "partials/_game";
 @import "partials/_pages";
