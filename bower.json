@@ -13,7 +13,8 @@
     "angular-route": "1.2.6",
     "angular-ui-router": "0.2.8-bowratic-tedium",
     "pixi": "~1.5.1",
-    "tweenjs": "https://raw.github.com/sole/tween.js/master/build/tween.min.js"  
+    "tweenjs": "https://raw.github.com/sole/tween.js/master/build/tween.min.js",
+    "angular-hammer": "~1.0.3"
   },
   "devDependencies": {
     "angular-mocks": "1.2.6",

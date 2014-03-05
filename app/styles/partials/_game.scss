@@ -41,12 +41,10 @@ canvas
        // @include box-flex(200);// .flex(1,1,200);
         align-items: center; //.align-items(center);
         justify-content: center;
-        
 
         transition: opacity, .5s, ease-out;
         //@include opacity(0);
         display:flex;
-
         text-align:center;
         //visibility: hidden;
         // background: rgba(255,0,0,.8);
@@ -67,30 +65,47 @@ canvas
             font-weight: bold;
             color:white;
 
+        .circle-large {
+            width: 300px!important;
+            height: 300px!important;
+
+            display:table;
+            border-radius: 50%;
+            cursor: pointer;
+            @media(max-width: $screen-md-max ) and (min-width: $screen-xs ) {
+                    width: 346px!important;
+                    height: 346px!important;
+
+            }
+        }
+        .circle-small {
+            width: 180px!important;
+            height: 180px!important;
+
+            display:table;
+            border-radius: 50%;
+            cursor: pointer;
+            @media(max-width: $screen-md-max ) and (min-width: $screen-xs ) {
+                    width: 200px!important;
+                    height: 200px!important;
+
+            }
+        }
         .retry 
         {
             background: rgba(196,2,82,.8)!important;
             font-size: 25px;
-            width: 346px!important;
-            height: 346px!important;
-            display:table;
-            border-radius: 50%;
-            cursor: pointer;
             a.game-button {
                 color: rgba(196,2,82,.8)!important;
             }
 
         }
+
         .general-game 
         {
             background: rgba(255,0,0,.8);
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
             color: white;
             text-align:center;
-            display:table;
-            cursor: pointer;
             .header {
                 display:table-cell;
                 vertical-align: middle;
@@ -102,23 +117,40 @@ canvas
                 width: auto;
                 text-align:center;
                 cursor: pointer;
+                margin-top:30px;
                 .logo {
                     display:table;
                     clear:both;
-                    margin-bottom: 340px;
+                    margin: 0 auto;
+                    width: 150px; //300
+                    line-height: 0;
+                }
+
+                .height-seperator {
+                    height: 330px; //340
+                    width: 300px;
+                    display:table;
                 }
                 .header {
                     clear:both;
+                    display:table;
+
                     color: #575759!important;
-                    font-size: 21px;
-                    margin: 0px!important;
+                    font-size: 15px; //21
+                    margin: 0 auto;
                     
+                }
+                @media(max-width: $screen-md-max ) and (min-width: $screen-xs ) {
+                    margin-top:0px;
+                    .logo {width: 300px }
+                    .height-seperator  {height: 340px;}
+
                 }
                 a.game-button {
                     background-color: rgba(92,187,139,.9)!important;
                     color: #ffffff!important;
-                    padding: 5px 30px 5px 30px!important;
-                    font-size: 21px!important;
+                    padding: 5px 30px 5px 30px!important; //5px 30px 5px 30px
+                    font-size: 21px!important; //21
                     display:table;
                     text-decoration: none;
                     margin:0 auto;
@@ -132,9 +164,12 @@ canvas
                 width: auto;
                 text-align:center;
                 cursor: pointer;
+                .height-seperator {
+                    height: 380px; //340
+                    width: 300px;
+                    display:table;
+                }
                 a.game-button {
-                    position:relative;
-                    top: 250px;
                     background-color: rgba(92,187,139,.9)!important;
                     color: #ffffff!important;
                     padding: 5px 30px 5px 30px!important;
@@ -176,10 +211,9 @@ canvas
             }
              .ready-game
             {
-                cursor: pointer;
-                width: 100%;
-                height: 100%;
                 position:absolute;
+                width:100%;
+                height:100%;
                 top:0;
                 left:0;
                 text-align:center;
@@ -201,11 +235,6 @@ canvas
         {
             background: rgba(92,187,139,.9)!important;
             font-size: 25px;
-            width: 346px!important;
-            height: 346px!important;
-            display:table;
-            border-radius: 50%;
-            cursor: pointer;
             a.game-button {
                 color: rgba(92,187,139,1)!important;
             }
@@ -214,11 +243,6 @@ canvas
         {
             background: rgba(241,149,15,.9)!important;
             font-size: 25px;
-            width: 200px!important;
-            height: 200px!important;
-            display:table;
-            border-radius: 50%;
-            cursor: pointer;
             h1 {
                 font-size: 82px;
             }
@@ -250,35 +274,17 @@ canvas
             margin-top:10px;
 
         }
-        .social {
+        .share {
             margin-top: 10px;
-            font-size: 12px;
             color: #fff;
-            ul {
-                margin:0 auto;
-                text-align: center;
-                display: table;
-
-            }
-            ul li:first-child
-            {
-                margin-top: 8px;
-                margin-right: 10px;
-
+            p {
+               color: #fff; 
+               font-size: 12px;
             }
             a {
                 color: #fff;
                 border-radius: 0px;
-            }
-            .btn-facebook {
-                background-color: #3b5999;
-                
-            }
-            .btn-twitter {
-                background-color: #53a3da;
-            }
-            .btn-google-plus {
-                background-color: #de4b39;
+
             }
         }
 
