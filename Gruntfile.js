@@ -108,54 +108,6 @@ module.exports = function (grunt) {
         src: ['test/spec/{,*/}*.js']
       }
     },
-    recess: {
-      build: {
-        src: [ '<%= yeoman.app %>/less/main.less' ],
-        dest: '<%= yeoman.app %>/styles/main-less.scss',
-        options: {
-          compile: true,
-          compress: false,
-          noUnderscores: false,
-          noIDs: false,
-          zeroUnits: false
-        }
-      },
-      compile: {
-        src: [ '<%= recess.build.dest %>' ],
-        dest: '<%= recess.build.dest %>',
-        options: {
-          compile: true,
-          compress: true,
-          noUnderscores: false,
-          noIDs: false,
-          zeroUnits: false
-        }
-      }
-    },
-    less: {
-      development: {
-        options: {
-          compress: false,
-          yuicompress: false,
-          optimization: 2
-        },
-        files: [
-            {
-            expand: true,
-            cwd: '<%= yeoman.app %>/less/',
-            src: ['*.less'],
-            dest: '<%= yeoman.app %>/styles/',
-            ext: '.css'
-          }
-        ]
-      },
-      dist: {
-            files: {
-                '<%= yeoman.app %>/styles/main.css': ['<%= yeoman.app %>/less/main.less']
-            }
-        }
-    }, 
-
     // Empties folders to start fresh
     clean: {
       dist: {
@@ -193,9 +145,6 @@ module.exports = function (grunt) {
         ignorePath: '<%= yeoman.app %>/'
       }
     },
-
-
-
 
     // Compiles Sass to CSS and generates necessary files if requested
     compass: {
@@ -352,15 +301,12 @@ module.exports = function (grunt) {
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
-        'recess:build',
         'compass:server'
       ],
       test: [
-        'recess',
         'compass'
       ],
       dist: [
-        'recess:compile',
         'compass:dist',
         'imagemin',
         'svgmin'
@@ -436,7 +382,6 @@ module.exports = function (grunt) {
     'bower-install',
     'useminPrepare',
     'concurrent:dist',
-    'recess:build',
     'autoprefixer',
     'concat',
     'ngmin',
@@ -454,8 +399,4 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
-
-
-  grunt.loadNpmTasks('grunt-contrib-less');
-  grunt.loadNpmTasks('grunt-recess');
 };
