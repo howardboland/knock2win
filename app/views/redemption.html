@@ -1,18 +1,19 @@
 <div class="container-fluid win">
+	
 	<div class="row game-info">
 		<div class="col-sm-12">
-			<h1>Well Done!<small>You've completed all 10 levels!</small></h1>
+			<h1>Well Done!<small>You've completed all the levels!</small></h1>
 			<ng-include src="'/views/partials/share.html'"></ng-include>
 		</div>
 	</div>
 	<div class="row prize-info">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-3  col-sm-offset-3">
+				<div class="col-sm-3 col-md-3 col-md-offset-3 col-sm-offset-2">
 					<p><strong>Over £10,000 worth of prizes to be won!</strong></p>
 					<p>LG G2, G Flex, Smart TV's, LG G Pads, and Soundbars up for grabs!</p>
 				</div>
-				<div class="col-sm-3">
+				<div class="col-sm-1 col-md-3">
 					<img src="/images/prize.png">
 				</div>
 			</div>
@@ -23,7 +24,7 @@
 		<div class="skew"></div>
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-6 col-sm-offset-3">
+				<div class="col-md-6 col-sm-offset-2 col-md-offset-3">
 
 					<form name="redemptionForm" ng-controller="redemptionFormCtrl" ng-submit="submit()" novalidate >
 						<fieldset>
@@ -54,16 +55,22 @@
 								</select>
 						    	<div class="checkbox">
 									<label>
-										<input type="checkbox" ng-model="player.optin">
-								    	Can we send you updates about the game (and <em>only</em> about the game?)
+										<input type="checkbox" ng-model="player.agree" required>
+								    	Do you agree with our terms and conditions?
 								  	</label>
-								</div>
+								</div>									
+						    	<div class="checkbox">
+									<label>
+										<input type="checkbox" ng-model="player.optout">
+								    	Would you rather <strong>NOT</strong> recieve email updates about the game (and only the game - we promise).
+								  	</label>
+								</div>							
 					      	<button type="submit" class="btn pull-right" ng-class="{ 'btn-success' : redemptionForm.$valid, 'btn-danger' : !redemptionForm.$valid }" ng-disabled="!redemptionForm.$valid" ng-click="">ENTER</button>
 					    </fieldset>
 				    </form>
 			    </div>
 			</div>
 		</div>
-	</div><!-- .win-form -->
+	</div>
 
 </div>

@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title></title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width user-scalable=no">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
@@ -18,6 +18,7 @@
     <!-- build:css({.tmp,app}) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
+    <script>document.write('<script src="http://10.13.0.109:35729/livereload.js?snipver=1"></' + 'script>')</script>
   </head>
   <body ng-app="knock2winApp">
     
@@ -32,12 +33,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" ui-sref="about"><img src="images/lg_logo.png"/></a>
+              <a class="navbar-brand" ui-sref="home"><img src="images/lg_logo.png"/></a>
             </div>
             <div class="collapse navbar-collapse">
               <ul class="nav navbar-nav navbar-right">
                 <li><a ui-sref="howtoplay">How to play</a></li>
-                <li class="active"><a ui-sref="about">About</a></li>
+                <li><a ui-sref="about">About</a></li>
                 <li><a ui-sref="prizes">Prizes</a></li>
                 <li><a ui-sref="redemption">Instant Win!</a></li>
               </ul>
@@ -61,7 +62,7 @@
 
       <footer>
       <div class="container">
-        <a ui-sref="tsandcs">t's&ampc's</a>
+        <a ui-sref="tsandcs" href="#">t's&ampc's</a>
         <p class="pull-right">©LG 2014</p>
       </div>
       

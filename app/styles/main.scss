@@ -33,33 +33,58 @@ $mid-grey: #58595b;
 $lg-pink: #c21a5c;
 
 //Bootstrap overrides
+$light-grey: #bfbfbf;
+$mid-grey: #58595b;
+$lg-pink: #c21a5c;
+
 .navbar
 {
-    position: absolute;
-    top:0;
-    width: 100%;
-    border:none;
-    z-index:2;
     background:none;
-    ul.nav
-    {
-        a:hover { background-color:rgba(0,0,0,.2) }
+    border:0;
 
         & .navbar-brand
         {
-            padding:15px 0;
-            &:hover {background:none}
+            background: url('../images/lg_logo.png') no-repeat;
+            height:39px;
+            margin-top:15px;
+            width:90px;
+            img {display:none;} 
+
+            @media(max-width: $screen-xs) 
+            {
+                margin-left:15px;
+            }
         }
+
+    ul.nav
+    {
+        a:hover { background-color:rgba(255,255,255,.5) }
     } 
 }
 
+.navbar-on-dark
+{
+    & .navbar-brand { background-position:0 -39px; }
+
+    ul.nav
+    {
+        a{
+            color:#eee;
+            &:hover {color:#fff}
+        }
+    }
+}
+
+.container-fluid { margin:0 15px }
+
 .form-control, .btn { border-radius: 0; }
 
-.btn{text-transform:uppercase}
+.btn{ text-transform:uppercase }
 
-* { font-family: 'Cabin', sans-serif; }
 
 //General, from the top of the doc tot he bottom
+
+* { font-family: 'Cabin', sans-serif; }
 
 html, body {
    height: 100%;
@@ -68,7 +93,7 @@ html, body {
 
 body {
     background:url('../images/bg_textile.jpg');
-    font-family: 'Cabin', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #333;
 }
 
@@ -87,16 +112,11 @@ ul.nav
 #wrap {
   min-height: 100%;
   height: auto;
-  margin: 0 auto -60px;
+  margin-bottom:-60px;
   padding: 0 0 60px;
 }
 
 footer {
-    position: absolute;
-    bottom:0;
-    border:none;
-    z-index:2;
-    width:100%;
   background-color: $mid-grey;
   border-top:1px solid #fff;
   color:#fff;
@@ -163,23 +183,46 @@ hr
     }
 }
 
-.howtoplaystep
+.howtoplay
 {
-    $w: 400px;
-    $h: 340px;
+    margin-bottom:20px;
 
-    width: $w;
-    height: $h;
-    background:url('../images/howtowin.png') ;
+    h2 {text-align:center}
+
+    $w: 350px;
+    $h: 280px;    
+
+    .diagram
+    {
+        margin: 0 auto;
+
+        width: $w;
+        height: $h;
+        background:url('../images/howtowin.png') top left;
+    } 
 
     @for $i from 1 through 4
     {
-        &.step#{$i}
+        .step#{$i}
         {
-            background-position: 0 0 - ($i - 1) % 4 * $h;
 
-            @media(min-width:992px) {
+            @media(max-width: $screen-md-max ) and (min-width: $screen-xs ) {
+                p{ margin-top:40%; }
+            }
+
+            .diagram
+            {
                 background-position: 0 - $w 0 - ($i - 1) % 4 * $h;
+
+                @media(max-width: $screen-md-max) {
+                    background-position: 0 0 - ($i - 1) % 4 * $h;
+                }            
+
+                @media(max-width: $screen-xs-max) {
+                    width: 280px;
+                    //-35 = - background-image.width / 2;
+                    background-position: -35px 0 - ($i - 1) % 4 * $h;
+                }
             }
         }
     }
@@ -203,7 +246,6 @@ hr
     {
         padding:40px 15px;
         background: #fff;
-        min-height:200px;
         p
         {
             color:$mid-grey;
@@ -220,16 +262,18 @@ hr
             position:absolute;
             z-index: 10;
         }
+
+        @media (max-width: $screen-xs-max) { img { display:none } }
     }
 
     .skew
     {
         position: absolute;
         height:150px;
-        width:150%;
-        margin-top:-70px;
+        width:100%;
+        margin-top:-50px;
         background:$mid-grey;
-        transform: skewY(-2deg);
+        transform: skewY(-1.5deg);
     }
 
     .redemption
@@ -245,6 +289,7 @@ hr
         form
         {
             .form-controls {width: 50%}
+            @media (max-width: $screen-xs-max) { .form-controls { width: 100%; } }
 
             legend {  border: 0; color: #fff }
 
@@ -262,10 +307,10 @@ hr
 
         .confirmation        
         {
-            margin-top:-40px; //Push the copy back up, the skew having pushed it down
+            margin-top:-20px; //Push the copy back up, the skew having pushed it down
             text-align: center;
 
-            h2 {color:#fff}
+            h2 { color:#fff }
         }
     }
 }

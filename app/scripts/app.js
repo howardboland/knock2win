@@ -7,9 +7,10 @@ angular.module('knock2winApp', [
   'ngRoute',
   'ui.router'
 ])
-  .value('$anchorScroll', angular.noop) //prevent the hash jumping for window
-  .config(function ( $locationProvider, $stateProvider, $urlRouterProvider) {
+  .config(['$uiViewScrollProvider', '$stateProvider', function ($uiViewScrollProvider, $stateProvider) {
     //$locationProvider.html5Mode( false );//.hashPrefix('!');
+
+    $uiViewScrollProvider.useAnchorScroll();
 
     $stateProvider.state('howtoplay', {
       url: '/howtoplay',
@@ -152,15 +153,15 @@ angular.module('knock2winApp', [
      .state('home', {
       url: ''
     });
-  })
+  }])
 
-.factory('dbService', function($http) {
+.factory('dbService', ['$http', function($http) {
   return {
     postWinner: function(data) {
       return $http.post('http://www.lgknock2win.com/winners', JSON.stringify(data));
     },
   };
-})
+}])
 
 .controller('redemptionFormCtrl', ['$scope', '$location' , 'dbService', function($scope, $location, dbService) {
     //Default Values;
