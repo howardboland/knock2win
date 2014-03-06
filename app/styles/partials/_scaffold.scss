@@ -10,24 +10,30 @@ header
 
 .navbar
 {
-    background:none;
     border:0;
+    background:#fff;
 
     > .container
     {
         & .navbar-brand
         {
+            padding:5px;
+            cursor:pointer;
+        }
+
+        /*
+        & .navbar-brand
+        {
             background: url('../images/lg_logo.png') no-repeat;
             cursor: pointer;
             height:39px;
-            margin:15px 0 0 0;
             width:90px;
             img {display:none;} 
 
             @media(max-width: $screen-sm-max ) {
                 margin-left:15px;
             }
-        }        
+        }   */     
     }
 
     ul.nav
@@ -35,7 +41,8 @@ header
         @media(max-width: $screen-sm-max ) {
             a { background-color:#fff; }
         }
-        a:hover { background-color:rgba(255,255,255,.5) }
+
+        a:hover { background-color:rgba(0,0,0,.1) }
     } 
 }
 
