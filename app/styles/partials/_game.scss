@@ -42,8 +42,8 @@ canvas
 
 .centralizer
 {
-   box-flex: 100%; //.flex(1,1,100%);
-   align-items: center; //.align-items(center);
+   box-flex: 100%;
+   align-items: center; 
    justify-content: center;
 
     display: flex;
@@ -58,8 +58,7 @@ canvas
 
     #game-info
     {
-       // @include box-flex(200);// .flex(1,1,200);
-        align-items: center; //.align-items(center);
+        align-items: center; 
         justify-content: center;
 
         transition: opacity, .5s, ease-out;

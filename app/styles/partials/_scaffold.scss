@@ -1,9 +1,7 @@
 header
 {
-    left:0;
     margin:0 auto;
-    position:absolute;
-    top:0;
+    position:relative;
     width:100%;
     z-index:2;
 }
@@ -12,6 +10,7 @@ header
 {
     border:0;
     background:#fff;
+    margin:0;
 
     > .container
     {
@@ -19,21 +18,7 @@ header
         {
             padding:5px;
             cursor:pointer;
-        }
-
-        /*
-        & .navbar-brand
-        {
-            background: url('../images/lg_logo.png') no-repeat;
-            cursor: pointer;
-            height:39px;
-            width:90px;
-            img {display:none;} 
-
-            @media(max-width: $screen-sm-max ) {
-                margin-left:15px;
-            }
-        }   */     
+        }   
     }
 
     ul.nav
@@ -95,7 +80,7 @@ ul.nav
 
 #wrap {
     min-height: 100%;
-    height: auto;
+    height: 100%; //this used to be auto
     margin-bottom:- $footer_height;
     padding: 0 0 $footer_height;
 
@@ -106,13 +91,9 @@ ul.nav
     } 
 }
 
-#ui-view
-{
-    //Compensite for absolute positioned header.
-    padding-top:75px;
-}
-
 footer {
+  position:relative;
+  z-index:1;
   background-color: $mid-grey;
   border-top:1px solid #fff;
   color:#fff;
