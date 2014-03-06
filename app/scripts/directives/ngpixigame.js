@@ -223,10 +223,29 @@ angular.module('knock2winApp')
             container.x = renderer.width/2;
             container.y = renderer.height/2;
             // sm 750px   md 970px   lg 1170px
+            console.log(window.innerWidth+"x"+ window.innerHeight);
             console.log(renderer.width +"/"+ 1080+","+ renderer.height +"/"+ 1920)
             var scalefit = Math.min( renderer.width / 1080, renderer.height / 1920 ); //TODO: discuss with nick the real dimension
             scalefit = Math.min(1, scalefit); //scale cannot exeed 1
-            scalefit = .5;
+            if (renderer.width>1080)
+            {
+                scalefit = .5;
+            } else if (renderer.width<=1080 && renderer.width>=360)
+            {
+                scalefit = .5;
+            } else {
+                scalefit = .35;
+            }
+            if (renderer.height<519)
+            {
+              scalefit = .35;
+            }
+            if (renderer.height<360)
+            {
+              scalefit = .25;
+            }
+
+            
             container.scale = new PIXI.Point( scalefit, scalefit);
             cover.width = window.innerWidth;
             cover.height = window.innerHeight;

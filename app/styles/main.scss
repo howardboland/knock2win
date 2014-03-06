@@ -4,6 +4,11 @@
 //using cabin as default font
 @import url("http://fonts.googleapis.com/css?family=Cabin:500,700");
 
+//media helper query
+$phone-xs-height: 360px;
+$phone-sm-height: 460px;
+$phone-md-height: 519px;
+
 //Colors
 $light-grey: #bfbfbf;
 $mid-grey: #58595b;
