@@ -253,9 +253,10 @@ angular.module('knock2winApp')
         // compute () and store card depth in array
         // set up animation and begin shuffle
 
-        function onAssetsProgress()
+        function onAssetsProgress(o)
         {
-            // console.log(arguments);
+             // console.log(arguments);
+            $(".loader .percentage").text( ((o.content.assetURLs.length - o.content.loadCount) / o.content.assetURLs.length)*100+"%" );
 
         } 
         function onAssetsLoaded()
@@ -264,6 +265,7 @@ angular.module('knock2winApp')
             if (!hasInitiated )
             {
                 console.log("Assets loaded")
+               hideLoaderGraphics()
                 loader.removeEventListener("onComplete", onAssetsLoaded);
                 var sprite = PIXI.Sprite.fromImage(assetURISpritesheet);
 
@@ -314,6 +316,7 @@ angular.module('knock2winApp')
 
         function showLoaderGraphics() {
             $(".loader").show();
+
         }
 
         function hideLoaderGraphics() {
