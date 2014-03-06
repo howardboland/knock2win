@@ -119,6 +119,7 @@ canvas
                 cursor: pointer;
                 margin-top:30px;
 
+
                 .logo {
                     display:table;
                     clear:both;
@@ -189,25 +190,38 @@ canvas
                 text-align:center;
                 width: auto;
                 cursor: pointer;
-                .logo {
-                    display:table;
-                    clear:both;
-                    margin: 0 auto;
-                }
-                .header {
-                    display:table;
-                    color: #575759!important;
-                    font-size: 21px;
-                    margin:20px 0 
-                    
-                }
-                .round {
-                    color: rgb(196,2,82);
-                    font-size: 40px!important;
-                    display:table;
-                    margin: 0 auto;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                display:table;
+                background-color: $lg-pink;
+                div {
+                    display: table-cell;
+                    vertical-align: middle;
+
+                    .logo {
+                        display:table;
+                        clear:both;
+                        margin: 0 auto;
+                    }
+                    .header {
+                        display:table;
+                        color: #ffffff!important;
+                        font-size: 21px;
+                        margin: 0 auto;
+                        margin-top:10px;
+                        
+                    }
+                    .round {
+                        color: rgb(196,2,82);
+                        font-size: 40px!important;
+                        display:table;
+                        margin: 0 auto;
 
 
+                    }
                 }
                 
             }
