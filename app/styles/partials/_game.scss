@@ -258,7 +258,13 @@ canvas
                     width:100%;
                     height: 100%;
                     display: table;
+                    background-color:#000000;
+                   
+                    cursor: hand;
+                    
+
                 }
+                
                 .logo {
                     display: table-cell;
                     vertical-align: middle;
@@ -325,4 +331,23 @@ canvas
         }
 
     }
+}
+.animate-show, .animate-hide 
+{
+    transition: opacity 1s ease-out;
+    
+}
+.animate-show {
+    opacity: 0;
+
+}
+.animate-show.animate-show-active {
+    opacity: 1;
+}
+.animate-hide {
+    opacity: 1;
+}
+
+.animate-hide.animate-hide-active {
+    opacity: 0;
 }
