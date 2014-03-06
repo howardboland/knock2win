@@ -194,12 +194,21 @@ angular.module('knock2winApp')
                         gameover();
                     break;
                     case "game.failed":
-                        //coverDown();
-                       // clean();
+                        
+                      //  clean();
+
+                        if (fromStateName!=="game.select")
+                        {
+                          $state.transitionTo("game.init");
+                        }
                     break;
                     case "game.success":
-                        //coverDown();
-                       // clean();
+                     //   clean();
+                     
+                        if (fromStateName!=="game.select")
+                        {
+                            $state.transitionTo("game.init");
+                        }
                     break;
 
                 }
@@ -748,10 +757,14 @@ angular.module('knock2winApp')
             //$('#game-info').addClass('nextlevel');
             if (scope.level<scope.maxlevel)
             {
+
+
                 var promise = $state.transitionTo("game.success");
                 promise.then( function( s ){
                     $('#game-info').toggleClass('active');
                   //  $('#game-info').addClass('retry');
+
+
                 }, function( status ){
                 });
             } else {
@@ -769,9 +782,12 @@ angular.module('knock2winApp')
         }
         function tryagain() {
             console.log("Oh no! Try again");
+            
             var promise = $state.transitionTo("game.failed");
             promise.then( function( s ){
                  $('#game-info').toggleClass('active');
+                        
+
                  //$('#game-info').addClass('retry');
 
             }, function( status ){
