@@ -9,8 +9,8 @@ angular.module('knock2winApp')
     ];
     $scope.message = "";
     $scope.level = 1;
-    $scope.maxlevel = 5;
-    $scope.speeds = [1, .9, .7, .5, .3];
+    $scope.maxlevel = 10;
+    $scope.speeds = [1, .9, .85, .8, .75, .7, .6, .5, .4, .3];
     $scope.select = function() 
     {
         var promise = $state.transitionTo("game.select");
