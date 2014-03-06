@@ -17,7 +17,6 @@ angular.module('knock2winApp')
     }
     $scope.next = function()
     {
-        
         if ($scope.level<$scope.maxlevel)
         {
             $scope.level++;
