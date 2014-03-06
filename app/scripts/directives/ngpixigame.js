@@ -114,6 +114,7 @@ angular.module('knock2winApp')
         var assetsToLoad = [assetURISpritesheet, assetURIPhone];
         var loader = new PIXI.AssetLoader(assetsToLoad);
         loader.addEventListener("onComplete", onAssetsLoaded);
+        loader.addEventListener("onProgress", onAssetsProgress);
         //loader.onComplete = onAssetsLoaded;
         loader.load();
         console.log("begin")
@@ -251,7 +252,12 @@ angular.module('knock2winApp')
         // position and scale each card equally on left and right of 0
         // compute () and store card depth in array
         // set up animation and begin shuffle
- 
+
+        function onAssetsProgress()
+        {
+            // console.log(arguments);
+
+        } 
         function onAssetsLoaded()
         {
             console.log( hasInitiated );
@@ -305,6 +311,15 @@ angular.module('knock2winApp')
                 hasInitiated = true;
             }
         }
+
+        function showLoaderGraphics() {
+            $(".loader").show();
+        }
+
+        function hideLoaderGraphics() {
+            $(".loader").hide();
+        }
+
 
         function init() 
         {
@@ -527,7 +542,7 @@ angular.module('knock2winApp')
             // }
             // currentVisibleArray = currentVisibleArray.splice(0, VISIBLE_CARDS+1);
             // console.log(currentVisibleArray)
-            // console.log(currentSelectedIndex);
+            console.log(currentSelectedIndex);
 
             for (var i=0;i<cards.length;i++)
             {
@@ -562,6 +577,8 @@ angular.module('knock2winApp')
                          cards[0].position.x = this.x;
                          cards[0].scale.x = this.scale;
                          cards[0].scale.y = this.scale;
+                         cards[0].width = Math.round(cards[0].width);
+                         cards[0].height = Math.round(cards[0].height);
                     } )
                     .start();
 
@@ -573,6 +590,10 @@ angular.module('knock2winApp')
                          cards[1].scale.y = this.scaleUp;
                          cards[2].scale.x = this.scaleDown;
                          cards[2].scale.y = this.scaleDown;
+                         cards[1].width = Math.round(cards[1].width);
+                         cards[1].height = Math.round(cards[1].height);
+                         cards[2].width = Math.round(cards[2].width);
+                         cards[2].height = Math.round(cards[2].height);
                         
                         for(var i = 1; i < VISIBLE_CARDS; i++)
                         {
@@ -608,6 +629,8 @@ angular.module('knock2winApp')
                        cards[3].position.x = this.x;
                        cards[3].scale.x = this.scale;
                        cards[3].scale.y = this.scale;
+                      cards[3].width = Math.round(cards[3].width);
+                        cards[3].height = Math.round(cards[3].height);
                     } )
                     .onComplete(function(){
 
