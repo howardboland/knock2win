@@ -559,12 +559,9 @@ angular.module('knock2winApp')
                     .easing( SHUFFLE_EASE )
                     .onUpdate( function () {
                          cards[0].alpha = this.alpha;
-                         cards[0].position.x = Math.round(this.x);
+                         cards[0].position.x = this.x;
                          cards[0].scale.x = this.scale;
                          cards[0].scale.y = this.scale;
-
-                         cards[0].width = cards[0].width;
-                         cards[0].height = cards[0].height;
                     } )
                     .start();
 
@@ -581,7 +578,7 @@ angular.module('knock2winApp')
                         {
                             if (i!=0 && (VISIBLE_CARDS-1)!=i && i!=VISIBLE_CARDS)
                             {
-                                cards[i].position.x = Math.round(this.x + (( i - 1 ) * CARD_WIDTH ));
+                                cards[i].position.x = this.x + (( i - 1 ) * CARD_WIDTH );
                             }
                         }
 
@@ -592,7 +589,7 @@ angular.module('knock2winApp')
                     .to( { x: ( CARD_WIDTH * Math.max(0, 2 - 1) + CARD_WIDTH / 2) + (CARD_WIDTH / 2), scaleDown: .8 }, SHUFFLE_SPEED )
                     .easing( SHUFFLE_EASE )
                     .onUpdate( function () {
-                       cards[2].position.x = Math.round(this.x);
+                       cards[2].position.x = this.x;
                     })
                     .onComplete(function() {
                         //if (deck)
@@ -608,12 +605,9 @@ angular.module('knock2winApp')
                     .easing( SHUFFLE_EASE )
                     .onUpdate( function () {
                        cards[3].alpha = this.alpha;
-                       cards[3].position.x = Math.round(this.x);
+                       cards[3].position.x = this.x;
                        cards[3].scale.x = this.scale;
                        cards[3].scale.y = this.scale;
-
-                       cards[3].width = cards[3].width;
-                       cards[3].height = cards[3].height;
                     } )
                     .onComplete(function(){
 
