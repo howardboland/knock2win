@@ -70,6 +70,7 @@ angular.module('knock2winApp')
         var ONE_SECOND = 1000; //* SPEED_MULTIPLIER
         var animation_timer = null;
         var start_game_timer = null;
+        var count_down_timer = null;
         // Data holders for cards, depth and textures
         var cards = [];    
         var cardTextures = [];
@@ -114,6 +115,7 @@ angular.module('knock2winApp')
         var assetsToLoad = [assetURISpritesheet, assetURIPhone];
         var loader = new PIXI.AssetLoader(assetsToLoad);
         loader.addEventListener("onComplete", onAssetsLoaded);
+        loader.addEventListener("onProgress", onAssetsProgress);
         //loader.onComplete = onAssetsLoaded;
         loader.load();
         console.log("begin")
@@ -125,11 +127,6 @@ angular.module('knock2winApp')
             switch (toStateName)
                 {
                     case "game.init":
-                        if (fromStateName!=toStateName && fromStateName.indexOf("game"))
-                        {
-                            //illegal entry point
-                        }
-                        console.log("hasInitiated "+hasInitiated)
                         if (hasInitiated)
                         {
 
@@ -137,24 +134,14 @@ angular.module('knock2winApp')
                         }
                     break;
                     case "game.start":
-                        if (fromStateName!=toStateName && fromStateName.indexOf("game"))
-                        {
-                            //illegal entry point
-                        }
-                       // coverUp();
                        clean();
                     break;
                     case "game.play":
-                        if (fromStateName!=toStateName && fromStateName.indexOf("ready"))
-                        {
-                            //clean();
-                            //$state.transitionTo("game.init");
-                        }
                     break;
                 }
                  if (toStateName.indexOf("game")===-1 && fromStateName.indexOf("game")!==-1)
                 {
-                    console.log("exiting game view - requires clean up");
+                    console.log("********* exiting game view - requires clean up");
                     // We don't want to have pixi renderes all over the place
                     // destroy
                     clean();
@@ -171,35 +158,25 @@ angular.module('knock2winApp')
             switch (toStateName)
                 {
                     case "game.init":
-                        if (fromStateName!=toStateName && fromStateName.indexOf("game"))
-                        {
-                        }
                     break;
                     case "game.start":
-                        if (fromStateName!=toStateName && fromStateName!="game.init")
-                        {
-                        } else 
-                        {
-                            
-                        }
                         firstStart();
                     break;
                     case "game.play":
-                        if (fromStateName!=toStateName && fromStateName!="game.init")
+                        if (fromStateName==="game.start" || fromStateName==="game.play" || fromStateName==="game.success" || fromStateName==="game.failed")
                         {
-                        } else 
-                        {
-                            
-                        }
-                        restart();
-                        
+                            clean();
+                            restart();
+
+                        } else {
+                          clean();
+                          coverDown();
+                          restart();
+                          //$state.transitionTo('game.play');
+                        }                       
+
                     break;
                     case "game.ready":
-                        if (fromStateName!=toStateName && fromStateName!="game.play")
-                        {
-                        } else 
-                        {
-                        }
                         readyToSelect();
                     break;
                     case "game.select":
@@ -207,13 +184,31 @@ angular.module('knock2winApp')
                         //window.requestTimeout(pick, 10);
                     break;
                     case "game.countdown":
-                        gameCountDown();
+                          gameCountDown();  
+
                     break;
                     case "game.level":
                         changeLevel( scope.level );
                     break;
                     case "game.over":
                         gameover();
+                    break;
+                    case "game.failed":
+                        
+                      //  clean();
+
+                        if (fromStateName!=="game.select")
+                        {
+                          $state.transitionTo("game.init");
+                        }
+                    break;
+                    case "game.success":
+                     //   clean();
+                     
+                        if (fromStateName!=="game.select")
+                        {
+                            $state.transitionTo("game.init");
+                        }
                     break;
 
                 }
@@ -228,10 +223,29 @@ angular.module('knock2winApp')
             container.x = renderer.width/2;
             container.y = renderer.height/2;
             // sm 750px   md 970px   lg 1170px
+            console.log(window.innerWidth+"x"+ window.innerHeight);
             console.log(renderer.width +"/"+ 1080+","+ renderer.height +"/"+ 1920)
             var scalefit = Math.min( renderer.width / 1080, renderer.height / 1920 ); //TODO: discuss with nick the real dimension
             scalefit = Math.min(1, scalefit); //scale cannot exeed 1
-            scalefit = .5;
+            if (renderer.width>1080)
+            {
+                scalefit = .5;
+            } else if (renderer.width<=1080 && renderer.width>=360)
+            {
+                scalefit = .5;
+            } else {
+                scalefit = .35;
+            }
+            if (renderer.height<519)
+            {
+              scalefit = .35;
+            }
+            if (renderer.height<360)
+            {
+              scalefit = .25;
+            }
+
+            
             container.scale = new PIXI.Point( scalefit, scalefit);
             cover.width = window.innerWidth;
             cover.height = window.innerHeight;
@@ -251,13 +265,20 @@ angular.module('knock2winApp')
         // position and scale each card equally on left and right of 0
         // compute () and store card depth in array
         // set up animation and begin shuffle
- 
+
+        function onAssetsProgress(o)
+        {
+             // console.log(arguments);
+            $(".loader .percentage").text( ((o.content.assetURLs.length - o.content.loadCount) / o.content.assetURLs.length)*100+"%" );
+
+        } 
         function onAssetsLoaded()
         {
             console.log( hasInitiated );
             if (!hasInitiated )
             {
                 console.log("Assets loaded")
+               hideLoaderGraphics()
                 loader.removeEventListener("onComplete", onAssetsLoaded);
                 var sprite = PIXI.Sprite.fromImage(assetURISpritesheet);
 
@@ -305,6 +326,16 @@ angular.module('knock2winApp')
                 hasInitiated = true;
             }
         }
+
+        function showLoaderGraphics() {
+            $(".loader").show();
+
+        }
+
+        function hideLoaderGraphics() {
+            $(".loader").hide();
+        }
+
 
         function init() 
         {
@@ -392,6 +423,7 @@ angular.module('knock2winApp')
         function clean() 
         {
             console.log("**** clean");
+            window.clearRequestTimeout( count_down_timer );
             window.clearRequestTimeout( start_game_timer );
             window.clearRequestInterval( animation_timer );
             window.clearRequestInterval( shuffleInterval );
@@ -527,7 +559,7 @@ angular.module('knock2winApp')
             // }
             // currentVisibleArray = currentVisibleArray.splice(0, VISIBLE_CARDS+1);
             // console.log(currentVisibleArray)
-            // console.log(currentSelectedIndex);
+            console.log(currentSelectedIndex);
 
             for (var i=0;i<cards.length;i++)
             {
@@ -562,6 +594,8 @@ angular.module('knock2winApp')
                          cards[0].position.x = this.x;
                          cards[0].scale.x = this.scale;
                          cards[0].scale.y = this.scale;
+                         cards[0].width = Math.round(cards[0].width);
+                         cards[0].height = Math.round(cards[0].height);
                     } )
                     .start();
 
@@ -573,6 +607,10 @@ angular.module('knock2winApp')
                          cards[1].scale.y = this.scaleUp;
                          cards[2].scale.x = this.scaleDown;
                          cards[2].scale.y = this.scaleDown;
+                         cards[1].width = Math.round(cards[1].width);
+                         cards[1].height = Math.round(cards[1].height);
+                         cards[2].width = Math.round(cards[2].width);
+                         cards[2].height = Math.round(cards[2].height);
                         
                         for(var i = 1; i < VISIBLE_CARDS; i++)
                         {
@@ -608,6 +646,8 @@ angular.module('knock2winApp')
                        cards[3].position.x = this.x;
                        cards[3].scale.x = this.scale;
                        cards[3].scale.y = this.scale;
+                      cards[3].width = Math.round(cards[3].width);
+                        cards[3].height = Math.round(cards[3].height);
                     } )
                     .onComplete(function(){
 
@@ -645,7 +685,8 @@ angular.module('knock2winApp')
             scope.message = counter; 
             $state.transitionTo("game.countdown");
             counter--;
-            window.requestTimeout(countDown, ONE_SECOND);
+            window.clearRequestTimeout(count_down_timer);
+            count_down_timer = window.requestTimeout(countDown, ONE_SECOND);
           }
           else
           {
@@ -655,11 +696,11 @@ angular.module('knock2winApp')
         }
         function readyToSelect()
         {
-            scope.message = "!";
+            scope.message = "";
             // console.log( $('#game-info div') );
-             $('#game-info div').on('click', function(){
-                 pick();
-             })
+             // $('#game-info div').on('click', function(){
+             //     pick();
+             // })
 
             counter = COUNTER_START;
             coverUp();
@@ -735,10 +776,14 @@ angular.module('knock2winApp')
             //$('#game-info').addClass('nextlevel');
             if (scope.level<scope.maxlevel)
             {
+
+
                 var promise = $state.transitionTo("game.success");
                 promise.then( function( s ){
                     $('#game-info').toggleClass('active');
                   //  $('#game-info').addClass('retry');
+
+
                 }, function( status ){
                 });
             } else {
@@ -756,9 +801,12 @@ angular.module('knock2winApp')
         }
         function tryagain() {
             console.log("Oh no! Try again");
+            
             var promise = $state.transitionTo("game.failed");
             promise.then( function( s ){
                  $('#game-info').toggleClass('active');
+                        
+
                  //$('#game-info').addClass('retry');
 
             }, function( status ){

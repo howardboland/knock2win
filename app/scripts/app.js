@@ -191,6 +191,15 @@ angular.module('knock2winApp', [
            {
             $state.transitionTo("game.init")
            }
+
+          //access control to redemption is only allowed after completing game otherwise redirect to home
+
+           if ((toState.name === "redemption" && fromState.name!=="game.gameover") || (toState.name === "confirmation" && fromState.name!=="redemption"))
+          {
+            //go to default state
+            $state.transitionTo("game.init");
+
+          }
             
           // transitionTo() promise will be rejected with 
           // a 'transition prevented' error
@@ -198,6 +207,8 @@ angular.module('knock2winApp', [
     
     $rootScope.$on('$stateChangeStart',
       function(event, toState, toParams, fromState, fromParams) {
+
+
        // $log.info(event, toState, toParams, fromState, fromParams);
   //        event.preventDefault(); 
       });

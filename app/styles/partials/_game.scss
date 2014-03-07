@@ -1,5 +1,25 @@
-Game styles
+// Game styles
 // TODO: Need to sort out centralizer and canvas as these are sitting on top of the website and disables button interaction 
+.loader {
+    position:absolute;
+    left:0;
+    top:0;
+    display: table;
+    width: 100%;
+    height: 100%;
+    z-index:100;
+    text-align: center;
+    background-color: #000000;
+    div {
+        display: table-cell;
+        vertical-align: middle;
+        margin:0 auto;
+        color: #ffffff;
+
+
+    }
+
+}
 
 #pixi-container
 {
@@ -22,8 +42,8 @@ canvas
 
 .centralizer
 {
-   box-flex: 100%; //.flex(1,1,100%);
-   align-items: center; //.align-items(center);
+   box-flex: 100%;
+   align-items: center; 
    justify-content: center;
 
     display: flex;
@@ -38,8 +58,7 @@ canvas
 
     #game-info
     {
-       // @include box-flex(200);// .flex(1,1,200);
-        align-items: center; //.align-items(center);
+        align-items: center; 
         justify-content: center;
 
         transition: opacity, .5s, ease-out;
@@ -90,6 +109,23 @@ canvas
                     height: 200px!important;
 
             }
+            @media(max-height: $phone-md-height) {
+
+                    width: 80px!important;
+                    height: 80px!important;
+                    border-radius: 50%;
+
+            }
+            @media (min-height: $phone-md-height) {
+                width: 120px!important;
+                height: 120px!important;
+                border-radius: 50%;
+            }
+            @media (max-height: $phone-xs-height) {
+                width: 60px!important;
+                height: 60px!important;
+                border-radius: 50%;
+            }
         }
         .retry 
         {
@@ -119,6 +155,8 @@ canvas
                 cursor: pointer;
                 margin-top:30px;
 
+
+
                 .logo {
                     display:table;
                     clear:both;
@@ -129,7 +167,7 @@ canvas
 
                 .height-seperator {
                     height: 330px; //340
-                    width: 300px;
+                    width: 320px;
                     display:table;
                 }
                 .header {
@@ -141,10 +179,37 @@ canvas
                     margin: 0 auto 10px auto;
                     
                 }
-                @media(min-width: $screen-lg ) {
+
+                // border:10px solid pink;
+                @media(max-height: $phone-md-height) {
+                    .height-seperator {
+                        height: 240px; //340
+
+
+                    }
+                    // border:10px solid blue;
+
+                }
+                @media (min-height: $phone-md-height) {
+                    .height-seperator {
+                        height: 320px; //340
+                    }
+                    .logo { width: 130px }
+                     // border:10px solid orange;
+                }
+                @media (max-height: $phone-xs-height) {
+                    .height-seperator {
+                        height: 165px; //340
+                    }
+                    .logo { width: 80px }
+                    .header { font-size:12px }
+                     // border:10px solid orange;
+                }
+                @media (min-width: $screen-lg ) {
                     margin-top:0px;
                     .logo { width: 250px }
                     .height-seperator  {height: 340px;}
+                    // border:10px solid green;
 
                 }
                 a.game-button {
@@ -181,6 +246,22 @@ canvas
 
 
                 }
+                @media(max-height: $phone-md-height) {
+                    .height-seperator {
+                        height: 280px; //340
+                    }
+
+                }
+                @media (min-height: $phone-md-height) {
+                    .height-seperator {
+                        height: 380px; //340
+                    }
+                }
+                @media (max-height: $phone-xs-height) {
+                    .height-seperator {
+                        height: 220px; //340
+                    }
+                }
                 
             }
 
@@ -189,25 +270,62 @@ canvas
                 text-align:center;
                 width: auto;
                 cursor: pointer;
-                .logo {
-                    display:table;
-                    clear:both;
-                    margin: 0 auto;
-                }
-                .header {
-                    display:table;
-                    color: #575759!important;
-                    font-size: 21px;
-                    margin:20px 0 
-                    
-                }
-                .round {
-                    color: rgb(196,2,82);
-                    font-size: 40px!important;
-                    display:table;
-                    margin: 0 auto;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                display:table;
+                background-color: $lg-pink;
+                div {
+                    display: table-cell;
+                    vertical-align: middle;
+
+                    .logo {
+                        display:table;
+                        clear:both;
+                        margin: 0 auto;
+                    }
+                    .header {
+                        display:table;
+                        color: #ffffff!important;
+                        font-size: 21px;
+                        margin: 0 auto;
+                        margin-top:10px;
+                        
+                    }
+                    .round {
+                        //color: rgb(196,2,82);
+                        font-size: 40px!important;
+                        display:table;
+                        margin: 0 auto;
+                        color:white;
 
 
+                    }
+                    @media(max-height: $phone-md-height) {
+                        .header {
+                            font-size: 16px!important; //340
+                        }
+                        .round {
+                            font-size: 20px!important; //340
+                        }
+
+                    }
+
+                    @media (min-height: $phone-md-height) {
+                        .header {
+                            font-size: 16px!important; //340
+                        }
+                        .round {
+                            font-size: 30px!important; //340
+                        }
+                    }
+
+                     
+
+
+                 
                 }
                 
             }
@@ -224,7 +342,13 @@ canvas
                     width:100%;
                     height: 100%;
                     display: table;
+                    background-color:#000000;
+                   
+                    cursor: hand;
+                    
+
                 }
+                
                 .logo {
                     display: table-cell;
                     vertical-align: middle;
@@ -250,6 +374,37 @@ canvas
             }
             .social {
                 font-size: 32px;
+            }
+             @media(max-height: $phone-md-height) {
+
+                    h1 {
+                        font-size: 32px;
+                        padding:0;
+                    }
+                    .social {
+                        font-size: 14px;
+                    }
+            }
+
+            @media(max-height: $phone-xs-height) {
+
+                    h1 {
+                        font-size: 24px;
+                        padding:0;
+                    }
+                    .social {
+                        font-size: 10px;
+                    }
+            }
+
+            @media (min-height: $phone-md-height) {
+                h1 {
+                    font-size: 38px;
+                    padding:0;
+                }
+                .social {
+                    font-size: 22px;
+                }
             }
         }
         .nextlevel > div, .retry > div, .new-level > div
@@ -291,4 +446,23 @@ canvas
         }
 
     }
+}
+.animate-show, .animate-hide 
+{
+    transition: opacity 1s ease-out;
+    
+}
+.animate-show {
+    opacity: 0;
+
+}
+.animate-show.animate-show-active {
+    opacity: 1;
+}
+.animate-hide {
+    opacity: 1;
+}
+
+.animate-hide.animate-hide-active {
+    opacity: 0;
 }
