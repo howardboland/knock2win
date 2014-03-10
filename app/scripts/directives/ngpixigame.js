@@ -96,6 +96,8 @@ angular.module('knock2winApp')
       var cardsPerCol = 0;
       var totalCards = 0;
 
+      var hard_refresh = true;
+
       // Start up
       $window.removeEventListener('resize', onResize);
       $window.addEventListener('resize', onResize, false);
@@ -149,11 +151,22 @@ angular.module('knock2winApp')
       function stateCompleteHandler( fromStateName, toStateName )
       {
         //console.log( fromStateName +' --> '+ toStateName);
+        // route
+        // game.init -> game.start -> game.play -> game.ready -> game.countdown -> game.select -> game.failed or game.success -> game.play or game.gameover
         switch (toStateName)
         {
           case 'game.init':
             break;
           case 'game.start':
+
+            if (fromStateName!=='game.init')
+            {
+                if (hard_refresh)
+                {
+                  $window.location = "/";
+
+                }
+            } 
             firstStart();
             break;
           case 'game.play':
@@ -163,40 +176,105 @@ angular.module('knock2winApp')
               restart();
 
             } else {
-              clean();
-              coverDown();
-              restart();
+              // User entered from none valid point - we can either restart the game completely (hard-refresh)
+              if (hard_refresh)
+              {
+                $window.location = "/";
+
+              } else 
+              {
+                clean();
+                coverDown();
+                restart();
+              }
                         //$state.transitionTo('game.play');
             }
             break;
           case 'game.ready':
+            if (fromStateName!=='game.countdown')
+            {
+                if (hard_refresh)
+                {
+                  $window.location = "/";
+
+                }
+            } 
+
             readyToSelect();
             break;
           case 'game.select':
+          if (fromStateName!=='game.ready')
+            {
+                if (hard_refresh)
+                {
+                  $window.location = "/";
+
+                }
+            } 
             pick();
             //window.requestTimeout(pick, 10);
             break;
           case 'game.countdown':
-            gameCountDown();
+             if (fromStateName!=='game.play')
+              {
+                  if (hard_refresh)
+                  {
+                    $window.location = "/";
+
+                  }
+              }  
+              gameCountDown();
             break;
           case 'game.level':
+            if (fromStateName!=='game.select')
+            {
+                if (hard_refresh)
+                {
+                  $window.location = "/";
+
+                }
+            } 
             changeLevel( scope.level );
             break;
           case 'game.over':
+          if (fromStateName!=='game.select')
+            {
+                if (hard_refresh)
+                {
+                  $window.location = "/";
+
+                } 
+            } 
             gameover();
             break;
           case 'game.failed':
             //  clean();
             if (fromStateName!=='game.select')
             {
-              $state.transitionTo('game.init');
-            }
+                if (hard_refresh)
+                {
+                  $window.location = "/";
+
+                } else 
+                {
+                  $state.transitionTo('game.init');
+
+                }
+            } 
             break;
           case 'game.success':
            //   clean();
             if (fromStateName!=='game.select')
             {
-              $state.transitionTo('game.init');
+              if (hard_refresh)
+                {
+                  $window.location = "/";
+
+                } else 
+                {
+                  $state.transitionTo('game.init');
+
+                }
             }
             break;
         }
