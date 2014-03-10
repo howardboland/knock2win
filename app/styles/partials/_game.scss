@@ -19,41 +19,6 @@
     text-transform: uppercase;
 }
 
-.circle-large {
-    width: 300px!important;
-    height: 300px!important;
-
-    border-radius: 50%;
-}
-
-.circle-small {
-    width: 180px!important;
-    height: 180px!important;
-
-    border-radius: 50%;
-
-    @media(min-width: $screen-lg ) {
-            width: 130px!important;
-            height: 130px!important;
-    }
-
-    @media(max-height: $phone-md-height) {
-
-        width: 80px!important;
-        height: 80px!important;
-    }
-
-    @media (min-height: $phone-md-height) {
-        width: 100px!important;
-        height: 100px!important;
-    }
-
-    @media (max-height: $phone-xs-height) {
-        width: 60px!important;
-        height: 60px!important;
-    }
-}
-
 .loader {
     position:absolute;
     left:0;
@@ -82,68 +47,114 @@
 
 .centralizer
 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    overflow:hidden;
     width:100%;
     height:100%;
-
     position:absolute;
     z-index:1;
 
     #game-info
     {
-        display:flex;
-        flex-flow:row wrap;
-        align-items: center;
-        justify-content: center;
-
+        width:100%;
         height:100%;
-        max-width:100%;
+  
 
         transition: opacity, .5s, ease-out;
 
          //Trim the header and footer
-        $a-bit-extra:20px;
+        $a-bit-extra:60px;
 
         padding: $header-height + $a-bit-extra 0 $footer-height + $a-bit-extra 0;
 
         @media(max-width: $screen-md-max) {
+            $a-bit-extra:20px;
             padding-bottom: $mobile-footer-height + $a-bit-extra;
         }
 
         p { margin:0; padding:0; }
 
         .message
-        {
-            display: flex;
-            flex-direction:column;
-            justify-content: space-between;
-            align-items:center;
-
-            width: auto;
-            height: 100%;
-            max-height:490px;
+        { 
+            position:relative;
+            margin:0 auto;
+            height: 100%;  
 
             text-align:center;
-            color:#fff;         
+            color:#fff;      
+
+            .above, .below {
+                position:absolute;
+                width:100%;
+            }
+
+            .above{ top: 0 }             
+            .below{ bottom: 0 }   
 
             &.full-screen
             {
-                justify-content: center;
                 position: absolute;
+                display:table;
                 top: 0;
                 left: 0;
                 width: 100%;
+                max-width:100%;
                 max-height: 100%;
+
+                .over{
+                    display:table-cell;
+                    vertical-align: middle;
+                }                
             }
+
+            .circle-large {
+                width: 300px!important;
+                height: 300px!important;
+
+                margin:0 auto;
+
+                border-radius: 50%;
+
+                
+            }
+
+            .circle-small {
+                width: 180px!important;
+                height: 180px!important;
+
+                margin:0 auto;
+
+                border-radius: 50%;
+
+                @media(min-width: $screen-lg ) {
+                        width: 130px!important;
+                        height: 130px!important;
+                }
+
+                @media(max-height: $phone-md-height) {
+
+                    width: 80px!important;
+                    height: 80px!important;
+                }
+
+                @media (min-height: $phone-md-height) {
+                    width: 100px!important;
+                    height: 100px!important;
+                }
+
+                @media (max-height: $phone-xs-height) {
+                    width: 60px!important;
+                    height: 60px!important;
+                }
+
+               
+            }            
         }
 
         .init-game
         {
             .logo {
                 margin:0 auto;
-                width: 200px;
+                width: 300px;
                 line-height: 0;
             }
 
@@ -205,21 +216,32 @@
             a.game-button {
                 @include green-button();
             }
+
+            .logo {
+                margin:0 auto;
+                width: 300px;
+                line-height: 0;
+            }
+
+            @media (max-height: $phone-sm-height) {
+                .logo { width: 140px }
+            }            
+
         }
 
         .ready-game
         {
             a {
+                display:table;
                 width:100%;
                 height: 100%;
                 background-color:#000;
-
-                display: flex;
-                align-items:center;
-                justify-content: center;
             }
 
             .logo {
+                display:table-cell;
+                vertical-align:middle;
+                margin: 0 auto;
                 max-width:80%;
             }
 
@@ -227,9 +249,13 @@
 
         .counter
         {
-            background: rgba(241,149,15,.9)!important;
+            display: table;
+            .over { display:table-cell; vertical-align: middle; }
+            .circle-small { display:table-cell; vertical-align: middle; background: rgba(241,149,15,.9)!important; }
+            
             color:#fff;
             font-weight:bold;
+
 
             .remaining
             {
@@ -241,7 +267,10 @@
 
         .retry
         {
-            background: rgba(196,2,82,.8)!important;
+            display: table;
+            .over { display:table-cell; vertical-align: middle; }
+            .circle-large { display:table-cell; vertical-align: middle; background: rgba(196,2,82,.8)!important; }
+
             font-size: 3rem;
             line-height: 1em;
 
@@ -257,7 +286,11 @@
 
         .nextlevel
         {
-            background: rgba(92,187,139,.9)!important;
+            display: table;
+            .over { display:table-cell; vertical-align: middle; }
+
+            .circle-large { background: rgba(92,187,139,.9)!important; }
+           
             font-size: 3rem;
             line-height: 1em;
 

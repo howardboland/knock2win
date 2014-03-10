@@ -1,11 +1,11 @@
-<div class="message retry circle-large">
-	<div class="above"></div>
+<div class="message retry">
     <div class="over">
-	    <p><strong>You've been <br> knocked out!</strong></p>
-	    <a ng-click="restart()" class="game-button" href="">Retry round {{level}}</a>
-	    <div class="social">
-		    <ng-include src="'/views/partials/share.html'"></ng-include>
-	    </div>
+    	<div class="circle-large">
+		    <p><strong>You've been <br> knocked out!</strong></p>
+		    <a ng-click="restart()" class="game-button" href="">Retry round {{level}}</a>
+		    <div class="social">
+			    <ng-include src="'/views/share.html'"></ng-include>
+		    </div>
+		</div>
 	</div>
-	<div class="below"></div>
 </div>
