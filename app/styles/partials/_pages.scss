@@ -1,3 +1,23 @@
+@mixin pink-ul()
+{
+     ul {
+        list-style: none;
+        padding:0;
+        margin:0;
+
+        li { 
+            padding-left: 1em; 
+            text-indent: -.7em;
+        }
+
+        li:before {
+            content: "• ";
+            font-size:2em;
+            color: $lg-pink; /* or whatever color you prefer */
+        }
+    }
+}
+
 .howtoplay
 {
     margin-bottom:20px;
@@ -21,8 +41,8 @@
         .step#{$i}
         {
 
-            @media(max-width: $screen-md-max ) and (min-width: $screen-xs ) {
-                p{ margin-top:40%; }
+            @media(max-width: $screen-sm-max ) {
+                p{ width:75%; margin:0 auto }
             }
 
             .diagram
@@ -128,4 +148,72 @@
             h2 { color:#fff }
         }
     }
+}
+
+.about
+{
+    margin-bottom:20px;
+
+    h1, h2 { font-weight:normal }
+    h1 { margin:1em 0 }
+    h2 {
+        font-size: 1.5em;
+        color: $dark-grey;
+        &.all-about-knockon { color: $lg-pink }
+    }
+
+    .flex-video {
+          position: relative;
+          padding-top: 25px;
+          padding-bottom: 67.5%;
+          height: 0;
+          margin-bottom: 16px;
+          overflow: hidden;
+    }
+     
+    .flex-video.widescreen { padding-bottom: 57.25%; }
+    .flex-video.vimeo { padding-top: 0; }
+     
+    .flex-video iframe,
+    .flex-video object,
+    .flex-video embed {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    @media only screen and (max-device-width: 800px), only screen and (device-width: 1024px) and (device-height: 600px), only screen and (width: 1280px) and (orientation: landscape), only screen and (device-width: 800px), only screen and (max-width: 767px) {
+      .flex-video { padding-top: 0; }
+    }
+
+    img.knockon-logo
+    {
+        width:100%;
+        height:auto
+    }    
+
+    @include pink-ul();
+
+    .three-more-features
+    {
+        text-align: center;
+        h2, p {text-align: left}
+    }
+}
+
+.prizes
+{
+    margin-bottom:20px;
+
+    h1, h2 { font-weight:normal }
+    h1 { margin:1em 0 }
+    h2 {
+        font-size: 1.5em;
+        color: $dark-grey;
+        &.all-about-knockon { color: $lg-pink }
+    }   
+    p {margin-bottom:40px;} 
+
+    @include pink-ul();
 }
