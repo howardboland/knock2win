@@ -15,8 +15,9 @@ $mid-grey: #58595b;
 $lg-pink: #c21a5c;
 
 //Sizes
-$footer_height:50px;
-$mobile_footer_height:30px;
+$header-height:50px;
+$footer-height:50px;
+$mobile-footer-height:30px;
 
 @media screen and (orientation:landscape) and (max-device-width:1080px)
 {
@@ -31,7 +32,7 @@ $mobile_footer_height:30px;
          background-image: url('../images/orientation-change.png');
          background-repeat:no-repeat;
          background-attachment:fixed;
-         background-position:center; 
+         background-position:center;
          z-index:100;
     }
 }

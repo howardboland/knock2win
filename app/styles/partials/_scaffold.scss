@@ -1,57 +1,17 @@
-header
-{
-    margin:0 auto;
-    position:relative;
-    width:100%;
-    z-index:2;
-}
+/*
+>#wrap used to force the footer to the bottom of all pages
+>#wrap.noscroll takes the header out of the document flow, to allow for better scaling and centering of subsaquent content.
+ The PIXI canvas sits at the bottom and occupies the entire screen.
+ The .centralizer sits directly over the canvas, and is used to display game info.
+ The header and the footer are then ordered above these two elements (z-index), in order to maintain interactivity.
 
-.navbar
-{
-    border:0;
-    background:#fff;
-    margin:0;
-
-    > .container
-    {
-        & .navbar-brand
-        {
-            padding:5px;
-            cursor:pointer;
-        }   
-    }
-
-    ul.nav
-    {
-        @media(max-width: $screen-sm-max ) {
-            a { background-color:#fff; }
-        }
-
-        a:hover { background-color:rgba(0,0,0,.1) }
-    } 
-}
-
-.navbar-on-dark
-{
-    & .navbar-brand { background-position:0 -39px; }
-
-    ul.nav
-    {
-        a{
-            color:#eee;
-            &:hover {color:#fff}
-        }
-    }
-}
+ */
 
 .container-fluid { margin:0 15px }
 
 .form-control, .btn { border-radius: 0; }
 
 .btn{ text-transform:uppercase }
-
-
-//General, from the top of the doc tot he bottom
 
 * { font-family: 'Cabin', sans-serif; }
 
@@ -66,43 +26,104 @@ body {
     color: #333;
 }
 
-ul.nav
+
+//Used to stick footer to base of page
+#wrap {
+    min-height: 100%;
+    height:auto;
+    position:relative;
+    margin-bottom: 0 - $footer-height;
+    padding-bottom: $footer-height;
+
+    @media(max-width: $screen-md-max) {
+        margin-bottom: 0 - $mobile-footer-height;
+        padding: 0 0 $mobile-footer-height;
+    }
+
+    &.noscroll
+    {
+        // http://www.456bereastreet.com/archive/201306/height_in_percent_when_parent_has_min-height_and_no_height/
+        height: 1px;
+        padding-bottom: 0;
+    }
+
+}
+
+.browsehappy
 {
-    text-transform: uppercase;
-    a {
-        color:$mid-grey;
-        &:hover {
-            color:#fff;
-            background-color:rgba(0,0,0,.4);
+    background:#fff;
+    font-size:16px;
+    height:50px;
+    line-height:50px;
+    position:absolute;
+    text-align: center;
+    width:100%;
+    z-index:10;
+}
+
+header
+{
+    margin:0 auto;
+    position:relative;
+
+    //On the non-scrolling pages, the header is pulled out of the document flow to make easier the scaling and centering of subsaquent elements.
+    .noscroll & {
+        position:absolute;
+        z-index:2;
+    }
+
+    width:100%;
+}
+
+.navbar
+{
+    border:0;
+    background:#fff;
+    margin:0;
+
+    > .container
+    {
+        & .navbar-brand
+        {
+            padding:5px;
+            cursor:pointer;
         }
+    }
+
+    ul.nav
+    {
+        text-transform: uppercase;
+
+        a {
+            color:$mid-grey;
+            background-color:#fff;
+
+            &:hover {
+                color:#fff;
+                background-color:$mid-grey;
+            }
+
+        }
+
     }
 }
 
-#wrap {
-    min-height: 100%;
-    height: 100%; //this used to be auto
-    margin-bottom:- $footer_height;
-    padding: 0 0 $footer_height;
-
-    //Mobile friendly footer
-    @media(max-width: $screen-md-max) {
-        margin-bottom:- $mobile-footer-height;
-        padding: 0 0 $mobile-footer-height;
-    } 
+#ui-view
+{
+    min-height:100%;
 }
 
 footer {
   position:relative;
-  z-index:1;
+  z-index:2;
   background-color: $mid-grey;
-  border-top:1px solid #fff;
   color:#fff;
-  height: $footer_height; 
+  height: $footer-height;
 
   overflow:hidden;
   text-transform: uppercase;
 
-  > div { line-height: $footer_height; }  
+  > div { line-height: $footer-height; }
 
   & a {
     color:#fff;
@@ -111,10 +132,12 @@ footer {
 
     @media(max-width: $screen-md-max) {
         height: $mobile-footer-height;
-        > div { line-height: $mobile-footer-height; }  
-    }    
+        > div { line-height: $mobile-footer-height; }
+    }
 
 }
+
+//Bits and pieces...
 
 h1, h2
 {
@@ -125,6 +148,14 @@ h1, h2
 hr
 {
     border-top:1px solid $light-grey;
+}
+
+.select-method
+{
+    @media(max-width : screen-md-max) {
+        display:none;
+        &:after{ content:"tap" }
+    }
 }
 
 .share
@@ -158,7 +189,7 @@ hr
         {
             &.icon-#{$social}
             {
-                background-position:0 - $icon-size * $count - 0;  
+                background-position:0 - $icon-size * $count - 0;
                 &:hover { background-position:0 - $icon-size * $count 0 - $icon-size; }
             }
             $count: $count + 1;

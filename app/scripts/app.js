@@ -9,7 +9,7 @@ angular.module('knock2winApp', [
   'hmTouchEvents'
 
 ])
-  .config(['$uiViewScrollProvider', '$stateProvider', function ($uiViewScrollProvider, $stateProvider) {
+.config(['$uiViewScrollProvider', '$stateProvider', function ($uiViewScrollProvider, $stateProvider) {
     //$locationProvider.html5Mode( false );//.hashPrefix('!');
 
     $uiViewScrollProvider.useAnchorScroll();
@@ -17,54 +17,54 @@ angular.module('knock2winApp', [
     $stateProvider.state('howtoplay', {
       url: '/howtoplay',
       views: {
-        'main': { 
-            templateUrl: 'views/howtoplay.html'
-          }
+        'main': {
+          templateUrl: 'views/howtoplay.html'
+        }
       }
     })
     .state('about', {
       url: '/about',
       views: {
-        'main': { 
-            templateUrl: 'views/about.html'
-          }
+        'main': {
+          templateUrl: 'views/about.html'
+        }
       }
     })
     .state('prizes', {
       url: '/prizes',
       views: {
-        'main': { 
-            templateUrl: 'views/prizes.html'
-          }
+        'main': {
+          templateUrl: 'views/prizes.html'
+        }
       }
     })
     .state('redemption', {
       url: '/redemption',
       views: {
-        'main': { 
-            templateUrl: 'views/redemption.html'
-          }
+        'main': {
+          templateUrl: 'views/redemption.html'
+        }
       }
     })
     .state('confirmation', {
       url: '/confirmation',
       views: {
-        'main': { 
-            templateUrl: 'views/confirmation.html'
-          }
+        'main': {
+          templateUrl: 'views/confirmation.html'
+        }
       }
     })
     .state('tsandcs', {
       url: '/tsandcs',
       views: {
-        'main': { 
-            templateUrl: 'views/tsandcs.html'
-          }
+        'main': {
+          templateUrl: 'views/tsandcs.html'
+        }
 
       }
     })
-      .state('game', {
-      url: '/game',              
+    .state('game', {
+      url: '/game',
       views: {
         'main' : {
           templateUrl: 'views/game.html',
@@ -72,87 +72,88 @@ angular.module('knock2winApp', [
         }
       }
     })
-      .state('game.init', {
-      url: '/init',   
+    .state('game.init', {
+      url: '/init',
       views: {
         'message' : {
           templateUrl: 'views/message-init.html'
         }
       }
     })
-      .state('game.start', {
-      url: '/start',   
+    .state('game.start', {
+      url: '/start',
       views: {
         'message' : {
-          templateUrl: 'views/message-level-one.html'
+          templateUrl: 'views/message-start-game.html'
         }
       }
     })
-      .state('game.success', {
-      url: '/success',   
+    .state('game.success', {
+      url: '/success',
       views: {
         'message' : {
           templateUrl: 'views/message-success.html'
         }
       }
     })
+      /* --> What's this?
       .state('game.level', {
-      url: '/level?level',   
+      url: '/level?level',
       views: {
         'message' : {
-          templateUrl: 'views/message-level.html',
+          templateUrl: 'views/message-counter.html',
         }
       }
-    })
-      .state('game.failed', {
-      url: '/failed',   
+    }) */
+    .state('game.failed', {
+      url: '/failed',
       views: {
         'message' : {
           templateUrl: 'views/message-fail.html'
         }
       }
     })
-      .state('game.ready', {
-      url: '/ready',   
+    .state('game.ready', {
+      url: '/ready',
       views: {
         'message' : {
           templateUrl: 'views/message-ready.html'
         }
       }
     })
-      .state('game.select', {
-      url: '/select',   
+    .state('game.select', {
+      url: '/select',
       views: {
         'message' : {
           template: ''
         }
       }
     })
-      .state('game.countdown', {
-      url: '/countdown',   
+    .state('game.countdown', {
+      url: '/countdown',
       views: {
         'message' : {
-          templateUrl: 'views/message-level.html'
+          templateUrl: 'views/message-counter.html'
         }
       }
     })
-       .state('game.over', {
-      url: '/gameover',   
+    .state('game.over', {
+      url: '/gameover',
       views: {
         'message' : {
           templateUrl: 'views/message-gameover.html'
         }
       }
     })
-     .state('game.play', {
-      url: '/play',   
+    .state('game.play', {
+      url: '/play',
       views: {
         'message' : {
           templateUrl: 'views/message-play.html'
         }
       }
     })
-     .state('home', {
+    .state('home', {
       url: ''
     });
   }])
@@ -172,8 +173,8 @@ angular.module('knock2winApp', [
     $scope.submit = function() {
       dbService.postWinner($scope.player)
       .success(function() {
-          $scope.end();
-        })
+        $scope.end();
+      })
       .error(function() { });
     };
 
@@ -183,33 +184,33 @@ angular.module('knock2winApp', [
   }])
 
 .run(['$state', '$rootScope', '$log', '$window', function($state, $rootScope, $log, $window) {
+  $rootScope.$on('$stateChangeSuccess',
+    function(event, toState, toParams, fromState, fromParams) {
 
-    $rootScope.$on('$stateChangeSuccess',
-      function(event, toState, toParams, fromState, fromParams) {
+      //we need to tell the html templates whether or not we're in a game state (and therefore, a non-scrollable page)
+      $rootScope.game = $state.includes('game');
+
+      // $log.info(event, toState, toParams, fromState, fromParams);
+      if (toState.url === '')
+      {
+        $state.transitionTo('game.init');
+      }
+
+        //access control to redemption is only allowed after completing game otherwise redirect to home
+
+      if ((toState.name === 'redemption' && fromState.name!=='game.gameover') || (toState.name === 'confirmation' && fromState.name!=='redemption'))
+      {
+        //go to default state
+        $state.transitionTo('game.init');
+
+      }
+    });
+
+  $rootScope.$on('$stateChangeStart',
+    function(event, toState, toParams, fromState, fromParams) {
+
+
        // $log.info(event, toState, toParams, fromState, fromParams);
-           if (toState.url=="")
-           {
-            $state.transitionTo("game.init")
-           }
-
-          //access control to redemption is only allowed after completing game otherwise redirect to home
-
-           if ((toState.name === "redemption" && fromState.name!=="game.gameover") || (toState.name === "confirmation" && fromState.name!=="redemption"))
-          {
-            //go to default state
-            $state.transitionTo("game.init");
-
-          }
-            
-          // transitionTo() promise will be rejected with 
-          // a 'transition prevented' error
-      });
-    
-    $rootScope.$on('$stateChangeStart',
-      function(event, toState, toParams, fromState, fromParams) {
-
-
-       // $log.info(event, toState, toParams, fromState, fromParams);
-  //        event.preventDefault(); 
-      });
-  }]);
+  //        event.preventDefault();
+  });
+}]);

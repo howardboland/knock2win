@@ -2,11 +2,7 @@
 
 angular.module('knock2winApp')
   .controller('GameCtrl', ['$scope', '$state', function ($scope, $state) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+
     $scope.message = "";
     $scope.level = 1;
     $scope.maxlevel = 10;

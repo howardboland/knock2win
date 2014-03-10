@@ -1,8 +1,9 @@
-
-<div class="retry circle-large">
-    <div>
-    <h1>You've been knocked out!</h1>
-    <a ng-click="restart()" class="game-button inline clearfix">Retry round {{level}} &gt;</a>
-    <ng-include src="'/views/partials/share.html'"></ng-include>
-    </div>
+<div class="message retry circle-large">
+    <div class="over">
+	    <p><strong>You've been <br> knocked out!</strong></p>
+	    <a ng-click="restart()" class="game-button" href="">Retry round {{level}}</a>
+	    <div class="social">
+		    <ng-include src="'/views/partials/share.html'"></ng-include>
+	    </div>
+	</div>
 </div>

@@ -14,7 +14,7 @@
     <meta property="og:image" content="http://www.knock2win.co.uk/images/k2w-fbshare.jpg"/>
     <meta property="og:url" content="http://www.knock2win.co.uk"/>
     <meta property="og:description" content="Tap Twice to Wake your Device" />
-    <meta property="og:type" content="game"/> 
+    <meta property="og:type" content="game"/>
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css styles/vendor.css -->
@@ -28,11 +28,13 @@
     <!-- <script>document.write('<script src="http://127.0.0.1:8000/livereload.js?snipver=1"></' + 'script>')</script> -->
   </head>
   <body ng-app="knock2winApp">
-    
-    <div class="orientation-info"></div>
-    
 
-    <div id="wrap">
+    <div class="orientation-info"></div>
+
+    <div id="wrap" ng-class="{ 'noscroll': $root.game }">
+      <!--[if lt IE 10]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. <em>Please</em> <a href="http://browsehappy.com/" target="_blank">upgrade your browser</a> and enjoy the modern Internet.</p>
+      <![endif]-->
       <header>
         <div class="navbar navbar-default" role="navigation">
           <div class="container">
@@ -55,25 +57,16 @@
         </div>
       </header>
 
-      <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-    <!--[if lt IE 9]>
-        <script src="bower_components/es5-shim/es5-shim.js"></script>
-        <script src="bower_components/json3/lib/json3.min.js"></script>
-      <![endif]-->
+      <section id="ui-view" ui-view="main"></section>
 
-        <section id="ui-view" ui-view="main"></section>
+    </div>
 
+    <footer>
+    <div class="container">
+      <a ui-sref="tsandcs" href="#">T&amp;C</a>
+      <p class="pull-right">©LG 2014</p>
+    </div>
 
-      </div>
-
-      <footer>
-      <div class="container">
-        <a ui-sref="tsandcs" href="#">T&amp;C</a>
-        <p class="pull-right">©LG 2014</p>
-      </div>
-      
     </footer>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>

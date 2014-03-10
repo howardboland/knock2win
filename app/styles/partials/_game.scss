@@ -1,5 +1,59 @@
-// Game styles
-// TODO: Need to sort out centralizer and canvas as these are sitting on top of the website and disables button interaction 
+@mixin green-button() {
+    background-color: rgba(92,187,139,.6)!important;
+    color: #ffffff!important;
+    padding: 5px 20px!important;
+    font-size: 2rem!important;
+    font-weight:bold;
+    text-decoration: none;
+    margin:0 auto;
+    line-height: 1em;
+
+    &:hover {background-color: rgba(92,187,139,1)!important;}
+}
+
+@mixin white-button() {
+    background-color:#fff;
+    padding:5px 10px;
+    font-size: 1.2rem;
+    font-weight:bold;
+    text-transform: uppercase;
+}
+
+.circle-large {
+    width: 300px!important;
+    height: 300px!important;
+
+    border-radius: 50%;
+}
+
+.circle-small {
+    width: 180px!important;
+    height: 180px!important;
+
+    border-radius: 50%;
+
+    @media(min-width: $screen-lg ) {
+            width: 130px!important;
+            height: 130px!important;
+    }
+
+    @media(max-height: $phone-md-height) {
+
+        width: 80px!important;
+        height: 80px!important;
+    }
+
+    @media (min-height: $phone-md-height) {
+        width: 100px!important;
+        height: 100px!important;
+    }
+
+    @media (max-height: $phone-xs-height) {
+        width: 60px!important;
+        height: 60px!important;
+    }
+}
+
 .loader {
     position:absolute;
     left:0;
@@ -15,450 +69,225 @@
         vertical-align: middle;
         margin:0 auto;
         color: #ffffff;
-
-
     }
 
 }
 
 #pixi-container
 {
-    
-    margin:0;
-    padding:0;
-}
-
-canvas
-{
-    display: block;
-    margin:0 auto;
-    position: absolute;
-    top:0;
-    left:0;
-    //z-index: -2;
-    width:100%;
     height:100%;
+    position:absolute;
+    canvas { margin:0 auto; }
 }
 
 .centralizer
 {
-   box-flex: 100%;
-   align-items: center; 
-   justify-content: center;
-
     display: flex;
-    position: absolute; 
-   // z-index: -1;
-    top:0;
-    left:0;
+    align-items: center;
+    justify-content: center;
     width:100%;
     height:100%;
 
-
+    position:absolute;
+    z-index:1;
 
     #game-info
     {
-        align-items: center; 
+        display:flex;
+        align-items: center;
         justify-content: center;
 
+        height:100%;
+        max-width:100%;
+
         transition: opacity, .5s, ease-out;
-        //@include opacity(0);
-        display:flex;
-        text-align:center;
-        //visibility: hidden;
-        // background: rgba(255,0,0,.8);
-        // width: 200px;
-        // height: 200px;
-        // border-radius: 50%;
-        // cursor: pointer;
-        user-select: none;
 
-        &.active
+         //Trim the header and footer
+        $a-bit-extra:20px;
+
+        padding: $header-height + $a-bit-extra 0 $footer-height + $a-bit-extra 0;
+
+        @media(max-width: $screen-md-max) {
+            padding-bottom: $mobile-footer-height + $a-bit-extra;
+        }
+
+        p { margin:0; padding:0; }
+
+        .message
         {
-            opacity: 1;
-            visibility: visible;
-        }
+            display: flex;
+            flex-flow:row wrap;
+            align-items:space-between;
+            justify-content: center;
 
-        
-            font-size: 100px;
-            font-weight: bold;
-            color:white;
+            width: auto;
+            height: 100%;
+            max-height:490px;
 
-        .circle-large {
-            width: 300px!important;
-            height: 300px!important;
-
-            display:table;
-            border-radius: 50%;
-            cursor: pointer;
-            @media(min-width: $screen-lg ) {
-                    width: 346px!important;
-                    height: 346px!important;
-
-            }
-        }
-        .circle-small {
-            width: 180px!important;
-            height: 180px!important;
-
-            display:table;
-            border-radius: 50%;
-            cursor: pointer;
-            @media(min-width: $screen-lg ) {
-                    width: 200px!important;
-                    height: 200px!important;
-
-            }
-            @media(max-height: $phone-md-height) {
-
-                    width: 80px!important;
-                    height: 80px!important;
-                    border-radius: 50%;
-
-            }
-            @media (min-height: $phone-md-height) {
-                width: 120px!important;
-                height: 120px!important;
-                border-radius: 50%;
-            }
-            @media (max-height: $phone-xs-height) {
-                width: 60px!important;
-                height: 60px!important;
-                border-radius: 50%;
-            }
-        }
-        .retry 
-        {
-            background: rgba(196,2,82,.8)!important;
-            font-size: 25px;
-            a.game-button {
-                color: rgba(196,2,82,.8)!important;
-            }
-
-        }
-
-        .general-game 
-        {
-            background: rgba(255,0,0,.8);
-            color: white;
             text-align:center;
-            .header {
-                display:table-cell;
-                vertical-align: middle;
-            }
-            text-decoration: none;
-        }
-        .init-game
+            color:#fff;
+
+            .above, .over, .below { width:100%; }
+            .over { align-self:center; }
+            .above { align-self:flex-start; }
+            .below { align-self:flex-end;}
+
+            &.full-screen
             {
-                width: auto;
-                text-align:center;
-                cursor: pointer;
-                margin-top:30px;
-
-
-
-                .logo {
-                    display:table;
-                    clear:both;
-                    margin: 0 auto;
-                    width: 100px; 
-                    line-height: 0;
-                }
-
-                .height-seperator {
-                    height: 330px; //340
-                    width: 320px;
-                    display:table;
-                }
-                .header {
-                    clear:both;
-                    display:table;
-
-                    color: #575759!important;
-                    font-size: 15px; //21
-                    margin: 0 auto 10px auto;
-                    
-                }
-
-                // border:10px solid pink;
-                @media(max-height: $phone-md-height) {
-                    .height-seperator {
-                        height: 240px; //340
-
-
-                    }
-                    // border:10px solid blue;
-
-                }
-                @media (min-height: $phone-md-height) {
-                    .height-seperator {
-                        height: 320px; //340
-                    }
-                    .logo { width: 130px }
-                     // border:10px solid orange;
-                }
-                @media (max-height: $phone-xs-height) {
-                    .height-seperator {
-                        height: 165px; //340
-                    }
-                    .logo { width: 80px }
-                    .header { font-size:12px }
-                     // border:10px solid orange;
-                }
-                @media (min-width: $screen-lg ) {
-                    margin-top:0px;
-                    .logo { width: 250px }
-                    .height-seperator  {height: 340px;}
-                    // border:10px solid green;
-
-                }
-                a.game-button {
-                    background-color: rgba(92,187,139,.9)!important;
-                    color: #ffffff!important;
-                    padding: 5px 30px 5px 30px!important; //5px 30px 5px 30px
-                    font-size: 21px!important; //21
-                    display:table;
-                    text-decoration: none;
-                    margin:0 auto;
-
-
-                }
-                
-            }
-            .play-game
-            {
-                width: auto;
-                text-align:center;
-                cursor: pointer;
-                .height-seperator {
-                    height: 380px; //340
-                    width: 300px;
-                    display:table;
-                }
-                a.game-button {
-                    background-color: rgba(92,187,139,.9)!important;
-                    color: #ffffff!important;
-                    padding: 5px 30px 5px 30px!important;
-                    font-size: 21px!important;
-                    display:table;
-                    text-decoration: none;
-                    margin:0 auto;
-
-
-                }
-                @media(max-height: $phone-md-height) {
-                    .height-seperator {
-                        height: 280px; //340
-                    }
-
-                }
-                @media (min-height: $phone-md-height) {
-                    .height-seperator {
-                        height: 380px; //340
-                    }
-                }
-                @media (max-height: $phone-xs-height) {
-                    .height-seperator {
-                        height: 220px; //340
-                    }
-                }
-                
-            }
-
-            .start-game
-            {
-                text-align:center;
-                width: auto;
-                cursor: pointer;
+                align-items: center;
                 position: absolute;
                 top: 0;
                 left: 0;
                 width: 100%;
-                height: 100%;
-                display:table;
-                background-color: $lg-pink;
-                div {
-                    display: table-cell;
-                    vertical-align: middle;
-
-                    .logo {
-                        display:table;
-                        clear:both;
-                        margin: 0 auto;
-                    }
-                    .header {
-                        display:table;
-                        color: #ffffff!important;
-                        font-size: 21px;
-                        margin: 0 auto;
-                        margin-top:10px;
-                        
-                    }
-                    .round {
-                        //color: rgb(196,2,82);
-                        font-size: 40px!important;
-                        display:table;
-                        margin: 0 auto;
-                        color:white;
-
-
-                    }
-                    @media(max-height: $phone-md-height) {
-                        .header {
-                            font-size: 16px!important; //340
-                        }
-                        .round {
-                            font-size: 20px!important; //340
-                        }
-
-                    }
-
-                    @media (min-height: $phone-md-height) {
-                        .header {
-                            font-size: 16px!important; //340
-                        }
-                        .round {
-                            font-size: 30px!important; //340
-                        }
-                    }
-
-                     
-
-
-                 
-                }
-                
-            }
-             .ready-game
-            {
-                position:absolute;
-                width:100%;
-                height:100%;
-                top:0;
-                left:0;
-                text-align:center;
-
-                a {
-                    width:100%;
-                    height: 100%;
-                    display: table;
-                    background-color:#000000;
-                   
-                    cursor: hand;
-                    
-
-                }
-                
-                .logo {
-                    display: table-cell;
-                    vertical-align: middle;
-                    margin: 0 auto;
-
-                }
-                
-            }
-        .nextlevel 
-        {
-            background: rgba(92,187,139,.9)!important;
-            font-size: 25px;
-            a.game-button {
-                color: rgba(92,187,139,1)!important;
+                max-height: 100%;
             }
         }
-         .new-level 
+
+        .init-game
+        {
+            .logo {
+                margin:0 auto;
+                width: 200px;
+                line-height: 0;
+            }
+
+            .header {
+                color: $mid-grey !important;
+                font-size: 15px; //21
+                margin: 0 auto 20px auto;
+            }
+
+            a.game-button {
+                @include green-button();
+            }
+
+            @media (max-height: $phone-sm-height) {
+                .logo { width: 140px }
+                .header { font-size:12px }
+            }
+        }
+
+        .start-game
+        {
+            background-color: $lg-pink;
+
+            .logo {
+                margin: 0 auto 10px 0;
+                max-width:35%;
+            }
+
+            .prompt {
+                //color: rgb(196,2,82);
+                font-size: 2em !important;
+                font-weight: bold;
+                margin: 0 auto;
+                text-transform: uppercase;
+            }
+
+            @media(max-height: $phone-md-height) {
+                .header {
+                    font-size: 16px!important; //340
+                }
+                .round {
+                    font-size: 20px!important; //340
+                }
+            }
+
+            @media (max-height: $phone-xs-height) {
+                .header {
+                    font-size: 16px!important; //340
+                }
+                .round {
+                    font-size: 30px!important; //340
+                }
+            }
+        }
+
+        .play-game
+        {
+            //With only a single button in the element to which this class is applied, we must override the #game-info align-items property;
+            a.game-button {
+                @include green-button();
+            }
+        }
+
+        .ready-game
+        {
+            a {
+                width:100%;
+                height: 100%;
+                background-color:#000;
+
+                display: flex;
+                align-items:center;
+                justify-content: center;
+            }
+
+            .logo {
+                max-width:80%;
+            }
+
+        }
+
+        .counter
         {
             background: rgba(241,149,15,.9)!important;
-            font-size: 25px;
-            h1 {
-                font-size: 82px;
-            }
-            .social {
-                font-size: 32px;
-            }
-             @media(max-height: $phone-md-height) {
+            color:#fff;
+            font-weight:bold;
 
-                    h1 {
-                        font-size: 32px;
-                        padding:0;
-                    }
-                    .social {
-                        font-size: 14px;
-                    }
+            .remaining
+            {
+                font-size: 3em;
+                line-height: 1em;
             }
 
-            @media(max-height: $phone-xs-height) {
-
-                    h1 {
-                        font-size: 24px;
-                        padding:0;
-                    }
-                    .social {
-                        font-size: 10px;
-                    }
-            }
-
-            @media (min-height: $phone-md-height) {
-                h1 {
-                    font-size: 38px;
-                    padding:0;
-                }
-                .social {
-                    font-size: 22px;
-                }
-            }
         }
-        .nextlevel > div, .retry > div, .new-level > div
+
+        .retry
         {
-            display: table-cell;
-            vertical-align: middle;
+            background: rgba(196,2,82,.8)!important;
+            font-size: 3rem;
+            line-height: 1em;
 
-        }
-        h1 {
-            font-size: 32px;
-            width:80%;
-            margin:0 auto;
-            color: white;
-
-        }
-        a.game-button {
-            background-color: white;
-            padding: 5px 10px 5px 10px;
-            font-size: 12px;
-            display:table;
-            width:auto;
-            margin:0 auto;
-            color:#000;
-            margin-top:10px;
-
-        }
-        .share {
-            margin-top: 10px;
-            color: #fff;
-            p {
-               color: #fff; 
-               font-size: 12px;
+            a.game-button {
+                @include white-button();
+                color: rgba(196,2,82,.8)!important;
             }
-            a {
-                color: #fff;
-                border-radius: 0px;
 
-            }
+            .social  {margin-top:10px }
         }
 
+        .nextlevel
+        {
+            background: rgba(92,187,139,.9)!important;
+            font-size: 3rem;
+            line-height: 1em;
+
+            a.game-button {
+                @include white-button();
+                color: rgba(92,187,139,1)!important;
+            }
+
+            .social  {margin-top:10px }
+        }
     }
 }
-.animate-show, .animate-hide 
+
+.animate-show, .animate-hide
 {
     transition: opacity 1s ease-out;
-    
+
 }
+
 .animate-show {
     opacity: 0;
 
 }
+
 .animate-show.animate-show-active {
     opacity: 1;
 }
+
 .animate-hide {
     opacity: 1;
 }
