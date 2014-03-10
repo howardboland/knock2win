@@ -855,7 +855,7 @@ angular.module('knock2winApp')
              //requestAnimFrame( animate );
         } catch (error)
         {
-          console.log(error);
+          //console.log(error);
         }
       }
 
