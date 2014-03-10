@@ -62,13 +62,13 @@
         transition: opacity, .5s, ease-out;
 
          //Trim the header and footer
-        $a-bit-extra:60px;
+        $a-bit-extra:80px;
 
         padding: $header-height + $a-bit-extra 0 $footer-height + $a-bit-extra 0;
 
-        @media(max-width: $screen-md-max) {
+        @media(max-width: $screen-xs-max) {
             $a-bit-extra:20px;
-            padding-bottom: $mobile-footer-height + $a-bit-extra;
+            padding: $header-height + $a-bit-extra 0 $mobile-footer-height + $a-bit-extra 0;
         }
 
         p { margin:0; padding:0; }
