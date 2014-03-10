@@ -62,7 +62,7 @@
         transition: opacity, .5s, ease-out;
 
          //Trim the header and footer
-        $a-bit-extra:80px;
+        $a-bit-extra:60px;
 
         padding: $header-height + $a-bit-extra 0 $footer-height + $a-bit-extra 0;
 
@@ -73,19 +73,24 @@
 
         @media (max-height: $tablet-height) {
             padding-top: $header-height+20px;
-            }
+            padding-bottom: $mobile-footer-height+20px;
+
+
+        }
 
         @media(max-height: $phone-md-height) {
             padding-top: $header-height+20px;
-            padding-bottom: $mobile-footer-height + $a-bit-extra;
+            padding-bottom: $mobile-footer-height + 20px;
         }
 
         @media(max-height: $phone-sm-height) {
             padding-top: $header-height+20px;
+            padding-bottom: $mobile-footer-height + 20px;
         }
 
         @media(max-height: $phone-xs-height) {
             padding-top: $header-height+5px;
+            padding-bottom: $mobile-footer-height + 5px;
         }
         
        
