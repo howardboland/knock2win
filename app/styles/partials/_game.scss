@@ -14,7 +14,7 @@
 @mixin white-button() {
     background-color:#fff;
     padding:5px 10px;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-weight:bold;
     text-transform: uppercase;
 }
@@ -94,6 +94,7 @@
     #game-info
     {
         display:flex;
+        flex-flow:row wrap;
         align-items: center;
         justify-content: center;
 
@@ -116,25 +117,20 @@
         .message
         {
             display: flex;
-            flex-flow:row wrap;
-            align-items:space-between;
-            justify-content: center;
+            flex-direction:column;
+            justify-content: space-between;
+            align-items:center;
 
             width: auto;
             height: 100%;
             max-height:490px;
 
             text-align:center;
-            color:#fff;
-
-            .above, .over, .below { width:100%; }
-            .over { align-self:center; }
-            .above { align-self:flex-start; }
-            .below { align-self:flex-end;}
+            color:#fff;         
 
             &.full-screen
             {
-                align-items: center;
+                justify-content: center;
                 position: absolute;
                 top: 0;
                 left: 0;
@@ -173,7 +169,7 @@
 
             .logo {
                 margin: 0 auto 10px 0;
-                max-width:35%;
+                max-width:60%;
             }
 
             .prompt {
@@ -249,12 +245,14 @@
             font-size: 3rem;
             line-height: 1em;
 
+            p {margin-bottom:10px;}
+
             a.game-button {
                 @include white-button();
                 color: rgba(196,2,82,.8)!important;
             }
 
-            .social  {margin-top:10px }
+            .social  {margin-top:15px }
         }
 
         .nextlevel
@@ -263,12 +261,14 @@
             font-size: 3rem;
             line-height: 1em;
 
+            p {margin-bottom:10px;}
+
             a.game-button {
                 @include white-button();
                 color: rgba(92,187,139,1)!important;
             }
 
-            .social  {margin-top:10px }
+            .social  {margin-top:15px }
         }
     }
 }
