@@ -448,12 +448,48 @@ angular.module('knock2winApp')
         console.log('startGame');
         //setTimeout(gameCountDown, VIEWING_TIME);
         reshuffle();
+        
         shuffleInterval = window.requestInterval(reshuffle, SHUFFLE_SPEED + PAUSE_BETWEEN_SHUFFLES);
         window.clearRequestInterval( animation_timer );
         animation_timer = window.requestInterval(animate, 30);
 
       }
-
+      function playAudio(type)
+      {
+        console.log("play sound");
+        var location = "";
+        switch (type)
+        {
+            case "shuffle_fast":
+                location = "/sounds/Deal Fast/026119758-swing-swish-swoosh-whoosh-04.mp3";
+            break;
+            case "shuffle_medium":
+                location = "/sounds/Deal Med/008595543-gamecardremove-s011sp180.mp3";
+            break;
+            case "shuffle_slow":
+                location = "/sounds/Deal Slow/006224706-texture-whoosh-04-slow-04.mp3";
+            break;
+            case "failed":
+                location = "/sounds/Fail/Fail01.mp3";
+            break;
+            case "success":
+                location = "/sounds/Win/023168143-positive-win-game-sound-5.mp3";
+            break;
+            case "countdown":
+                location = "/sounds/Start/Start03.mp3";
+            break;
+        }
+        if (location!=="")
+        {
+            var snd = new Audio(location); // buffers automatically when created
+            snd.play();
+            $(snd).bind("ended", function()
+            {
+                //console.log("sound finished");
+                snd = null;
+            });
+        }
+      }
       //Adds a card sprite to the deck container (pixi)
       function addCardsToDeck()
       {
@@ -546,6 +582,7 @@ angular.module('knock2winApp')
       {
 
         var currentSelectedIndex = cardArrayVisible[1];
+        playAudio("shuffle_medium");
         // var currentVisibleArray = [];
         // for (var i=0;i<cardArrayVisible.length;i++)
         // {
@@ -654,6 +691,7 @@ angular.module('knock2winApp')
       // Triggers countdown
       function gameCountDown()
       {
+        playAudio("countdown");
         $state.transitionTo('game.countdown');
         countDown();
         $('#game-info').toggleClass('active');
@@ -760,6 +798,7 @@ angular.module('knock2winApp')
       function nextlevel() {
         console.log('Great! move on to next level:)');
         //$('#game-info').addClass('nextlevel');
+        playAudio("success");
         if (scope.level<scope.maxlevel)
         {
           var promise = $state.transitionTo('game.success');
@@ -781,7 +820,7 @@ angular.module('knock2winApp')
 
       function tryagain() {
         console.log('Oh no! Try again');
-
+        playAudio("failed");
         var promise = $state.transitionTo('game.failed');
         promise.then( function( s ){
           $('#game-info').toggleClass('active');
