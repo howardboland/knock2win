@@ -460,14 +460,8 @@ angular.module('knock2winApp')
         var location = "";
         switch (type)
         {
-            case "shuffle_fast":
-                location = "/sounds/Deal Fast/026119758-swing-swish-swoosh-whoosh-04.mp3";
-            break;
             case "shuffle_medium":
                 location = "/sounds/Deal Med/008595543-gamecardremove-s011sp180.mp3";
-            break;
-            case "shuffle_slow":
-                location = "/sounds/Deal Slow/006224706-texture-whoosh-04-slow-04.mp3";
             break;
             case "failed":
                 location = "/sounds/Fail/Fail01.mp3";
@@ -478,6 +472,7 @@ angular.module('knock2winApp')
             case "countdown":
                 location = "/sounds/Start/Start03.mp3";
             break;
+            default:
         }
         if (location!=="")
         {
@@ -860,7 +855,7 @@ angular.module('knock2winApp')
              //requestAnimFrame( animate );
         } catch (error)
         {
-          console.log(error);
+          //console.log(error);
         }
       }
 
