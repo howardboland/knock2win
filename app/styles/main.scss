@@ -12,6 +12,7 @@ $phone-md-height: 519px;
 //Colors
 $light-grey: #bfbfbf;
 $mid-grey: #58595b;
+$dark-grey: #161515;
 $lg-pink: #c21a5c;
 
 //Sizes
@@ -35,6 +36,7 @@ $mobile-footer-height:30px;
          background-position: 50% 50%;
          z-index:100;
     }
+    
     #wrap {
         visibility: hidden;
         display:none;
