@@ -197,8 +197,7 @@ angular.module('knock2winApp', [
       }
 
         //access control to redemption is only allowed after completing game otherwise redirect to home
-
-      if ((toState.name === 'redemption' && fromState.name!=='game.gameover') || (toState.name === 'confirmation' && fromState.name!=='redemption'))
+      if ((toState.name === 'redemption' && fromState.name!=='game.over') || (toState.name === 'confirmation' && fromState.name!=='redemption'))
       {
         //go to default state
         $state.transitionTo('game.init');

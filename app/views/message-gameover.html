@@ -1,7 +1,13 @@
-<div class="message nextlevel circle-large">
-<div>
-    <h1>Congratulation! You did it.</h1>
-    <a ui-sref="redemption" class="game-button inline">Enter the prize draw &gt;</a>
-        <ng-include src="'/views/partials/share.html'"></ng-include>
+<div class="message nextlevel gameover">
+    <div class="over">
+        <div class="circle-large">
+            <div class="inner-content">
+                <h1>Congratulation!<br/>You did it.</h1>
+                <a ui-sref="redemption" class="game-button inline">Enter the prize draw &gt;</a>
+                <div class="social">
+                    <ng-include src="'/views/share.html'"></ng-include>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

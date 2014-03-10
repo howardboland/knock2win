@@ -5,7 +5,7 @@ angular.module('knock2winApp')
 
     $scope.message = "";
     $scope.level = 1;
-    $scope.maxlevel = 10;
+    $scope.maxlevel = 4;
     $scope.speeds = [1, .9, .85, .8, .75, .7, .6, .5, .4, .3];
     $scope.select = function() 
     {

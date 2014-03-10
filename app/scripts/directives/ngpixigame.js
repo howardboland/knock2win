@@ -90,6 +90,11 @@ angular.module('knock2winApp')
       var COUNTER_START = 3;
       var counter = COUNTER_START;
 
+      var sound_shuffle;
+      var sound_success;
+      var sound_failed;
+      var sound_countdown;
+
 
 
       var cardsPerRow = 0;
@@ -237,14 +242,14 @@ angular.module('knock2winApp')
             changeLevel( scope.level );
             break;
           case 'game.over':
-          if (fromStateName!=='game.select')
-            {
-                if (hard_refresh)
-                {
-                  $window.location = "/";
+            if (fromStateName!=='game.select')
+              {
+                  if (hard_refresh)
+                  {
+                    $window.location = "/";
 
-                } 
-            } 
+                  } 
+              } 
             gameover();
             break;
           case 'game.failed':
@@ -535,33 +540,49 @@ angular.module('knock2winApp')
       function playAudio(type)
       {
         console.log("play sound");
-        var location = "";
-        switch (type)
-        {
-            case "shuffle_medium":
-                location = "/sounds/Deal Med/008595543-gamecardremove-s011sp180.mp3";
-            break;
-            case "failed":
-                location = "/sounds/Fail/Fail01.mp3";
-            break;
-            case "success":
-                location = "/sounds/Win/023168143-positive-win-game-sound-5.mp3";
-            break;
-            case "countdown":
-                location = "/sounds/Start/Start03.mp3";
-            break;
-            default:
-        }
-        if (location!=="")
-        {
-            var snd = new Audio(location); // buffers automatically when created
-            snd.play();
-            $(snd).bind("ended", function()
-            {
-                //console.log("sound finished");
-                snd = null;
-            });
-        }
+        // var snd;
+        // switch (type)
+        // {
+
+        //     case "shuffle_medium":
+        //       if (sound_shuffle===null)
+        //       {
+        //         sound_shuffle = new Audio("/sounds/Deal Med/008595543-gamecardremove-s011sp180.mp3");
+        //       }
+        //       snd = sound_shuffle;
+        //     break;
+        //     case "failed":
+        //       if (sound_failed===null)
+        //         {
+        //           sound_failed = new Audio("/sounds/Fail/Fail01.mp3");
+        //         }
+        //         snd = sound_failed;
+        //     break;
+        //     case "success":
+
+        //       if (sound_success===null)
+        //           {
+        //             sound_success = new Audio("/sounds/Win/023168143-positive-win-game-sound-5.mp3");
+        //           }
+        //           snd = sound_success;
+        //     break;
+        //     case "countdown":
+        //     if (sound_countdown===null)
+        //           {
+        //             sound_countdown = new Audio("/sounds/Start/Start03.mp3");
+        //           }
+        //           snd = sound_countdown;
+        //     break;
+        //     default:
+        // }
+        // if (snd!==null)
+        // {
+        //   //  snd.play();
+        //     // $(snd).bind("ended", function()
+        //     // {
+        //     //     //console.log("sound finished");
+        //     // });
+        // }
       }
       //Adds a card sprite to the deck container (pixi)
       function addCardsToDeck()
