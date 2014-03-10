@@ -300,7 +300,8 @@ angular.module('knock2winApp')
           scalefit = .5;
         } else if (renderer.width<=1080 && renderer.width>=360)
         {
-          scalefit = .5;
+          //lg sample
+          scalefit = .45;
         } else {
           scalefit = .35;
         }
@@ -311,6 +312,10 @@ angular.module('knock2winApp')
         if (renderer.height<360)
         {
           scalefit = .25;
+        }
+        if (renderer.height<330)
+        {
+          scalefit = .20;
         }
 
 
