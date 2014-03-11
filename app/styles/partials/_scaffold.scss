@@ -42,7 +42,7 @@ h1
     margin-bottom: 0 - $footer-height;
     padding-bottom: $footer-height;
 
-    @media(max-width: $screen-md-max) {
+    @media(max-width: $screen-md-max) , (max-height: $tablet-height) {
         margin-bottom: 0 - $mobile-footer-height;
         padding: 0 0 $mobile-footer-height;
     }
