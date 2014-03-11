@@ -87,17 +87,20 @@ header
     {
         & .navbar-brand
         {
-            background:url('../images/lg_logo_dark_and_light.png');
-            width:100px;
-            height:49px;
-            margin-left:-5px;
+            padding:5px;
+            
+            // Comments here add a rollover state
+            // background:url('../images/lg_logo_dark_and_light.png');
+            // width:100px;
+            // height:50px;
+            // margin-left:-5px;
             cursor:pointer;
 
-            img { display:none }
+            // img { display:none }
 
             &:hover {
-                background-color: $lg-pink;
-                background-position: 0 -44px
+               // background-color: $lg-pink;
+               // background-position: 0 -44px
             }
         }
     }
