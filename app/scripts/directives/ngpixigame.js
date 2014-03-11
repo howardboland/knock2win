@@ -115,7 +115,9 @@ angular.module('knock2winApp')
       var assetURISpritesheet = 'images/cardsprite.png';
       var assetURIPhone = 'images/lg-phone.png';
 
-      var assetsToLoad = [assetURISpritesheet, assetURIPhone];
+      var otherCssImagesToCache = ['images/social_icons.png','images/loadinfo-net.gif', 'images/logo-normal-grey-interaction.png','images/logo-normal-white.png', 'images/logo-normal.png', 'images/orientation-change.png'];
+      var assetsToLoad = [assetURISpritesheet, assetURIPhone].concat( otherCssImagesToCache );
+      console.log(assetsToLoad)
       var loader = new PIXI.AssetLoader(assetsToLoad);
       loader.addEventListener('onComplete', onAssetsLoaded);
       loader.addEventListener('onProgress', onAssetsProgress);
