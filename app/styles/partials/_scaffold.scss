@@ -137,7 +137,7 @@ header
 {
     min-height:100%;
     padding-top:$header-height;
-    .noscroll { padding-top: 0 }
+    .noscroll & { padding-top: 0 }
 
 }
 
