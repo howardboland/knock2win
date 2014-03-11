@@ -270,7 +270,7 @@ angular.module('knock2winApp')
               {
                   if (hard_refresh)
                   {
-                    // $window.location = "/";
+                    $window.location = "/";
 
                   } 
               } 
