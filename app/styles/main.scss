@@ -4,6 +4,19 @@
 //using cabin as default font
 @import url("http://fonts.googleapis.com/css?family=Cabin:500,700");
 
+@mixin green-button() {
+    background-color: rgba(92,187,139,1)!important;
+    color: #ffffff!important;
+    padding: 5px 20px!important;
+    font-size: 2rem!important;
+    font-weight:bold;
+    text-decoration: none;
+    margin:0 auto;
+    line-height: 1em;
+
+    &:hover {background-color: rgba(92,187,139,.6)!important;}
+}
+
 //media helper query
 $phone-xs-height: 360px;
 $phone-sm-height: 460px;
