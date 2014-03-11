@@ -270,7 +270,7 @@ angular.module('knock2winApp')
               {
                   if (hard_refresh)
                   {
-                    $window.location = "/";
+                    // $window.location = "/";
 
                   } 
               } 
@@ -282,11 +282,11 @@ angular.module('knock2winApp')
             {
                 if (hard_refresh)
                 {
-                  $window.location = "/";
+                 $window.location = "/";
 
                 } else 
                 {
-                  $state.transitionTo('game.init');
+                 $state.transitionTo('game.init');
 
                 }
             } 

@@ -1,5 +1,9 @@
 <div class="message retry">
+        <div class="banner-left"><ng-include src="'/views/banner.html'"></ng-include></div>
+
     <div class="over">
+
+
     	<div class="circle-large">
 		    <p><strong>You've been <br> knocked out!</strong></p>
 		    <a ng-click="restart()" class="game-button" href="">Retry round {{level}}</a>
@@ -7,5 +11,8 @@
 			    <ng-include src="'/views/share.html'" ng-init="message = 'Share'"></ng-include>
 		    </div>
 		</div>
+
 	</div>
+        <div class="banner-right"><ng-include src="'/views/banner.html'"></ng-include></div>
+    
 </div>

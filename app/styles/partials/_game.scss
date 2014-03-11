@@ -77,6 +77,20 @@
     position:absolute;
     canvas { margin:0 auto; }
 }
+.banner-left {
+    position: relative;
+    left:0;
+    top: 0;
+    margin-right: 20px;
+    // border:10px solid red;
+}
+.banner-right {
+    position: relative;
+    right: 0;
+    top: 0;
+    margin-left: 20px;
+    // border:10px solid red;
+}
 
 .centralizer
 {
@@ -168,6 +182,8 @@
                 margin:0 auto;
 
                 border-radius: 50%;
+                @media(max-width: $screen-xs-max) {
+                }
 
                 @media (max-height: $phone-xs-height) {
                     width: 250px!important;
