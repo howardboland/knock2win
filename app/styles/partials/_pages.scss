@@ -154,9 +154,18 @@
 {
     margin-bottom:20px;
 
+    .lg-g2-logo
+    {
+        display:inline-block;
+        background: url('../images/lg-g2-logo.png') no-repeat;
+        width: 123px;
+        height: 44px;
+    }
+
     h1, h2 { font-weight:normal }
     h1 { margin:1em 0 }
     h2 {
+        text-transform: uppercase;
         font-size: 1.5em;
         color: $dark-grey;
         &.all-about-knockon { color: $lg-pink }
@@ -187,18 +196,28 @@
       .flex-video { padding-top: 0; }
     }
 
-    img.knockon-logo
+    .intro p
     {
-        width:100%;
-        height:auto
-    }    
+        font-size:1.2em;
+    }
+
+    .all-about-knockon
+    {
+        font-size: 1.2em;
+        img.knockon-logo
+        {
+            width:60%;
+            height:auto
+        }    
+    }
+
 
     @include pink-ul();
 
     .three-more-features
     {
         text-align: center;
-        h2, p {text-align: left}
+        p {text-align: left}
     }
 }
 
@@ -210,10 +229,15 @@
     h1 { margin:1em 0 }
     h2 {
         font-size: 1.5em;
-        color: $dark-grey;
         &.all-about-knockon { color: $lg-pink }
     }   
-    p {margin-bottom:40px;} 
 
+    p { margin-bottom:40px; } 
+    
     @include pink-ul();
+
+    .prizes
+    {
+        font-size:1.2em;
+    }
 }

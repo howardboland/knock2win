@@ -1,8 +1,9 @@
 <div class="container howtoplay">
 	<div class="row">
 		<div class="col-sm-12">
-			<h1>How to play</h1>
-			<p>Having trouble? Not a problem, here's how to play...</p>
+			<h1>How to play <br>
+				<small>Having trouble? Not a problem, here's how to play...</small>
+			</h1>
 			<hr>
 		</div>
 	</div>
@@ -33,7 +34,7 @@
 	<hr>
 	<div class="row">
 		<div class="col-xs-12">
-			<ng-include src="'/views/share.html'"></ng-include>
+			<ng-include src="'/views/share.html'" ng-init="class = 'block'; message = 'Share with your friends'" class="message-block"></ng-include>
 		</div>
 	</div>
 </div>
