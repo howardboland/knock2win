@@ -323,52 +323,46 @@
 
         }
 
-        .retry
+        .retry, .nextlevel
         {
+
             display: table;
-            .over { display:table-cell; vertical-align: middle; }
-            .circle-large { display:table-cell; vertical-align: middle; background: rgba(196,2,82,.8)!important; }
+            text-align:center;
 
             font-size: 3rem;
             line-height: 1em;
 
-            p {margin-bottom:10px;}
+            @media(max-height: $phone-xs-height) {
+                font-size: 2.5rem;
+            }            
 
-            a.game-button {
-                @include white-button();
-                color: rgba(196,2,82,.8)!important;
+            .over {
+                display:table-cell;
+                vertical-align: middle; margin:0 auto;
+
+                p { margin-bottom:10px; }
+
+                a.game-button {
+                    @include white-button();
+                }
+
             }
 
-            .social  {margin-top:15px }
+            .social  { margin-top:15px }                  
+        }
+
+        .retry
+        {
+            $pink: rgba(196,2,82,.8);
+            .circle-large { display:table-cell; vertical-align: middle; background: $pink !important; }
+            a.game-button { color: $pink !important; }
         }
 
         .nextlevel
         {
-            display: table;
-            .over { display:table-cell; vertical-align: middle; }
-
-            .circle-large { display:table-cell; vertical-align: middle; background: rgba(92,187,139,.9)!important; }
-            font-size: 3rem;
-            line-height: 1em;
-
-            p {margin-bottom:10px;}
-
-            a.game-button {
-                @include white-button();
-                color: rgba(92,187,139,1)!important;
-            }
-
-            .social  {margin-top:15px }
-             @media(max-height: $phone-xs-height) {
-                font-size: 2.5rem;
-            }
-        }
-        .gameover {
-            h1 { color: #ffffff!important; margin: 0 auto; font-size: 100%;  width: 80%;}
-            @media(max-height: $phone-md-height) {
-                h1 { font-size: 90%; width: 80%;}
-            }
-
+            $green: rgba(92,187,139,.9);
+            .circle-large { display:table-cell; vertical-align: middle; background: $green !important; }
+            a.game-button { color: $green !important; }            
         }
     }
 }

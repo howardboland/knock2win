@@ -21,7 +21,11 @@ html, body {
 }
 
 body {
-    background:url('../images/bg_textile.jpg');
+    & .noscroll
+    {
+        background:url('../images/bg_textile.jpg');
+    }
+    
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     color: #333;
 }
@@ -97,6 +101,16 @@ header
         a {
             color:$mid-grey;
             background-color:#fff;
+
+            &.play
+            {
+                color:$lg-pink;
+                &:hover {
+                    color:#fff;
+                    background-color:$lg-pink;
+                }
+                 
+            }
 
             &:hover {
                 color:#fff;
