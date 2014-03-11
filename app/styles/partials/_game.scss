@@ -367,7 +367,7 @@
 
         }
 
-        .retry, .nextlevel, .gameover
+        .retry, .nextlevel
         {
 
             display: table;
@@ -423,6 +423,12 @@
             margin-right: 20px;
             display:none;
             // border:10px solid red;
+            &.desktop {
+                display: block;
+            } 
+            &.mobile {
+                display: none;
+            } 
         }
         .banner-right {
             position: relative;
@@ -431,69 +437,47 @@
             margin-left: 20px;
             display:none;
             // border:10px solid red;
+            &.desktop {
+                display: block;
+            } 
+            &.mobile {
+                display: none;
+            } 
         }
         .banner-bottom {
             position:absolute;
-            bottom: 0;
-            left:0;
-            width:100%;
+            left:0px;
+            top:50%;
             text-align: center;
-            display: none;
+            margin:0 auto;
+            margin-top: 160px;
+            min-width:100%;
 
+            &.desktop {
+                display: none;
+            } 
+            &.mobile {
+                display: block;
+            } 
+
+        }
+        .banner-bottom a {
+            margin:0 auto;
+            
         }
         
-        @media(min-width: $screen-lg-min) {
-            .banner-right, .banner-left {
-                display: block;
-            }
 
-        }
-         @media(max-width: $screen-xs-max) {
-            .banner-right, .banner-left {
-                display: block;
-            }
-        }  
-        @media (max-height: $tablet-height) {
-            .banner-right, .banner-left {
-                 display: block;
-            }
-            .banner-bottom {
-                display: none;
-            }
-        }
-        @media (max-device-height: $tablet-height) {
-            .banner-right, .banner-left {
-                 display: none;
-            }
-            .banner-bottom {
-                display: block;
-            }
-        }
-
-        @media(max-height: $phone-md-height) {
-            .banner-right, .banner-left {
-                display:none;
-            }
-            .banner-bottom {
-                display: block;
-            }
-        }
-
+         
+       
         @media(max-height: $phone-sm-height) {
-         .banner-right, .banner-left {
-                display:none;
-            }  
             .banner-bottom {
-                display: block;
+                margin-top: 70px;
             }
         }
 
         @media(max-height: $phone-xs-height) {
-           .banner-right, .banner-left {
-                display:none;
-            }
             .banner-bottom {
-                display: block;
+                margin-top: 70px;
             }
         }
 

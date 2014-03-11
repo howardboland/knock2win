@@ -28,4 +28,7 @@ angular.module('knock2winApp')
     {
         var promise = $state.transitionTo("game.play");
     }
+
+    $scope.ismobile = detectmob();
+      console.log( $scope.ismobile );
   }]);
