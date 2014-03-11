@@ -115,7 +115,9 @@ angular.module('knock2winApp')
       var assetURISpritesheet = 'images/cardsprite.png';
       var assetURIPhone = 'images/lg-phone.png';
 
-      var assetsToLoad = [assetURISpritesheet, assetURIPhone];
+      var otherCssImagesToCache = ['images/social_icons.png','images/loadinfo-net.gif', 'images/logo-normal-grey-interaction.png','images/logo-normal-white.png', 'images/logo-normal.png', 'images/orientation-change.png'];
+      var assetsToLoad = [assetURISpritesheet, assetURIPhone].concat( otherCssImagesToCache );
+      console.log(assetsToLoad)
       var loader = new PIXI.AssetLoader(assetsToLoad);
       loader.addEventListener('onComplete', onAssetsLoaded);
       loader.addEventListener('onProgress', onAssetsProgress);
@@ -126,7 +128,7 @@ angular.module('knock2winApp')
       //Methods
       function stateStartHandler( fromStateName, toStateName )
       {
-        console.log( fromStateName +' --> '+ toStateName);
+        // console.log( fromStateName +' --> '+ toStateName);
         switch (toStateName)
         {
           case 'game.init':
@@ -143,7 +145,7 @@ angular.module('knock2winApp')
         }
         if (toStateName.indexOf('game')===-1 && fromStateName.indexOf('game')!==-1)
         {
-          console.log('********* exiting game view - requires clean up');
+          // console.log('********* exiting game view - requires clean up');
           // We don't want to have pixi renderes all over the place
           // destroy
           clean();
@@ -291,8 +293,8 @@ angular.module('knock2winApp')
         container.x = renderer.width/2;
         container.y = renderer.height/2;
         // sm 750px   md 970px   lg 1170px
-        console.log(window.innerWidth+'x'+ window.innerHeight);
-        console.log(renderer.width +'/'+ 1080+','+ renderer.height +'/'+ 1920);
+        // console.log(window.innerWidth+'x'+ window.innerHeight);
+        // console.log(renderer.width +'/'+ 1080+','+ renderer.height +'/'+ 1920);
         var scalefit = Math.min( renderer.width / 1080, renderer.height / 1920 ); //TODO: discuss with nick the real dimension
         scalefit = Math.min(1, scalefit); //scale cannot exeed 1
         if (renderer.width>1080)
@@ -347,10 +349,10 @@ angular.module('knock2winApp')
 
       function onAssetsLoaded()
       {
-        console.log( hasInitiated );
+        // console.log( hasInitiated );
         if (!hasInitiated )
         {
-          console.log('Assets loaded');
+          // console.log('Assets loaded');
           hideLoaderGraphics();
           loader.removeEventListener('onComplete', onAssetsLoaded);
           var sprite = PIXI.Sprite.fromImage(assetURISpritesheet);
@@ -413,7 +415,6 @@ angular.module('knock2winApp')
       function init()
       {
         clean();
-        console.log('init');
 
         scope.level = 1;
         cover.alpha = 0;
@@ -440,7 +441,7 @@ angular.module('knock2winApp')
         cardsOnLevel = VISIBLE_CARDS; //+ (level - 1); // increase with one per level
         SPEED_MULTIPLIER = scope.speeds[level-1];
 
-        console.log('Speed is: '+scope.speeds[level-1]);
+        //console.log('Speed is: '+scope.speeds[level-1]);
         SHUFFLE_SPEED = 600 * SPEED_MULTIPLIER;
         PAUSE_BETWEEN_SHUFFLES = 600 * SPEED_MULTIPLIER;
         VIEWING_TIME = 5000 * SPEED_MULTIPLIER;
@@ -499,7 +500,7 @@ angular.module('knock2winApp')
       // Clean active timers and remove card deck
       function clean()
       {
-        console.log('**** clean');
+        // console.log('**** clean');
         window.clearRequestTimeout( count_down_timer );
         window.clearRequestTimeout( start_game_timer );
         window.clearRequestInterval( animation_timer );
@@ -510,7 +511,7 @@ angular.module('knock2winApp')
 
       function firstStart()
       {
-        console.log('firstStart');
+        // console.log('firstStart');
         coverUp();
         window.clearRequestInterval( animation_timer );
         window.clearRequestTimeout( start_game_timer );
@@ -520,7 +521,7 @@ angular.module('knock2winApp')
 
       function firstStartGameReady()
       {
-        console.log('firstStartGameReady');
+        // console.log('firstStartGameReady');
         coverDown();
         var promise = $state.transitionTo('game.play');
         promise.then( function( s ){
@@ -533,7 +534,7 @@ angular.module('knock2winApp')
 
       function startGame()
       {
-        console.log('startGame');
+        // console.log('startGame');
         //setTimeout(gameCountDown, VIEWING_TIME);
         reshuffle();
         
@@ -544,7 +545,7 @@ angular.module('knock2winApp')
       }
       function playAudio(type)
       {
-        console.log("play sound");
+        // console.log("play sound");
         // var snd;
         // switch (type)
         // {
@@ -600,7 +601,7 @@ angular.module('knock2winApp')
             deck.addChild( cards[cardDepths[i]] );
           } catch (error)
           {
-            console.error(error);
+            // console.error(error);
           }
         }
       }
@@ -689,7 +690,7 @@ angular.module('knock2winApp')
         // }
         // currentVisibleArray = currentVisibleArray.splice(0, VISIBLE_CARDS+1);
         // console.log(currentVisibleArray)
-        console.log(currentSelectedIndex);
+        // console.log(currentSelectedIndex);
 
         for (var i=0;i<cards.length;i++)
         {
@@ -711,7 +712,7 @@ angular.module('knock2winApp')
 
         } catch (error)
         {
-          console.log(error);
+          // console.log(error);
         }
 
         var first1 = new TWEEN.Tween( { x: cards[0].position.x, scale: .6, alpha:0 } )
@@ -891,11 +892,11 @@ angular.module('knock2winApp')
         } else {    // incorrect
           tryagain();
         }
-        console.log('Selected card:' + cardArrayVisible[1] );
+        // console.log('Selected card:' + cardArrayVisible[1] );
       }
 
       function nextlevel() {
-        console.log('Great! move on to next level:)');
+        // console.log('Great! move on to next level:)');
         //$('#game-info').addClass('nextlevel');
         playAudio("success");
         if (scope.level<scope.maxlevel)
@@ -918,7 +919,7 @@ angular.module('knock2winApp')
       }
 
       function tryagain() {
-        console.log('Oh no! Try again');
+        // console.log('Oh no! Try again');
         playAudio("failed");
         var promise = $state.transitionTo('game.failed');
         promise.then( function( s ){
@@ -932,7 +933,7 @@ angular.module('knock2winApp')
       }
 
       function restart() {
-        console.log('restart');
+        // console.log('restart');
         changeLevel( scope.level );
       }
 
@@ -947,7 +948,7 @@ angular.module('knock2winApp')
       }
 
       function gameover() {
-        console.log('game is over!');
+        // console.log('game is over!');
       }
 
       // Updates the stage

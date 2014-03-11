@@ -1,3 +1,4 @@
+
 @mixin green-button() {
     background-color: rgba(92,187,139,.6)!important;
     color: #ffffff!important;
@@ -19,21 +20,67 @@
     text-transform: uppercase;
 }
 
+.orientation-info {
+    visibility: hidden;
+}
+@media screen and (orientation:landscape) and (max-device-width:1080px)
+{
+    .orientation-info {
+         position: fixed;
+         visibility: visible;
+         top: 0px;
+         left: 0px;
+         width: 100%;
+         height: 100%;
+         background-color: #000000;
+         // background-image: url('../images/orientation-change.png');
+         // background-repeat:no-repeat;
+         // background-attachment:fixed;
+         // background-position: 50% 50%;
+         z-index:100;
+
+    }
+    div.content {
+        display: table;
+        width:100%;
+        height:100%;
+    
+        div {
+            display:table-cell;
+            text-align: center;
+            margin:0 auto;
+            max-width: 100px;
+            vertical-align: middle;
+            color:white;
+
+        }
+    }
+}
+
 .loader {
-    position:absolute;
-    left:0;
-    top:0;
-    display: table;
+    position:fixed;
+    left:0px;
+    top:0px;
     width: 100%;
     height: 100%;
-    z-index:100;
-    text-align: center;
+    z-index:101;
     background-color: #000000;
-    div {
-        display: table-cell;
-        vertical-align: middle;
-        margin:0 auto;
-        color: #ffffff;
+
+
+    div.content {
+        display: table;
+        width:100%;
+        height:100%;
+    
+        div {
+            display:table-cell;
+            text-align: center;
+            margin:0 auto;
+            max-width: 100px;
+            vertical-align: middle;
+            color:white;
+
+        }
     }
 
 }
