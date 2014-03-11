@@ -1,4 +1,6 @@
 <div class="message retry">
+        <div class="banner-left {{ ismobile ? 'mobile' : 'desktop'}}"><ng-include src="'/views/banner-vertical.html'"></ng-include></div>
+
     <div class="over">
     	<div class="circle-large">
 		    <p><strong>You've been <br> knocked out!</strong></p>
@@ -7,5 +9,10 @@
 			    <ng-include src="'/views/share.html'" ng-init="message = 'Share'"></ng-include>
 		    </div>
 		</div>
+
 	</div>
+
+    <div class="banner-bottom {{ ismobile ? 'mobile' : 'desktop'}}"><ng-include src="'/views/banner-horizontal.html'"></ng-include></div>
+    <div class="banner-right {{ ismobile ? 'mobile' : 'desktop'}}"><ng-include src="'/views/banner-vertical.html'"></ng-include></div>
+    
 </div>

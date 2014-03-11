@@ -282,11 +282,11 @@ angular.module('knock2winApp')
             {
                 if (hard_refresh)
                 {
-                  $window.location = "/";
+                 $window.location = "/";
 
                 } else 
                 {
-                  $state.transitionTo('game.init');
+                 $state.transitionTo('game.init');
 
                 }
             } 
@@ -1052,21 +1052,7 @@ angular.module('knock2winApp')
         return arr;
       }
 
-      function detectmob() { 
-       if( navigator.userAgent.match(/Android/i)
-       || navigator.userAgent.match(/webOS/i)
-       || navigator.userAgent.match(/iPhone/i)
-       || navigator.userAgent.match(/iPad/i)
-       || navigator.userAgent.match(/iPod/i)
-       || navigator.userAgent.match(/BlackBerry/i)
-       || navigator.userAgent.match(/Windows Phone/i)
-       ){
-          return true;
-        }
-       else {
-          return false;
-        }
-      }
+      
     }
   };
 }]);
