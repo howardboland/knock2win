@@ -30,6 +30,12 @@ body {
     color: #333;
 }
 
+h1
+{
+    font-size: 3rem;
+    small {color: $dark-grey; font-size:.5em; line-height:.3em}
+}
+
 
 //Used to stick footer to base of page
 #wrap {
@@ -176,14 +182,19 @@ hr
 {
     $icon-size:45px;
 
-    height:$icon-size;
     text-transform:uppercase;
     text-align:center;
+
+    //Used to place the tageline above the icon links
+    .tagline.block {
+        display:block;
+        margin-bottom:5px
+    }
 
     p
     {
         color:$mid-grey;
-        font-size: 1.5em;
+        font-size: 1.2em;
     }
 
     .icon-social
@@ -194,7 +205,6 @@ hr
         height: $icon-size;
         background: url('../images/social_icons.png') repeat-y;
         transition: background-position .2s ease-out;
-        margin-bottom:5px;
 
         $list: facebook twitter googleplus;
         $count: 0;

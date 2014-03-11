@@ -5,7 +5,7 @@
 	        <p><strong>You knocked <br> that one <br> out the park!</strong></p>
 	        <a ng-click="next()" class="game-button" href="">Go to round {{ level+1 }}</a>
 	        <div class="social">
-		        <ng-include src="'/views/share.html'"></ng-include>
+		        <ng-include src="'/views/share.html'" ng-init="message = 'Share'"></ng-include>
 	        </div>
             </div>
 	    </div>

@@ -93,8 +93,6 @@
             padding-bottom: $mobile-footer-height + 5px;
         }
         
-       
-
         p { margin:0; padding:0; }
 
         .message
@@ -144,6 +142,9 @@
 
                 }
                 
+                //Sharing template style overrides
+                .share .tagline { color:#fff; font-size:1.5rem }
+
             }
 
             .circle-small {
