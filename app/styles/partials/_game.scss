@@ -12,7 +12,7 @@
 @media screen and (orientation:landscape) and (max-device-width:1080px)
 {
     .orientation-info {
-         position: fixed;
+         position: absolute;
          visibility: visible;
          top: 0px;
          left: 0px;
@@ -44,7 +44,7 @@
 }
 
 .loader {
-    position:fixed;
+    position: absolute;
     left:0px;
     top:0px;
     width: 100%;

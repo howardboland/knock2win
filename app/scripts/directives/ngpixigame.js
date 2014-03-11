@@ -90,10 +90,10 @@ angular.module('knock2winApp')
       var COUNTER_START = 3;
       var counter = COUNTER_START;
 
-      var sound_shuffle;
-      var sound_success;
-      var sound_failed;
-      var sound_countdown;
+      var sound_shuffle = null;
+      var sound_success = null;
+      var sound_failed = null;
+      var sound_countdown = null;
 
 
 
@@ -117,13 +117,35 @@ angular.module('knock2winApp')
 
       var otherCssImagesToCache = ['images/social_icons.png','images/loadinfo-net.gif', 'images/logo-normal-grey-interaction.png','images/logo-normal-white.png', 'images/logo-normal.png', 'images/orientation-change.png'];
       var assetsToLoad = [assetURISpritesheet, assetURIPhone].concat( otherCssImagesToCache );
-      console.log(assetsToLoad)
+      
+
+
       var loader = new PIXI.AssetLoader(assetsToLoad);
       loader.addEventListener('onComplete', onAssetsLoaded);
       loader.addEventListener('onProgress', onAssetsProgress);
       //loader.onComplete = onAssetsLoaded;
-      loader.load();
-      console.log('begin');
+      //no sound for mobile
+      if (detectmob())
+      {
+          loader.load();
+      
+          
+      } else
+      {
+          element.on("onAudioLoaded", function( e )
+          {
+
+            console.log("Got it! Audio is ready to play");
+            //then load assets
+            loader.load();
+          });
+          loadAudio();    
+      }
+      
+      
+
+      
+      
 
       //Methods
       function stateStartHandler( fromStateName, toStateName )
@@ -543,52 +565,95 @@ angular.module('knock2winApp')
         animation_timer = window.requestInterval(animate, 30);
 
       }
+      
+      function loadAudio() {
+
+        var sounds = [ {id: 0, src: '/sounds/Deal Med/008595543-gamecardremove-s011sp180.mp3'}, 
+                       {id: 1, src: '/sounds/Fail/Fail01.mp3'},
+                       {id: 2, src: '/sounds/Win/023168143-positive-win-game-sound-5.mp3'},
+                       {id: 3, src: '/sounds/Start/Start03.mp3'}];
+        var soundsToLoad = sounds.length;
+        loadSoundProgressively( sounds, soundsToLoad, 0 );
+
+      }
+      function loadSoundProgressively( sounds, soundsToLoad, index)
+      {
+          var snd = $(new Audio());
+          snd.attr("type", "audio/mpeg");
+          snd.on("error", function(e) 
+          {
+            $('.loader .percentage').text( "ERROR..." );
+          });
+          snd.on("loadeddata", function(e) 
+          {
+
+            for (var i=0;i<sounds.length;i++)
+            {
+                if (sounds[i].src === $(e.target).attr("src"))
+                {
+                   switch (i)
+                   {
+                      case 0:
+                        sound_shuffle = e.target;
+                      break;
+                      case 1:
+                        sound_failed = e.target;
+                      break;
+                      case 2:
+                        sound_success = e.target;
+                      break;
+                      case 3:
+                        sound_countdown = e.target;
+                      break;
+                   }
+                }
+
+            }
+            soundsToLoad--;
+            $('.loader .percentage').text( "SOUND..." + ((sounds.length - soundsToLoad) / sounds.length)*100+'%' );
+            if (soundsToLoad==0)
+            {
+              element.trigger("onAudioLoaded")
+            } else {
+              loadSoundProgressively( sounds, soundsToLoad, index+1 );
+            }
+          });
+
+          $('.loader .percentage').text( "SOUNDS..." );
+
+          snd.attr("volume", "0");
+          snd.attr("src", sounds[index].src);
+          // snd[0].volume = 0;
+          // snd[0].play();
+
+      }
       function playAudio(type)
       {
-        // console.log("play sound");
-        // var snd;
-        // switch (type)
-        // {
-
-        //     case "shuffle_medium":
-        //       if (sound_shuffle===null)
-        //       {
-        //         sound_shuffle = new Audio("/sounds/Deal Med/008595543-gamecardremove-s011sp180.mp3");
-        //       }
-        //       snd = sound_shuffle;
-        //     break;
-        //     case "failed":
-        //       if (sound_failed===null)
-        //         {
-        //           sound_failed = new Audio("/sounds/Fail/Fail01.mp3");
-        //         }
-        //         snd = sound_failed;
-        //     break;
-        //     case "success":
-
-        //       if (sound_success===null)
-        //           {
-        //             sound_success = new Audio("/sounds/Win/023168143-positive-win-game-sound-5.mp3");
-        //           }
-        //           snd = sound_success;
-        //     break;
-        //     case "countdown":
-        //     if (sound_countdown===null)
-        //           {
-        //             sound_countdown = new Audio("/sounds/Start/Start03.mp3");
-        //           }
-        //           snd = sound_countdown;
-        //     break;
-        //     default:
-        // }
-        // if (snd!==null)
-        // {
-        //   //  snd.play();
-        //     // $(snd).bind("ended", function()
-        //     // {
-        //     //     //console.log("sound finished");
-        //     // });
-        // }
+        var snd = null;
+        switch (type)
+        {
+            case "shuffle_medium":
+              snd = sound_shuffle;
+            break;
+            case "failed":
+                snd = sound_failed;
+            break;
+            case "success":
+                  snd = sound_success;
+            break;
+            case "countdown":
+                  snd = sound_countdown;
+            break;
+            default:
+        }
+        if (snd!==null)
+        {
+           snd.play();
+            $(snd).bind("ended", function()
+            {
+                //console.log("sound finished");
+            });
+        }
       }
       //Adds a card sprite to the deck container (pixi)
       function addCardsToDeck()
@@ -985,6 +1050,22 @@ angular.module('knock2winApp')
           arr.push( i );
         }
         return arr;
+      }
+
+      function detectmob() { 
+       if( navigator.userAgent.match(/Android/i)
+       || navigator.userAgent.match(/webOS/i)
+       || navigator.userAgent.match(/iPhone/i)
+       || navigator.userAgent.match(/iPad/i)
+       || navigator.userAgent.match(/iPod/i)
+       || navigator.userAgent.match(/BlackBerry/i)
+       || navigator.userAgent.match(/Windows Phone/i)
+       ){
+          return true;
+        }
+       else {
+          return false;
+        }
       }
     }
   };
