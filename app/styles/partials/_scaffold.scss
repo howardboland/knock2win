@@ -87,15 +87,19 @@ header
     {
         & .navbar-brand
         {
-            padding:5px;
+            background:url('../images/lg_logo_dark_and_light.png');
+            width:100px;
+            height:49px;
+            margin-left:-5px;
             cursor:pointer;
-        }
-    }
 
-    .navbar-collapse
-    {
-        border-top:0;
-        border-bottom:1px solid #eee;
+            img { display:none }
+
+            &:hover {
+                background-color: $lg-pink;
+                background-position: 0 -44px
+            }
+        }
     }
 
     .no-transition {
