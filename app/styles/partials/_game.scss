@@ -289,6 +289,12 @@
         .play-game
         {
             //With only a single button in the element to which this class is applied, we must override the #game-info align-items property;
+            p
+            {
+                color: $mid-grey;
+                margin-bottom:1em;
+            }
+
             a.game-button {
                 @include green-button();
             }
