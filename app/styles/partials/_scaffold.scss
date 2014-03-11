@@ -92,6 +92,20 @@ header
         }
     }
 
+    .navbar-collapse
+    {
+        border-top:0;
+        border-bottom:1px solid #eee;
+    }
+
+    .no-transition {
+      -webkit-transition: height 0;
+      -moz-transition: height 0;
+      -ms-transition: height 0;
+      -o-transition: height 0;
+      transition: height 0;
+    }    
+
     ul.nav
     {
         text-transform: uppercase;
