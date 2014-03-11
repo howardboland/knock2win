@@ -18,6 +18,14 @@
     }
 }
 
+.intro
+{
+    p
+    {
+        font-size:1.2em;
+    }
+}
+
 .howtoplay
 {
     margin-bottom:20px;
@@ -65,10 +73,20 @@
 
 .win
 {
+    h1 {
+        font-size:4rem;
+        small { margin-top:10px; }
+    }
+
     .game-info
     {    
-        padding-bottom:40px;
-        text-align:center;
+        img
+        {
+            width:200px;
+            @media (max-width: $screen-xs-max){ width:100px; };
+            height:auto
+        }
+        
        & small
        {
         color: $lg-pink;
@@ -79,7 +97,8 @@
 
     .prize-info
     {
-        padding:40px 15px;
+        padding-bottom:40px;
+        @media (min-width: $screen-sm){ padding:40px 15px };
         background: #fff;
         p
         {
@@ -93,12 +112,16 @@
 
         img 
         {
-            top:-90px;
+            width:435px;
+            height:auto;
+            top:-80px;
             position:absolute;
             z-index: 10;
+
+            @media (max-width: $screen-md-max){ top:-60px; };
+            @media (max-width: $screen-xs-max) { display:none };
         }
 
-        @media (max-width: $screen-xs-max) { img { display:none } }
     }
 
     .skew
@@ -108,7 +131,7 @@
         width:100%;
         margin-top:-50px;
         background:$mid-grey;
-        transform: skewY(-1.5deg);
+        transform: skewY(-1.6deg);
     }
 
     .redemption
@@ -123,7 +146,7 @@
 
         form
         {
-            .form-controls {width: 50%}
+            .form-controls { width: 50% }
             @media (max-width: $screen-xs-max) { .form-controls { width: 100%; } }
 
             legend {  border: 0; color: #fff }
@@ -154,12 +177,11 @@
 {
     margin-bottom:20px;
 
-    .lg-g2-logo
+    img.lg-g2-logo
     {
-        display:inline-block;
-        background: url('../images/lg-g2-logo.png') no-repeat;
-        width: 123px;
-        height: 44px;
+        display:inline;
+        width:auto;
+        height: 1.5em;
     }
 
     h1, h2 { font-weight:normal }
@@ -204,20 +226,24 @@
     .all-about-knockon
     {
         font-size: 1.2em;
-        img.knockon-logo
+        .logos
         {
-            width:60%;
-            height:auto
+            width:90%;
+            margin: 0 auto;
+
+            img {
+                width:100%; 
+                height:auto;
+            }
         }    
     }
-
 
     @include pink-ul();
 
     .three-more-features
     {
         text-align: center;
-        p {text-align: left}
+        p {text-align: left }
     }
 }
 
@@ -226,18 +252,39 @@
     margin-bottom:20px;
 
     h1, h2 { font-weight:normal }
-    h1 { margin:1em 0 }
-    h2 {
-        font-size: 1.5em;
-        &.all-about-knockon { color: $lg-pink }
-    }   
+    h1 { margin:1em 0 }  
 
-    p { margin-bottom:40px; } 
-    
     @include pink-ul();
 
-    .prizes
+    .descriptions
     {
-        font-size:1.2em;
+        ul { font-size:1.2em; }
+
+        img { width:100%; height:auto }
     }
+
+    .play-now
+    {
+        padding-top:0;
+        text-align:center;
+
+        .btn-play {
+            @include green-button();
+        }
+
+        @media (min-width:$screen-sm)
+        {
+            padding-top:0;
+
+            .btn-play { margin-left: 0; } 
+
+            p {
+                display:inline;
+                margin-right:30px;
+            }
+        }
+
+    }
+
+
 }

@@ -31,7 +31,6 @@ body {
 h1
 {
     font-size: 3rem;
-    small {color: $dark-grey; font-size:.5em; line-height:.3em}
 }
 
 
@@ -88,7 +87,7 @@ header
         & .navbar-brand
         {
             padding:5px;
-            
+
             // Comments here add a rollover state
             // background:url('../images/lg_logo_dark_and_light.png');
             // width:100px;
@@ -164,7 +163,7 @@ footer {
     &:hover {color:#fff;}
   }
 
-    @media(max-width: $screen-md-max) {
+    @media(max-height: $tablet-height) {
         height: $mobile-footer-height;
         > div { line-height: $mobile-footer-height; }
     }
@@ -186,10 +185,18 @@ hr
 
 .select-method
 {
-    @media(max-width : screen-md-max) {
-        display:none;
-        &:after{ content:"tap" }
-    }
+    /* @media(max-width : $screen-md-max) {
+           text-indent: -999em;
+        &:after{  
+                bottom: 0;
+                content: "tap";
+                left: 0;
+                position: absolute;
+                right: 0;
+                text-indent: 0;
+                top: 0;
+        }
+    } */
 }
 
 .share
