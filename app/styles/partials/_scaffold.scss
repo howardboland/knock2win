@@ -1,10 +1,8 @@
 /*
->#wrap used to force the footer to the bottom of all pages
->#wrap.noscroll takes the header out of the document flow, to allow for better scaling and centering of subsaquent content.
+ #wrap used to force the footer to the bottom of all pages
  The PIXI canvas sits at the bottom and occupies the entire screen.
  The .centralizer sits directly over the canvas, and is used to display game info.
  The header and the footer are then ordered above these two elements (z-index), in order to maintain interactivity.
-
  */
 
 .container-fluid { margin:0 15px }
@@ -74,14 +72,8 @@ h1
 header
 {
     margin:0 auto;
-    position:relative;
-
-    //On the non-scrolling pages, the header is pulled out of the document flow to make easier the scaling and centering of subsaquent elements.
-    .noscroll & {
-        position:absolute;
-        z-index:2;
-    }
-
+    position:absolute;
+    z-index:2;
     width:100%;
 }
 
@@ -124,13 +116,15 @@ header
             }
 
         }
-
     }
 }
 
 #ui-view
 {
     min-height:100%;
+    padding-top:$header-height;
+    .noscroll { padding-top: 0 }
+
 }
 
 footer {

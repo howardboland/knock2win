@@ -29,8 +29,6 @@
   </head>
   <body ng-app="knock2winApp">
 
-    
-
     <div id="wrap" ng-class="{ 'noscroll': $root.game }">
       <!--[if lt IE 10]>
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. <em>Please</em> <a href="http://browsehappy.com/" target="_blank">upgrade your browser</a> and enjoy the modern Internet.</p>
@@ -48,10 +46,10 @@
             </div>
             <div class="collapse navbar-collapse">
               <ul class="nav navbar-nav navbar-right">
-                <li><a ui-sref="game.init" class="play">Play Game</a></li>
-                <li><a ui-sref="howtoplay">How to play</a></li>
-                <li><a ui-sref="about">About</a></li>
-                <li><a ui-sref="prizes">Prizes</a></li>
+                <li><a ui-sref="game.init" class="play" data-toggle="collapse" data-target=".navbar-collapse">Play Game</a></li>
+                <li><a ui-sref="howtoplay" data-toggle="collapse" data-target=".navbar-collapse">How to play</a></li>
+                <li><a ui-sref="about" data-toggle="collapse" data-target=".navbar-collapse">About</a></li>
+                <li><a ui-sref="prizes" data-toggle="collapse" data-target=".navbar-collapse">Prizes</a></li>
               </ul>
             </div><!-- /.nav-collapse -->
           </div><!-- /.container -->
