@@ -7,7 +7,7 @@
 					<img src="images/logo-normal.png" alt="KnockOn Logo">
 					<img src="images/logo-knockcode-normal.png" alt="KnockCode logo">
 					<h1>Well Done!<small>You've completed all the levels!</small></h1>
-					<ng-include src="'/views/partials/share.html'"></ng-include>
+					<ng-include src="'views/partials/share.html'"></ng-include>
 				</div>
 			</div>
 		</div>
@@ -70,8 +70,12 @@
 										<input type="checkbox" ng-model="player.optout">
 								    	I <strong>DO NOT</strong> want to recieve email updates about this game.
 								  	</label>
-								</div>							
-					      	<button type="submit" class="btn pull-right" ng-class="{ 'btn-success' : redemptionForm.$valid, 'btn-danger' : !redemptionForm.$valid }" ng-disabled="!redemptionForm.$valid" ng-click="">ENTER</button>
+								</div>
+
+								<div class="pull-right">
+								<img src="/images/ajax-loader.gif" ng-class="{ '' : loading, 'hide' : !loading }" />							
+					      	<button type="submit" class="btn" ng-class="{ 'btn-success' : redemptionForm.$valid && !loading, 'btn-danger' : !redemptionForm.$valid || loading }" ng-disabled="!redemptionForm.$valid || loading" ng-click="">{{ loading ? 'ONE MOMENT' : 'ENTER'}}</button>
+					      		</div>
 					    </fieldset>
 				    </form>
 			    </div>

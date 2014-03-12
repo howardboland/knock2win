@@ -158,24 +158,45 @@ angular.module('knock2winApp', [
     });
   }])
 
-.factory('dbService', ['$http', function($http) {
+.factory('dbService', ['$http', '$q', function($http, $q) {
   return {
     postWinner: function(data) {
-      return $http.post('http://www.knock2win.co.uk/winners', JSON.stringify(data));
-    },
+
+      var deferred = $q.defer();
+      
+      $http.post('http://www.knock2win.co.uk/winners', JSON.stringify(data))
+      .success(function( data, status, headers, config ) {
+         deferred.resolve( data );
+      })
+      .error(function( data, status, headers, config ) { 
+        deferred.reject(status);
+      });
+      return deferred.promise;
+    }
   };
 }])
 
 .controller('redemptionFormCtrl', ['$scope', '$location' , 'dbService', function($scope, $location, dbService) {
     //Default Values;
     $scope.player = {location: 'uk'};
+    $scope.loading = false;
 
+    
     $scope.submit = function() {
-      dbService.postWinner($scope.player)
-      .success(function() {
+      $scope.loading = true;
+
+      // Using promise methodology
+      var promise = dbService.postWinner($scope.player)
+        promise.then( function( data ) {
+        console.log( "Success" );
+        $scope.loading = false;
         $scope.end();
-      })
-      .error(function() { });
+      }, function(status) {
+        console.log("Status is: "+ status );
+        $scope.loading = false;
+      });
+
+
     };
 
     $scope.end = function(){
