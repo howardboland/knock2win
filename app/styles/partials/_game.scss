@@ -247,8 +247,13 @@
     
              @media (max-height: $phone-sm-height) {
                 .logo { width: 140px }
-                .header { font-size:12px; margin-bottom: 10px; }
+                .header { font-size:11px; margin-bottom: 10px; }
             }
+
+            @media (max-height: $phone-xs-height) {
+                .logo { width: 120px }
+                .header { font-size:.6em }
+            }    
 
 
 
@@ -321,9 +326,7 @@
     
             @media (max-height: $phone-sm-height) {
                 .logo { width: 140px }
-            }       
-
-
+            } 
         }
 
         .ready-game
