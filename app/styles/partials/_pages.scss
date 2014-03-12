@@ -170,6 +170,14 @@
             text-align: center;
 
             h2 { color:#fff }
+            
+            p { margin-bottom:20px; }
+
+            .btn-play
+            {
+                @include green-button();
+
+            }
         }
     }
 
