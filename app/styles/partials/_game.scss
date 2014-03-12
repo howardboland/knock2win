@@ -417,9 +417,9 @@
 
         }
         .banner-left, .banner-right {
-            position: relative;
+            position: fixed;
             
-            top: 0;
+            top: 60px;
             height: 100%;
             display:none;
             // border:10px solid red;
@@ -431,11 +431,14 @@
             } 
             
             .banner-include {
-              
+              margin-top: -60px;
               display: table;
               height: 100%;
-              
-
+              // Quick fix to avoid banner slipping under navigation
+               // @media(max-height: 717px) {
+               //          margin-top: 0px;
+               //  }
+                
                 .flash-content {
                     display: table-cell;
                     vertical-align: middle;
@@ -445,12 +448,12 @@
         }
 
         .banner-left {
-            left:0;
+            left:65%;
             margin-right: 100px;
 
         }
         .banner-right {
-            right: 0;
+            right: 65%;
             margin-left: 100px;
         }
         .banner-bottom {
