@@ -34,7 +34,7 @@
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. <em>Please</em> <a href="http://browsehappy.com/" target="_blank">upgrade your browser</a> and enjoy the modern Internet.</p>
       <![endif]-->
       <header>
-        <div class="navbar navbar-default" role="navigation">
+        <div class="navbar navbar-default" role="navigation" ng-controller="NavigationCtrl">
           <div class="container">
             <div class="navbar-header">
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -46,8 +46,8 @@
             </div>
             <div class="collapse navbar-collapse no-transition">
               <ul class="nav navbar-nav navbar-right">
-                <li><a ui-sref="game.init" class="play" data-toggle="collapse" data-target=".navbar-collapse">Play Game</a></li>
-                <li><a ui-sref="howtoplay" data-toggle="collapse" data-target=".navbar-collapse" ngClass="{active: isActive('/howtoplay')}">How to play</a></li>
+                <li><a ui-sref="game.init" class="play" data-toggle="collapse" data-target=".navbar-collapse"  ng-class="{ 'active': activestate === 'game.init' }">Play Game</a></li>
+                <li><a ui-sref="howtoplay" data-toggle="collapse" data-target=".navbar-collapse" ng-class="{ 'active': activestate === 'howtoplay'}">How to play</a></li>
                 <!--<li><a ui-sref="about" data-toggle="collapse" data-target=".navbar-collapse">About</a></li>
                 <li><a ui-sref="prizes" data-toggle="collapse" data-target=".navbar-collapse">Prizes</a></li>-->
               </ul>
@@ -106,6 +106,7 @@
         <script src="scripts/directives/help.js"></script>
         <script src="scripts/directives/ngPixiGame.js"></script>
         <script src="scripts/controllers/game.js"></script>
+        <script src="scripts/controllers/navigation.js"></script>
         <!-- endbuild -->
 </body>
 </html>

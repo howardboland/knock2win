@@ -123,17 +123,19 @@ header
             &.play
             {
                 color:$lg-pink;
-                &:hover {
+                &:hover, &.active {
                     color:#fff;
                     background-color:$lg-pink;
                 }
                  
             }
 
-            &:hover {
+            &:hover, &.active {
                 color:#fff;
                 background-color:$mid-grey;
             }
+
+
 
         }
     }
