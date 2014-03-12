@@ -23,7 +23,7 @@ body {
     {
         background:url('../images/bg_textile.jpg');
     }
-    
+
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     color: #333;
 }
@@ -111,7 +111,7 @@ header
       -ms-transition: height 0;
       -o-transition: height 0;
       transition: height 0;
-    }    
+    }
 
     ul.nav
     {
@@ -128,7 +128,7 @@ header
                     color:#fff;
                     background-color:$lg-pink;
                 }
-                 
+
             }
 
             &:hover, &.active {
@@ -163,18 +163,19 @@ footer {
 
   & a {
     color:#fff;
+
     &:hover { color:#fff; }
-    
+
     &.mute {
         color:$light-grey;
         margin-left:30px;
         &.active {
-            color:$dark-grey;   
+            color:$dark-grey;
         }
     }
-  }
+    }
 
-    @media(max-height: $tablet-height) {
+    @media(max-width: $screen-md-max) , (max-height: $tablet-height) {
         height: $mobile-footer-height;
         > div { line-height: $mobile-footer-height; }
     }
@@ -198,7 +199,7 @@ hr
 {
     /* @media(max-width : $screen-md-max) {
            text-indent: -999em;
-        &:after{  
+        &:after{
                 bottom: 0;
                 content: "tap";
                 left: 0;
