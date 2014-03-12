@@ -260,7 +260,6 @@ module.exports = function (grunt) {
         html: ['<%= yeoman.dist %>/*.html']
       }
     },
-
     // Copies remaining files to places other tasks can use
     copy: {
       dist: {
@@ -274,12 +273,19 @@ module.exports = function (grunt) {
             '.htaccess',
             '*.html',
             'sounds/*',
+            'banners/*',
             'views/{,*/}*.html',
-            'bower_components/**/*',
             'images/{,*/}*.{webp}',
             'fonts/*'
           ]
-        }, {
+        },
+        {
+          expand: true,
+          cwd: '<%= yeoman.app %>/bower_components',
+          dest: '<%= yeoman.dist %>/bower_components',
+          src: ['**/*.js']
+        },
+        {
           expand: true,
           cwd: '.tmp/images',
           dest: '<%= yeoman.dist %>/images',
@@ -359,6 +365,11 @@ module.exports = function (grunt) {
       'watch'
     ]);
   });
+
+  grunt.registerTask('bc', [
+    'clean:dist',
+    'copy:dist'
+  ]);
 
   grunt.registerTask('server', function () {
     grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
