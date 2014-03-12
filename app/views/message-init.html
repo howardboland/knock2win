@@ -3,7 +3,7 @@
 		<img class="logo img-responsive" ng-src="images/logo-normal.png" />
 	</div>
 	<div class="below">
-		<p class="header">Double <span class="select-method">click</span> and find the ACE to win.</p>
+		<p class="header">Double {{ !ismobile ? 'click' : 'tap'}} and find the ACE to win.</p>
 	 	<a ui-sref="game.start" class="game-button">PLAY</a>
 	</div>
 </div>

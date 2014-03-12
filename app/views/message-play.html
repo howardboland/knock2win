@@ -3,7 +3,7 @@
 		<img class="logo img-responsive" ng-src="images/logo-normal.png" />
 	</div>
 	<div class="below">
-		<p>Hit ready, then double-<span class="select-method">click</span> when the ACE is in front.</p>	
+		<p>Hit ready, then double-{{ !ismobile ? 'click' : 'tap'}} when the ACE is in front.</p>	
 		<a ui-sref="game.countdown" class="game-button">READY!</a>
 	</div>
 </div>
