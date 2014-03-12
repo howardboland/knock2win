@@ -1,4 +1,4 @@
-<div class="container howtoplay">
+<div class="container howtoplay" ng-controller="HowtoplayCtrl">
 	<div class="row intro">
 		<div class="col-sm-12">
 			<h1>How to play</h1>
@@ -20,9 +20,9 @@
 	</div>
 	<div class="row">
 		<div class="col-xs-12 col-sm-6 step3">
-			<h2>Step 3: Double-<span class="select-method">click</span>!</h2>
+			<h2>Step 3: Double-{{ !ismobile ? 'click' : 'tap'}}!</h2>
 			<div class="diagram"></div>
-			<p>Think you know whereabouts the LG Ace is hidden? Then double-<span class="select-method">click</span>! This will bring the lights back up, and you can see whether or not you've selected the correct card.</p>
+			<p>Think you know whereabouts the LG Ace is hidden? Then double-{{ !ismobile ? 'click' : 'tap'}}! This will bring the lights back up, and you can see whether or not you've selected the correct card.</p>
 		</div>
 		<div class="col-xs-12 col-sm-6 step4">
 			<h2>Step 4: Winner?</h2>
