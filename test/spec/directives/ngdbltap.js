@@ -3,7 +3,7 @@
 describe('Directive: ngDblTap', function () {
 
   // load the directive's module
-  beforeEach(module('wwwknock2wincoukApp'));
+  beforeEach(module('knock2winApp'));
 
   var element,
     scope;
