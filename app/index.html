@@ -60,9 +60,9 @@
 
     </div>
 
-    <footer>
+    <footer ng-controller="FooterCtrl">
     <div class="container">
-      <a ui-sref="tsandcs" href="#">T&amp;C</a><a class="mute active" href="">Mute</a>
+      <a ui-sref="tsandcs" href="#">T&amp;C</a><a class="mute" ng-hide="ismobile" ng-class="{ 'active' : isMuted }" href ng-click="toggleMute()">Mute</a>
       <p class="pull-right">©LG 2014</p>
     </div>
 
@@ -108,6 +108,7 @@
         <script src="scripts/controllers/game.js"></script>
         <script src="scripts/controllers/navigation.js"></script>
         <script src="scripts/controllers/howtoplay.js"></script>
+        <script src="scripts/controllers/footer.js"></script>
         <!-- endbuild -->
 </body>
 </html>

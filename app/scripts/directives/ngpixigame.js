@@ -629,30 +629,33 @@ angular.module('knock2winApp')
       }
       function playAudio(type)
       {
-        var snd = null;
-        switch (type)
+        if (!scope.isMuted)
         {
-            case "shuffle_medium":
-              snd = sound_shuffle;
-            break;
-            case "failed":
-                snd = sound_failed;
-            break;
-            case "success":
-                  snd = sound_success;
-            break;
-            case "countdown":
-                  snd = sound_countdown;
-            break;
-            default:
-        }
-        if (snd!==null)
-        {
-           snd.play();
-            $(snd).bind("ended", function()
-            {
-                //console.log("sound finished");
-            });
+          var snd = null;
+          switch (type)
+          {
+              case "shuffle_medium":
+                snd = sound_shuffle;
+              break;
+              case "failed":
+                  snd = sound_failed;
+              break;
+              case "success":
+                    snd = sound_success;
+              break;
+              case "countdown":
+                    snd = sound_countdown;
+              break;
+              default:
+          }
+          if (snd!==null)
+          {
+             snd.play();
+              $(snd).bind("ended", function()
+              {
+                  //console.log("sound finished");
+              });
+          }
         }
       }
       //Adds a card sprite to the deck container (pixi)
