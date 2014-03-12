@@ -416,33 +416,42 @@
             a.game-button { color: $green !important; }
 
         }
-        .banner-left {
+        .banner-left, .banner-right {
             position: relative;
-            left:0;
+            
             top: 0;
-            margin-right: 100px;
+            height: 100%;
             display:none;
             // border:10px solid red;
             &.desktop {
-                display: block;
+                display: table;
             } 
             &.mobile {
                 display: none;
             } 
+            
+            .banner-include {
+              
+              display: table;
+              height: 100%;
+              
+
+                .flash-content {
+                    display: table-cell;
+                    vertical-align: middle;
+                    height: 600px;
+                }
+            }
+        }
+
+        .banner-left {
+            left:0;
+            margin-right: 100px;
+
         }
         .banner-right {
-            position: relative;
             right: 0;
-            top: 0;
             margin-left: 100px;
-            display:none;
-            // border:10px solid red;
-            &.desktop {
-                display: block;
-            } 
-            &.mobile {
-                display: none;
-            } 
         }
         .banner-bottom {
             position:absolute;
