@@ -1,9 +1,14 @@
 <div class="container-fluid win">
 	
 	<div class="row game-info">
-		<div class="col-sm-12">
-			<h1>Thank you!<small>You have now been entered into our prize draw.</small></h1>
-			<ng-include src="'/views/partials/share.html'"></ng-include>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-8 col-md-9 col-sm-offset-2 col-md-offset-3">
+					<img src="images/logo-normal.png" alt="KnockOn Logo">
+					<img src="images/logo-knockcode-normal.png" alt="KnockCode logo">
+					<h1>Thank you!<small>You have now been entered into our prize draw.</small></h1>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="row prize-info">
@@ -14,7 +19,7 @@
 					<p>LG G2, G Flex, Smart TV's, LG G Pads, and Soundbars up for grabs!</p>
 				</div>
 				<div class="col-sm-3">
-					<img src="/images/prize.png">
+					<img src="/images/prizes.png">
 				</div>
 			</div>
 		</div>
@@ -32,5 +37,11 @@
 			</div>
 		</div>
 	</div><!-- .win-form -->
+
+	<div class="row share">
+		<div class="col-xs-12">
+			<ng-include src="'/views/share.html'" ng-init="class = 'block'; message = 'Share with your friends'" class="message-block"></ng-include>
+		</div>
+	</div>
 
 </div>

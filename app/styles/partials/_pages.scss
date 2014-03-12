@@ -100,6 +100,7 @@
         padding-bottom:40px;
         @media (min-width: $screen-sm){ padding:40px 15px };
         background: #fff;
+
         p
         {
             color:$mid-grey;
@@ -112,9 +113,9 @@
 
         img 
         {
-            width:435px;
+            width:400px;
             height:auto;
-            top:-80px;
+            top:-55px;
             position:absolute;
             z-index: 10;
 
@@ -170,6 +171,11 @@
 
             h2 { color:#fff }
         }
+    }
+
+    .share
+    {
+        margin-top:20px;
     }
 }
 
